@@ -1,0 +1,8 @@
+[package]
+name = "noir_json_tests"
+type = "lib"
+authors = [""]
+compiler_version = "0.13.0"
+
+[dependencies]
+rontosoft = { path = "../lib" }
