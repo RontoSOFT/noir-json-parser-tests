@@ -307,3 +307,12 @@ fn property_number_minus_one_point_zero_e_minus()
     assert(kvp.key == [0; 1]);
     assert(kvp.value.bytes == [0; 1]);
 }
+
+#[test]
+fn property_number_zero_e_zero_point_zero_e_zero()
+{
+    let kvp = JSON::new("{'a' : 0e0.0e0}").get("a");
+
+    assert(kvp.key == [0; 1]);
+    assert(kvp.value.bytes == [0; 1]);
+}
