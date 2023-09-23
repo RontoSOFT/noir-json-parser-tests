@@ -4,7 +4,6 @@ use dep::rontosoft::globals::BYTE_NULL;
 use dep::rontosoft::convert::BytesU8;
 use dep::rontosoft::convert::StringBytes;
 use dep::rontosoft::parse::JSON;
-use dep::rontosoft::parse::KeyValuePair;
 
 #[test]
 fn convert_StringBytes_array_as_field()
