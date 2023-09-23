@@ -1,4 +1,4 @@
-name: Run Tests
+name: Run tests on private library repo
 
 on:
   pull_request:
@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Fetch tests repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Fetch noir-json-parser private repo
         run: |
