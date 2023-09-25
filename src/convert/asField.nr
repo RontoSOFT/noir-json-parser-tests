@@ -70,7 +70,7 @@ fn convert_StringBytes_array_with_sparse_digits_as_field()
 #[test]
 fn property_number_three_zero_as_field()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':30,'isEmployed':true}").get("age").value;
+    let bytes : BytesU8 = JSON::new("{'a':30}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_some());
@@ -80,7 +80,7 @@ fn property_number_three_zero_as_field()
 #[test]
 fn property_string_three_zero_as_field()
 {
-    let bytes : StringBytes<4> = JSON::new("{'name':'John Doe','age':'30','isEmployed':true}").get("age").value;
+    let bytes : StringBytes<4> = JSON::new("{'a':'30'}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_none());
@@ -90,7 +90,7 @@ fn property_string_three_zero_as_field()
 #[test]
 fn property_string_escaped_three_zero_as_field()
 {
-    let bytes : StringBytes<4> = JSON::new("{'name':'John Doe','age':\"30\",'isEmployed':true}").get("age").value;
+    let bytes : StringBytes<4> = JSON::new("{'a':\"30\"}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_none());
@@ -100,7 +100,7 @@ fn property_string_escaped_three_zero_as_field()
 #[test]
 fn property_number_minus_three_zero_as_field()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':-30,'isEmployed':true}").get("age").value;
+    let bytes : BytesU8 = JSON::new("{'a':-30}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_some());
@@ -110,7 +110,7 @@ fn property_number_minus_three_zero_as_field()
 #[test]
 fn property_number_minus_three_zero_e_zero_as_field()
 {
-    let bytes : StringBytes<5> = JSON::new("{'name':'John Doe','age':-30e0,'isEmployed':true}").get("age").value;
+    let bytes : StringBytes<5> = JSON::new("{'a':-30e0}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_some());
@@ -120,7 +120,7 @@ fn property_number_minus_three_zero_e_zero_as_field()
 #[test]
 fn property_number_minus_three_zero_e_one_as_field()
 {
-    let bytes : StringBytes<5> = JSON::new("{'name':'John Doe','age':-30e1,'isEmployed':true}").get("age").value;
+    let bytes : StringBytes<5> = JSON::new("{'a':-30e1}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_some());
@@ -130,7 +130,7 @@ fn property_number_minus_three_zero_e_one_as_field()
 #[test]
 fn property_number_minus_three_zero_e_plus_one_as_field()
 {
-    let bytes : StringBytes<6> = JSON::new("{'name':'John Doe','age':-30e+1,'isEmployed':true}").get("age").value;
+    let bytes : StringBytes<6> = JSON::new("{'a':-30e+1}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_some());
@@ -140,7 +140,7 @@ fn property_number_minus_three_zero_e_plus_one_as_field()
 #[test]
 fn property_number_minus_three_zero_e_minus_one_as_field()
 {
-    let bytes : StringBytes<6> = JSON::new("{'name':'John Doe','age':-30e-1,'isEmployed':true}").get("age").value;
+    let bytes : StringBytes<6> = JSON::new("{'a':-30e-1}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_some());
@@ -150,7 +150,7 @@ fn property_number_minus_three_zero_e_minus_one_as_field()
 #[test]
 fn property_number_three_zero_point_zero_as_field()
 {
-    let bytes : StringBytes<4> = JSON::new("{'name':'John Doe','age':30.0,'isEmployed':true}").get("age").value;
+    let bytes : StringBytes<4> = JSON::new("{'a':30.0}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_none());
@@ -160,7 +160,7 @@ fn property_number_three_zero_point_zero_as_field()
 #[test]
 fn property_string_thirty_as_field()
 {
-    let bytes : StringBytes<8> = JSON::new("{'name':'John Doe','age':'thirty','isEmployed':true}").get("age").value;
+    let bytes : StringBytes<8> = JSON::new("{'a':'thirty'}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_none());
@@ -170,7 +170,7 @@ fn property_string_thirty_as_field()
 #[test]
 fn property_number_three_colon_zero_as_field()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':3:0,'isEmployed':true}").get("age").value;
+    let bytes : BytesU8 = JSON::new("{'a':3:0}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_none());
@@ -180,7 +180,7 @@ fn property_number_three_colon_zero_as_field()
 #[test]
 fn property_number_three_space_zero_as_field()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':3 0,'isEmployed':true}").get("age").value;
+    let bytes : BytesU8 = JSON::new("{'a':3 0}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_none());
@@ -190,7 +190,7 @@ fn property_number_three_space_zero_as_field()
 #[test]
 fn property_number_three_left_brace_zero_as_field()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':3{0,'isEmployed':true}").get("age").value;
+    let bytes : BytesU8 = JSON::new("{'a':3{0}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_none());
@@ -200,7 +200,7 @@ fn property_number_three_left_brace_zero_as_field()
 #[test]
 fn property_number_three_right_brace_zero_as_field()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':3}0,'isEmployed':true}").get("age").value;
+    let bytes : BytesU8 = JSON::new("{'a':3}0}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_none());
@@ -210,7 +210,7 @@ fn property_number_three_right_brace_zero_as_field()
 #[test]
 fn property_number_three_quote_zero_as_field()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':3'0,'isEmployed':true}").get("age").value;
+    let bytes : BytesU8 = JSON::new("{'a':3'0}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_none());
@@ -220,7 +220,7 @@ fn property_number_three_quote_zero_as_field()
 #[test]
 fn property_number_three_escaped_quote_zero_as_field()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':3\"0,'isEmployed':true}").get("age").value;
+    let bytes : BytesU8 = JSON::new("{'a':3\"0}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_none());
@@ -230,7 +230,7 @@ fn property_number_three_escaped_quote_zero_as_field()
 #[test]
 fn property_number_three_comma_zero_as_field()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':3,0,'isEmployed':true}").get("age").value;
+    let bytes : BytesU8 = JSON::new("{'a':3,0}").get("a").value;
     let result = bytes.asField();
 
     assert(result.is_none());

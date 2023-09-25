@@ -62,7 +62,7 @@ fn convert_StringBytes_array_with_sparse_digits_as_integer()
 #[test]
 fn property_number_minus_three_zero_as_integer()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':-30,'isEmployed':true}").get("age").value;
+    let bytes : BytesU8 = JSON::new("{'a':-30}").get("a").value;
     let result = bytes.asInteger();
 
     assert(result.is_some());
@@ -72,7 +72,7 @@ fn property_number_minus_three_zero_as_integer()
 #[test]
 fn property_string_minus_three_zero_as_integer()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':'-30','isEmployed':true}").get("age").value;
+    let bytes : BytesU8 = JSON::new("{'a':'-30'}").get("a").value;
     let result = bytes.asInteger();
 
     assert(result.is_none());
@@ -82,7 +82,7 @@ fn property_string_minus_three_zero_as_integer()
 #[test]
 fn property_number_three_zero_as_integer()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':30,'isEmployed':true}").get("age").value;
+    let bytes : BytesU8 = JSON::new("{'a':30}").get("a").value;
     let result = bytes.asInteger();
 
     assert(result.is_some());
@@ -92,7 +92,7 @@ fn property_number_three_zero_as_integer()
 #[test]
 fn property_number_three_zero_point_zero_as_integer()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':30.0,'isEmployed':true}").get("age").value;
+    let bytes : BytesU8 = JSON::new("{'a':30.0}").get("a").value;
     let result = bytes.asInteger();
 
     assert(result.is_none());
@@ -102,7 +102,7 @@ fn property_number_three_zero_point_zero_as_integer()
 #[test]
 fn property_string_thirty_as_integer()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':'thirty','isEmployed':true}").get("age").value;
+    let bytes : BytesU8 = JSON::new("{'a':'thirty'}").get("a").value;
     let result = bytes.asInteger();
 
     assert(result.is_none());
