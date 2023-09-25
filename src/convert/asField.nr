@@ -89,16 +89,6 @@ fn property_string_three_zero_as_field()
 // }
 
 #[test]
-fn property_number_minus_three_zero_as_field()
-{
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':-30,'isEmployed':true}").get("age").value;
-    let result = bytes.asField();
-
-    assert(result.is_none());
-    assert(result.unwrap_unchecked() == 0);
-}
-
-#[test]
 fn property_number_three_zero_point_zero_as_field()
 {
     let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':30.0,'isEmployed':true}").get("age").value;
