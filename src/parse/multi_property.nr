@@ -82,3 +82,33 @@ unconstrained fn two_properties_same_name_replace_property_check_length()
     assert(json[0].key[0] == key.as_bytes()[0]);
     assert(json[0].value[0] == value.as_bytes()[0]);
 }
+
+#[test]
+fn three_properties_unique_values()
+{
+    let json = JSON::new("{'name':'John Doe','age':30,'isEmployed':true}");
+
+    let (key, value) = ("name", "'John Doe'");
+
+    let kvp = json.get(key);
+
+    assert(kvp.key == key.as_bytes());
+    assert(kvp.value.bytes == value.as_bytes());
+
+    let (key2, value2) = ("age", "30");
+
+    let kvp2 = json.get(key2);
+
+    assert(kvp2.key == key2.as_bytes());
+    assert(kvp2.value.bytes == value2.as_bytes());
+    assert(kvp2.value.asField().unwrap_unchecked() == 30);
+    assert(kvp2.value.asInteger().unwrap_unchecked() == 30);
+
+    let (key3, value3) = ("isEmployed", "true");
+
+    let kvp3 = json.get(key3);
+
+    assert(kvp3.key == key3.as_bytes());
+    assert(kvp3.value.bytes == value3.as_bytes());
+    assert(kvp3.value.asBool().unwrap_unchecked() == true);
+}
