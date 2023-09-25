@@ -5,6 +5,7 @@ use dep::rontosoft::globals::BYTE_NULL;
 use dep::rontosoft::convert::BytesU8;
 use dep::rontosoft::convert::StringBytes;
 use dep::rontosoft::parse::JSON;
+use dep::rontosoft::utils::int127FromUnsigned;
 
 #[test]
 fn convert_StringBytes_minus_array_as_integer()
@@ -13,7 +14,7 @@ fn convert_StringBytes_minus_array_as_integer()
     let result = bytes.asInteger();
 
     assert(result.is_some());
-    assert(result.unwrap_unchecked() == (-4293867510 as u126) as i127);
+    assert(result.unwrap_unchecked() == int127FromUnsigned(-4293867510));
 }
 
 #[test]
@@ -23,7 +24,7 @@ fn convert_StringBytes_minus_array_with_nulls_as_integer()
     let result = bytes.asInteger();
 
     assert(result.is_some());
-    assert(result.unwrap_unchecked() == (-42938 as u126) as i127);
+    assert(result.unwrap_unchecked() == int127FromUnsigned(-42938));
 }
 
 #[test]
@@ -65,7 +66,7 @@ fn property_number_minus_three_zero_as_integer()
     let result = bytes.asInteger();
 
     assert(result.is_some());
-    assert(result.unwrap_unchecked() == (-30 as u126) as i127);
+    assert(result.unwrap_unchecked() == int127FromUnsigned(-30));
 }
 
 #[test]
