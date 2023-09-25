@@ -8,7 +8,7 @@ use dep::rontosoft::convert::asInteger;
 
 
 #[test]
-fn convert_StringBytes_minus_array_as_integer()
+fn convert_bytes_minus_array_as_integer()
 {
     let bytes = [MINUS, 0x34, 0x32, 0x39, 0x33, 0x38, 0x36, 0x37, 0x35, 0x31, 0x30];
     let result = asInteger(bytes);
@@ -18,7 +18,7 @@ fn convert_StringBytes_minus_array_as_integer()
 }
 
 #[test]
-fn convert_StringBytes_minus_array_with_nulls_as_integer()
+fn convert_bytes_minus_array_with_nulls_as_integer()
 {
     let bytes = [MINUS, 0x34, 0x32, 0x39, 0x33, 0x38, BYTE_NULL, BYTE_NULL, BYTE_NULL, BYTE_NULL, BYTE_NULL];
     let result = asInteger(bytes);
@@ -28,7 +28,7 @@ fn convert_StringBytes_minus_array_with_nulls_as_integer()
 }
 
 #[test]
-fn convert_StringBytes_array_value_overflows_as_integer()
+fn convert_bytes_array_value_overflows_as_integer()
 {
     // max (u126) + 1
     // let bytes = [0x38,0x35,0x30,0x37,0x30,0x35,0x39,0x31,0x37,0x33,0x30,0x32,0x33,0x34,0x36,0x31,0x35,0x38,0x36,0x35,0x38,0x34,0x33,0x36,0x35,0x31,0x38,0x35,0x37,0x39,0x34,0x32,0x30,0x30,0x30,0x30,0x30,0x30,0x30];
@@ -40,23 +40,19 @@ fn convert_StringBytes_array_value_overflows_as_integer()
 }
 
 #[test]
-fn convert_StringBytes_minus_array_with_leading_null_as_integer()
+fn convert_bytes_minus_array_with_leading_null_as_integer()
 {
     let bytes = [BYTE_NULL, MINUS, 0x39, 0x36 ];
-    let result = asInteger(bytes);
 
-    assert(result.is_none());
-    assert(result.unwrap_unchecked() == 0);
+    assert(asInteger(bytes).is_none());
 }
 
 #[test]
-fn convert_StringBytes_array_with_sparse_digits_as_integer()
+fn convert_bytes_array_with_sparse_digits_as_integer()
 {
     let bytes = [0x34, 0x32, BYTE_NULL, 0x34, 0x39, 0x36, BYTE_NULL, BYTE_NULL, BYTE_NULL, BYTE_NULL];
-    let result = asInteger(bytes);
 
-    assert(result.is_none());
-    assert(result.unwrap_unchecked() == 0);
+    assert(asInteger(bytes).is_none());
 }
 
 #[test]
@@ -73,10 +69,8 @@ fn property_number_minus_three_zero_as_integer()
 fn property_string_minus_three_zero_as_integer()
 {
     let bytes : [u8; 3] = JSON::new("{'a':'-30'}").get("a").value;
-    let result = asInteger(bytes);
 
-    assert(result.is_none());
-    assert(result.unwrap_unchecked() == 0);
+    assert(asInteger(bytes).is_none());
 }
 
 #[test]
@@ -93,18 +87,14 @@ fn property_number_three_zero_as_integer()
 fn property_number_three_zero_point_zero_as_integer()
 {
     let bytes : [u8; 3] = JSON::new("{'a':30.0}").get("a").value;
-    let result = asInteger(bytes);
 
-    assert(result.is_none());
-    assert(result.unwrap_unchecked() == 0);
+    assert(asInteger(bytes).is_none());
 }
 
 #[test]
 fn property_string_thirty_as_integer()
 {
     let bytes : [u8; 3] = JSON::new("{'a':'thirty'}").get("a").value;
-    let result = asInteger(bytes);
 
-    assert(result.is_none());
-    assert(result.unwrap_unchecked() == 0);
+    assert(asInteger(bytes).is_none());
 }
