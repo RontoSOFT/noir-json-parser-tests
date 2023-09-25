@@ -1,5 +1,6 @@
 use dep::std::option::Option;
 
+use dep::rontosoft::globals::MINUS;
 use dep::rontosoft::globals::BYTE_NULL;
 use dep::rontosoft::convert::BytesU8;
 use dep::rontosoft::convert::StringBytes;
@@ -13,6 +14,16 @@ fn convert_StringBytes_array_as_field()
 
     assert(result.is_some());
     assert(result.unwrap_unchecked() == 4293867510);
+}
+
+#[test]
+fn convert_StringBytes_minus_array_as_field()
+{
+    let bytes = StringBytes::new_valid([MINUS, 0x34, 0x32, 0x39, 0x33, 0x38, 0x36, 0x37, 0x35, 0x31, 0x30]);
+    let result = bytes.asField();
+
+    assert(result.is_some());
+    assert(result.unwrap_unchecked() == -4293867510);
 }
 
 #[test]
@@ -69,29 +80,77 @@ fn property_number_three_zero_as_field()
 #[test]
 fn property_string_three_zero_as_field()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':'30','isEmployed':true}").get("age").value;
+    let bytes : StringBytes<4> = JSON::new("{'name':'John Doe','age':'30','isEmployed':true}").get("age").value;
     let result = bytes.asField();
 
     assert(result.is_none());
     assert(result.unwrap_unchecked() == 0);
 }
 
-//
-// TODO: see https://github.com/noir-lang/noir/issues/2657
-//
-// #[test]
-// fn property_string_escaped_three_zero_as_field()
-// {
-//     let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':\"30\",'isEmployed':true}").get("age").value;
-//     let result = bytes.asField();
+#[test]
+fn property_string_escaped_three_zero_as_field()
+{
+    let bytes : StringBytes<4> = JSON::new("{'name':'John Doe','age':\"30\",'isEmployed':true}").get("age").value;
+    let result = bytes.asField();
 
-//     assert( result.valid && result.unwrap_unchecked() == 30 );
-// }
+    assert(result.is_none());
+    assert(result.unwrap_unchecked() == 0);
+}
+
+#[test]
+fn property_number_minus_three_zero_as_field()
+{
+    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':-30,'isEmployed':true}").get("age").value;
+    let result = bytes.asField();
+
+    assert(result.is_some());
+    assert(result.unwrap_unchecked() == -30);
+}
+
+#[test]
+fn property_number_minus_three_zero_e_zero_as_field()
+{
+    let bytes : StringBytes<5> = JSON::new("{'name':'John Doe','age':-30e0,'isEmployed':true}").get("age").value;
+    let result = bytes.asField();
+
+    assert(result.is_some());
+    assert(result.unwrap_unchecked() == -30);
+}
+
+#[test]
+fn property_number_minus_three_zero_e_one_as_field()
+{
+    let bytes : StringBytes<5> = JSON::new("{'name':'John Doe','age':-30e1,'isEmployed':true}").get("age").value;
+    let result = bytes.asField();
+
+    assert(result.is_some());
+    assert(result.unwrap_unchecked() == -300);
+}
+
+#[test]
+fn property_number_minus_three_zero_e_plus_one_as_field()
+{
+    let bytes : StringBytes<6> = JSON::new("{'name':'John Doe','age':-30e+1,'isEmployed':true}").get("age").value;
+    let result = bytes.asField();
+
+    assert(result.is_some());
+    assert(result.unwrap_unchecked() == -300);
+}
+
+#[test]
+fn property_number_minus_three_zero_e_minus_one_as_field()
+{
+    let bytes : StringBytes<6> = JSON::new("{'name':'John Doe','age':-30e-1,'isEmployed':true}").get("age").value;
+    let result = bytes.asField();
+
+    assert(result.is_some());
+    assert(result.unwrap_unchecked() == -3);
+}
 
 #[test]
 fn property_number_three_zero_point_zero_as_field()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':30.0,'isEmployed':true}").get("age").value;
+    let bytes : StringBytes<4> = JSON::new("{'name':'John Doe','age':30.0,'isEmployed':true}").get("age").value;
     let result = bytes.asField();
 
     assert(result.is_none());
@@ -101,7 +160,7 @@ fn property_number_three_zero_point_zero_as_field()
 #[test]
 fn property_string_thirty_as_field()
 {
-    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':'thirty','isEmployed':true}").get("age").value;
+    let bytes : StringBytes<8> = JSON::new("{'name':'John Doe','age':'thirty','isEmployed':true}").get("age").value;
     let result = bytes.asField();
 
     assert(result.is_none());
@@ -158,14 +217,15 @@ fn property_number_three_quote_zero_as_field()
     assert(result.unwrap_unchecked() == 0);
 }
 
-// #[test]
-// fn property_number_three_escaped_quote_zero_as_field()
-// {
-//     let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':3\"0,'isEmployed':true}").get("age").value;
-//     let result = bytes.asField();
+#[test]
+fn property_number_three_escaped_quote_zero_as_field()
+{
+    let bytes : BytesU8 = JSON::new("{'name':'John Doe','age':3\"0,'isEmployed':true}").get("age").value;
+    let result = bytes.asField();
 
-    // assert( !result.valid & (result.unwrap_unchecked() == 0);
-// }
+    assert(result.is_none());
+    assert(result.unwrap_unchecked() == 0);
+}
 
 #[test]
 fn property_number_three_comma_zero_as_field()

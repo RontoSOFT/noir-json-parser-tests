@@ -23,6 +23,28 @@ fn property_number_single_digit()
 }
 
 #[test]
+fn property_number_one_zero_zero()
+{
+    let (key, value) = ("a", "100");
+
+    let kvp = JSON::new("{'a' : 100}").get(key);
+
+    assert(kvp.key == key.as_bytes());
+    assert(kvp.value.bytes == value.as_bytes());
+}
+
+#[test]
+fn property_number_one_zero_zero_one()
+{
+    let (key, value) = ("a", "1001");
+
+    let kvp = JSON::new("{'a' : 1001}").get(key);
+
+    assert(kvp.key == key.as_bytes());
+    assert(kvp.value.bytes == value.as_bytes());
+}
+
+#[test]
 fn property_number_multiple_digits()
 {
     let (key, value) = ("a", "12345");
@@ -34,25 +56,12 @@ fn property_number_multiple_digits()
 }
 
 #[test]
-fn property_number_one_hundred()
+fn property_number_minus()
 {
-    let (key, value) = ("a", "100");
+    let kvp = JSON::new("{'a' : -}").get("a");
 
-    let kvp = JSON::new("{'a' : 100}").get(key);
-
-    assert(kvp.key == key.as_bytes());
-    assert(kvp.value.bytes == value.as_bytes());
-}
-
-#[test]
-fn property_number_one_thousand_one()
-{
-    let (key, value) = ("a", "1001");
-
-    let kvp = JSON::new("{'a' : 1001}").get(key);
-
-    assert(kvp.key == key.as_bytes());
-    assert(kvp.value.bytes == value.as_bytes());
+    assert(kvp.key == [0; 1]);
+    assert(kvp.value.bytes == [0; 1]);
 }
 
 #[test]
@@ -78,6 +87,28 @@ fn property_number_minus_single_digit()
 }
 
 #[test]
+fn property_number_minus_one_zero_zero()
+{
+    let (key, value) = ("a", "-100");
+
+    let kvp = JSON::new("{'a' : -100}").get(key);
+
+    assert(kvp.key == key.as_bytes());
+    assert(kvp.value.bytes == value.as_bytes());
+}
+
+#[test]
+fn property_number_minux_one_zero_zero_one()
+{
+    let (key, value) = ("a", "-1001");
+
+    let kvp = JSON::new("{'a' : -1001}").get(key);
+
+    assert(kvp.key == key.as_bytes());
+    assert(kvp.value.bytes == value.as_bytes());
+}
+
+#[test]
 fn property_number_minus_multiple_digits()
 {
     let (key, value) = ("a", "-12345");
@@ -86,6 +117,15 @@ fn property_number_minus_multiple_digits()
 
     assert(kvp.key == key.as_bytes());
     assert(kvp.value.bytes == value.as_bytes());
+}
+
+#[test]
+fn property_number_plus()
+{
+    let kvp = JSON::new("{'a' : +}").get("a");
+
+    assert(kvp.key == [0; 1]);
+    assert(kvp.value.bytes == [0; 1]);
 }
 
 #[test]
@@ -161,24 +201,6 @@ fn property_double_minus_number()
 }
 
 #[test]
-fn property_minus_between_digits_of_number()
-{
-    let kvp = JSON::new("{'a' : 1-1}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value.bytes == [0; 1]);
-}
-
-#[test]
-fn property_two_digits_between_two_minuses()
-{
-    let kvp = JSON::new("{'a' : -1-1}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value.bytes == [0; 1]);
-}
-
-#[test]
 fn property_number_minus_after_digits()
 {
     let kvp = JSON::new("{'a' : 1-}").get("a");
@@ -191,6 +213,24 @@ fn property_number_minus_after_digits()
 fn property_number_between_minuses()
 {
     let kvp = JSON::new("{'a' : -1-}").get("a");
+
+    assert(kvp.key == [0; 1]);
+    assert(kvp.value.bytes == [0; 1]);
+}
+
+#[test]
+fn property_minus_between_digits_of_number()
+{
+    let kvp = JSON::new("{'a' : 1-1}").get("a");
+
+    assert(kvp.key == [0; 1]);
+    assert(kvp.value.bytes == [0; 1]);
+}
+
+#[test]
+fn property_two_digits_between_two_minuses()
+{
+    let kvp = JSON::new("{'a' : -1-1}").get("a");
 
     assert(kvp.key == [0; 1]);
     assert(kvp.value.bytes == [0; 1]);
