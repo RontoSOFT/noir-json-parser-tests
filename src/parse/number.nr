@@ -12,7 +12,7 @@ fn property_number_zero()
 }
 
 #[test]
-fn property_number_single_digit()
+fn property_number_one()
 {
     let (key, value) = ("a", "1");
 
@@ -45,7 +45,7 @@ fn property_number_one_zero_zero_one()
 }
 
 #[test]
-fn property_number_multiple_digits()
+fn property_number_multiple_one_two_three_four_five()
 {
     let (key, value) = ("a", "12345");
 
@@ -76,7 +76,7 @@ fn property_number_minus_zero()
 }
 
 #[test]
-fn property_number_minus_single_digit()
+fn property_number_minus_one()
 {
     let (key, value) = ("a", "-1");
 
@@ -109,7 +109,7 @@ fn property_number_minux_one_zero_zero_one()
 }
 
 #[test]
-fn property_number_minus_multiple_digits()
+fn property_number_minus_one_two_three_four_five()
 {
     let (key, value) = ("a", "-12345");
 
@@ -138,7 +138,7 @@ fn property_number_plus_zero()
 }
 
 #[test]
-fn property_number_plus_single_digit()
+fn property_number_plus_one()
 {
     let kvp = JSON::new("{'a':+1}").get("a");
 
@@ -147,7 +147,7 @@ fn property_number_plus_single_digit()
 }
 
 #[test]
-fn property_number_plus_multiple_digits()
+fn property_number_plus_one_two_three_four_five()
 {
     let kvp = JSON::new("{'a':+12345}").get("a");
 
@@ -165,7 +165,7 @@ fn property_number_double_zero()
 }
 
 #[test]
-fn property_number_leading_zero_single_digit()
+fn property_number_leading_zero_one()
 {
     let kvp = JSON::new("{'a':01}").get("a");
 
@@ -174,7 +174,7 @@ fn property_number_leading_zero_single_digit()
 }
 
 #[test]
-fn property_number_leading_multiple_zero_single_digit()
+fn property_number_zero_zero_one()
 {
     let kvp = JSON::new("{'a':001}").get("a");
 
@@ -183,7 +183,7 @@ fn property_number_leading_multiple_zero_single_digit()
 }
 
 #[test]
-fn property_number_leading_zero_multiple_digits()
+fn property_number_zero_one_two_three_four_five()
 {
     let kvp = JSON::new("{'a':012345}").get("a");
 
@@ -192,7 +192,16 @@ fn property_number_leading_zero_multiple_digits()
 }
 
 #[test]
-fn property_double_minus_number()
+fn property_double_minus_zero()
+{
+    let kvp = JSON::new("{'a':--0}").get("a");
+
+    assert(kvp.key == [0; 1]);
+    assert(kvp.value == [0; 1]);
+}
+
+#[test]
+fn property_double_minus_one()
 {
     let kvp = JSON::new("{'a':--1}").get("a");
 
@@ -201,7 +210,16 @@ fn property_double_minus_number()
 }
 
 #[test]
-fn property_number_minus_after_digits()
+fn property_number_zero_minus()
+{
+    let kvp = JSON::new("{'a':0-}").get("a");
+
+    assert(kvp.key == [0; 1]);
+    assert(kvp.value == [0; 1]);
+}
+
+#[test]
+fn property_number_one_minus()
 {
     let kvp = JSON::new("{'a':1-}").get("a");
 
@@ -210,7 +228,16 @@ fn property_number_minus_after_digits()
 }
 
 #[test]
-fn property_number_between_minuses()
+fn property_number_minus_zero_minus()
+{
+    let kvp = JSON::new("{'a':-0-}").get("a");
+
+    assert(kvp.key == [0; 1]);
+    assert(kvp.value == [0; 1]);
+}
+
+#[test]
+fn property_number_minus_one_minus()
 {
     let kvp = JSON::new("{'a':-1-}").get("a");
 
@@ -219,7 +246,16 @@ fn property_number_between_minuses()
 }
 
 #[test]
-fn property_minus_between_digits_of_number()
+fn property_number_zero_minus_zero()
+{
+    let kvp = JSON::new("{'a':0-0}").get("a");
+
+    assert(kvp.key == [0; 1]);
+    assert(kvp.value == [0; 1]);
+}
+
+#[test]
+fn property_number_one_minus_one()
 {
     let kvp = JSON::new("{'a':1-1}").get("a");
 
@@ -228,7 +264,16 @@ fn property_minus_between_digits_of_number()
 }
 
 #[test]
-fn property_two_digits_between_two_minuses()
+fn property_number_minus_zero_minus_zero()
+{
+    let kvp = JSON::new("{'a':-0-0}").get("a");
+
+    assert(kvp.key == [0; 1]);
+    assert(kvp.value == [0; 1]);
+}
+
+#[test]
+fn property_number_minus_one_minus_one()
 {
     let kvp = JSON::new("{'a':-1-1}").get("a");
 
@@ -237,7 +282,7 @@ fn property_two_digits_between_two_minuses()
 }
 
 #[test]
-fn property_number_single_digit_comma()
+fn property_number_one_comma()
 {
     let kvp = JSON::new("{'a':1,}").get("a");
 
@@ -246,7 +291,7 @@ fn property_number_single_digit_comma()
 }
 
 #[test]
-fn property_number_single_digit_colon()
+fn property_number_one_colon()
 {
     let kvp = JSON::new("{'a':1:}").get("a");
 
@@ -255,7 +300,7 @@ fn property_number_single_digit_colon()
 }
 
 #[test]
-fn property_number_single_digit_quote()
+fn property_number_one_quote()
 {
     let kvp = JSON::new("{'a':1'}").get("a");
 
@@ -264,7 +309,7 @@ fn property_number_single_digit_quote()
 }
 
 #[test]
-fn property_number_single_digit_left_brace()
+fn property_number_one_left_brace()
 {
     let kvp = JSON::new("{'a':1{}").get("a");
 
@@ -273,7 +318,7 @@ fn property_number_single_digit_left_brace()
 }
 
 #[test]
-fn property_number_single_digit_right_brace()
+fn property_number_one_right_brace()
 {
     let kvp = JSON::new("{'a':1}}").get("a");
 
@@ -282,7 +327,7 @@ fn property_number_single_digit_right_brace()
 }
 
 #[test]
-fn property_number_single_digit_left_bracket()
+fn property_number_one_left_bracket()
 {
     let kvp = JSON::new("{'a':1[}").get("a");
 
@@ -291,7 +336,7 @@ fn property_number_single_digit_left_bracket()
 }
 
 #[test]
-fn property_number_single_digit_right_bracket()
+fn property_number_one_right_bracket()
 {
     let kvp = JSON::new("{'a':1]}").get("a");
 
