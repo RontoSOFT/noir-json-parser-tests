@@ -1,3 +1,3 @@
-mod asBool;
-mod asInteger;
-mod asField;
+mod boolean;
+mod integer;
+mod field;

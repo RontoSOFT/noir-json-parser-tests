@@ -27,9 +27,9 @@ The `parse` module contains tests for parsing JSON data. It includes tests for d
 
 The `convert` module contains tests for converting JSON data into different types. It includes tests for:
 
-- `bool` in `src/convert/asBool.nr`
-- `i127` in `src/convert/asInteger.nr`
-- `Field` in `src/convert/asField.nr`
+- `bool` in `src/convert/boolean.nr`
+- `i127` in `src/convert/integer.nr`
+- `Field` in `src/convert/field.nr`
 
 <br>
 
