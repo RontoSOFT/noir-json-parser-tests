@@ -7,8 +7,6 @@ A library of tests covering the functionality provided by the `noir-json-parser`
 
 ## Structure
 
-Here is [an UML diagram](https://www.plantuml.com/plantuml/umla/VL9VYnCn47_FfnZkGRPuVT0N9PRb52gSIa_edQ1IZjnshYwcIKXcJnVnkpl99ZILqgTDPdv_VZkPgq3Aqx3NGdHQXG2VlNNeQLnyN7wzNrz_Mrx2bxUVxfRftC8V0V0SVk8euVlm-WqKr2RLdvGUC7SAg_GC_cfc4jQe7yNVudPdEci2UTKRt1Rh_qngwNAVrtBfxdnlg7cs7mW2rsO7Zm_hczMYJlym4eQSyZXV85RPIU3ln2WE4R13EZsKXfDEdDWklFE3ZF6SjsGxgu5dyCJG74-5TzRgnQfjwg2h3MlUEEgjMJnmlytOzptgxJbm0XJqjI7SeJ-7xr-yV7KSpoaVSCgMZcaqzppMeW9PfjHPBfPEFkxcy33Py7PwboWVx1xvtjnEpptBPMCDHbgKbdA71FFv54NAz66tJcaTe1LrES9EXeXuZugG6I1EGvXRmrKWNXmuH6Yi1_nDw0qxZxDBg4GYSWZevxrn0q7P051cMoq1foqEKgOVPjEsR0ERNWI7NVyu0lr0eD7XXIXD1kRv2N65PZlizJy0) detailing library interface, methods, structs and information flow. Note that it is still being refined.
-
 The tests are organized into two main modules: `parse` and `convert`
 
 <br>
