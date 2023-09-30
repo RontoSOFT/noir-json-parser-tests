@@ -2,62 +2,16 @@ use dep::std::option::Option;
 
 use dep::rontosoft::globals::MINUS;
 use dep::rontosoft::globals::BYTE_NULL;
-use dep::rontosoft::utils::int127FromUnsigned;
 use dep::rontosoft::JSON;
-use dep::rontosoft::convert::asInteger;
-
 
 #[test]
 unconstrained
-fn convert_bytes_minus_array_as_integer()
+fn property_number_three_zero_as_integer()
 {
-    let bytes = [MINUS, 0x34, 0x32, 0x39, 0x33, 0x38, 0x36, 0x37, 0x35, 0x31, 0x30];
-    let result = asInteger(bytes);
+    let result = JSON::parse("{'a':30}").getInteger("a");
 
-    assert(result.is_some());
-    assert(result.unwrap_unchecked() == int127FromUnsigned(-4293867510));
-}
-
-#[test]
-unconstrained
-fn convert_bytes_minus_array_with_nulls_as_integer()
-{
-    let bytes = [MINUS, 0x34, 0x32, 0x39, 0x33, 0x38, BYTE_NULL, BYTE_NULL, BYTE_NULL, BYTE_NULL, BYTE_NULL];
-    let result = asInteger(bytes);
-
-    assert(result.is_some());
-    assert(result.unwrap_unchecked() == int127FromUnsigned(-42938));
-}
-
-#[test]
-unconstrained
-fn convert_bytes_array_value_overflows_as_integer()
-{
-    // max (u126) + 1
-    // let bytes = [0x38,0x35,0x30,0x37,0x30,0x35,0x39,0x31,0x37,0x33,0x30,0x32,0x33,0x34,0x36,0x31,0x35,0x38,0x36,0x35,0x38,0x34,0x33,0x36,0x35,0x31,0x38,0x35,0x37,0x39,0x34,0x32,0x30,0x30,0x30,0x30,0x30,0x30,0x30];
-    let bytes = [0x38,0x35,0x30,0x37,0x30,0x35,0x39,0x31,0x37,0x33,0x30,0x32,0x33,0x34,0x36,0x31,0x35,0x38,0x36,0x35,0x38,0x34,0x33,0x36,0x35,0x31,0x38,0x35,0x37,0x39,0x34,0x32,0x30,0x35,0x32,0x38,0x36,0x34,0x31];
-    let result = asInteger(bytes);
-
-    assert(result.is_some());
-    assert(result.unwrap_unchecked() == 1);
-}
-
-#[test]
-unconstrained
-fn convert_bytes_minus_array_with_leading_null_as_integer()
-{
-    let bytes = [BYTE_NULL, MINUS, 0x39, 0x36 ];
-
-    assert(asInteger(bytes).is_none());
-}
-
-#[test]
-unconstrained
-fn convert_bytes_array_with_sparse_digits_as_integer()
-{
-    let bytes = [0x34, 0x32, BYTE_NULL, 0x34, 0x39, 0x36, BYTE_NULL, BYTE_NULL, BYTE_NULL, BYTE_NULL];
-
-    assert(asInteger(bytes).is_none());
+    assert(result.is_some() == true);
+    assert(result.unwrap_unchecked() == 30);
 }
 
 #[test]
@@ -66,8 +20,142 @@ fn property_number_minus_three_zero_as_integer()
 {
     let result = JSON::parse("{'a':-30}").getInteger("a");
 
-    assert(result.is_some());
-    assert(result.unwrap_unchecked() == int127FromUnsigned(-30));
+    assert(result.is_some() == true);
+    assert(result.unwrap_unchecked() == -30);
+}
+
+#[test]
+unconstrained
+fn property_number_three_zero_e_zero_as_integer()
+{
+    let result = JSON::parse("{'a':30e0}").getInteger("a");
+
+    assert(result.is_some() == true);
+    assert(result.unwrap_unchecked() == 30);
+}
+
+#[test]
+unconstrained
+fn property_number_minus_three_zero_e_zero_as_integer()
+{
+    let result = JSON::parse("{'a':-30e0}").getInteger("a");
+
+    assert(result.is_some() == true);
+    assert(result.unwrap_unchecked() == -30);
+}
+
+#[test]
+unconstrained
+fn property_number_three_zero_e_plus_zero_as_integer()
+{
+    let result = JSON::parse("{'a':30e+0}").getInteger("a");
+
+    assert(result.is_some() == true);
+    assert(result.unwrap_unchecked() == 30);
+}
+
+#[test]
+unconstrained
+fn property_number_minus_three_zero_e_plus_zero_as_integer()
+{
+    let result = JSON::parse("{'a':-30e+0}").getInteger("a");
+
+    assert(result.is_some() == true);
+    assert(result.unwrap_unchecked() == -30);
+}
+
+#[test]
+unconstrained
+fn property_number_three_zero_e_minus_zero_as_integer()
+{
+    let result = JSON::parse("{'a':30e-0}").getInteger("a");
+
+    assert(result.is_some() == true);
+    assert(result.unwrap_unchecked() == 30);
+}
+
+#[test]
+unconstrained
+fn property_number_minus_three_zero_e_minus_zero_as_integer()
+{
+    let result = JSON::parse("{'a':-30e-0}").getInteger("a");
+
+    assert(result.is_some() == true);
+    assert(result.unwrap_unchecked() == -30);
+}
+
+#[test]
+unconstrained
+fn property_number_three_zero_e_one_as_integer()
+{
+    let result = JSON::parse("{'a':30e1}").getInteger("a");
+
+    assert(result.is_some() == true);
+    assert(result.unwrap_unchecked() == 300);
+}
+
+#[test]
+unconstrained
+fn property_number_minus_three_zero_e_one_as_integer()
+{
+    let result = JSON::parse("{'a':-30e1}").getInteger("a");
+
+    assert(result.is_some() == true);
+    assert(result.unwrap_unchecked() == -300);
+}
+
+#[test]
+unconstrained
+fn property_number_three_zero_e_plus_one_as_integer()
+{
+    let result = JSON::parse("{'a':30e+1}").getInteger("a");
+
+    assert(result.is_some() == true);
+    assert(result.unwrap_unchecked() == 300);
+}
+
+#[test]
+unconstrained
+fn property_number_minus_three_zero_e_plus_one_as_integer()
+{
+    let result = JSON::parse("{'a':-30e+1}").getInteger("a");
+
+    assert(result.is_some() == true);
+    assert(result.unwrap_unchecked() == -300);
+}
+
+#[test]
+unconstrained
+fn property_number_three_zero_e_minus_one_as_integer()
+{
+    let result = JSON::parse("{'a':30e-1}").getInteger("a");
+
+    assert(result.is_some() == true);
+    assert(result.unwrap_unchecked() == 3);
+}
+
+#[test]
+unconstrained
+fn property_number_minus_three_zero_e_minus_one_as_integer()
+{
+    let result = JSON::parse("{'a':-30e-1}").getInteger("a");
+
+    assert(result.is_some() == true);
+    assert(result.unwrap_unchecked() == -3);
+}
+
+#[test]
+unconstrained
+fn property_number_plus_three_zero_as_integer()
+{
+    assert(JSON::parse("{'a':+30}").getInteger("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_string_three_zero_as_integer()
+{
+    assert(JSON::parse("{'a':'30'}").getInteger("a").is_none() == true);
 }
 
 #[test]
@@ -79,12 +167,16 @@ fn property_string_minus_three_zero_as_integer()
 
 #[test]
 unconstrained
-fn property_number_three_zero_as_integer()
+fn property_string_escaped_three_zero_as_integer()
 {
-    let result = JSON::parse("{'a':30}").getInteger("a");
+    assert(JSON::parse("{'a':\"30\"}").getInteger("a").is_none() == true);
+}
 
-    assert(result.is_some());
-    assert(result.unwrap_unchecked() == 30);
+#[test]
+unconstrained
+fn property_string_escaped_minus_three_zero_as_integer()
+{
+    assert(JSON::parse("{'a':\"-30\"}").getInteger("a").is_none() == true);
 }
 
 #[test]
@@ -96,7 +188,63 @@ fn property_number_three_zero_point_zero_as_integer()
 
 #[test]
 unconstrained
+fn property_number_minus_three_zero_point_zero_as_integer()
+{
+    assert(JSON::parse("{'a':-30.0}").getInteger("a").is_none() == true);
+}
+
+#[test]
+unconstrained
 fn property_string_thirty_as_integer()
 {
     assert(JSON::parse("{'a':'thirty'}").getInteger("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_number_three_colon_zero_as_integer()
+{
+    assert(JSON::parse("{'a':3:0}").getInteger("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_number_three_space_zero_as_integer()
+{
+    assert(JSON::parse("{'a':3 0}").getInteger("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_number_three_left_brace_zero_as_integer()
+{
+    assert(JSON::parse("{'a':3{0}").getInteger("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_number_three_right_brace_zero_as_integer()
+{
+    assert(JSON::parse("{'a':3}0}").getInteger("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_number_three_quote_zero_as_integer()
+{
+    assert(JSON::parse("{'a':3'0}").getInteger("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_number_three_escaped_quote_zero_as_integer()
+{
+    assert(JSON::parse("{'a':3\"0}").getInteger("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_number_three_comma_zero_as_integer()
+{
+    assert(JSON::parse("{'a':3,0}").getInteger("a").is_none() == true);
 }

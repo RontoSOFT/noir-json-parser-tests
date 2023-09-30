@@ -2,7 +2,6 @@ use dep::rontosoft::JSON;
 use dep::rontosoft::utils::slice_eq_array;
 use dep::rontosoft::convert::asBool;
 use dep::rontosoft::convert::asField;
-use dep::rontosoft::convert::asInteger;
 
 #[test]
 unconstrained
@@ -80,7 +79,6 @@ fn three_properties_unique_values()
 
     assert(slice_eq_array(bytes2, value2.as_bytes()));
     assert(asField(bytes2).unwrap_unchecked() == 30);
-    assert(asInteger(bytes2).unwrap_unchecked() == 30);
 
     let (key3, value3) = ("isEmployed", "true");
     let bytes3 = json.bytesOf(key3).unwrap_unchecked();
