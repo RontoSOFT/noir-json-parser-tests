@@ -1,127 +1,115 @@
-use dep::rontosoft::parse::JSON;
-use dep::rontosoft::convert::asBool;
+use dep::rontosoft::JSON;
+use dep::rontosoft::convert_::asBool;
 
 #[test]
+unconstrained
 fn property_literal_true_as_bool()
 {
-    let bytes : [u8; 5] = JSON::new("{'a':true}").get("a").value;
-    let result = asBool(bytes);
+    let result = JSON::parse("{'a':true}").getBool("a");
 
     assert(result.is_some());
     assert(result.unwrap_unchecked() == true);
 }
 
 #[test]
-fn property_string_true_as_bool()
-{
-    let bytes : [u8; 5] = JSON::new("{'a':'true'}").get("a").value;
-
-    assert(asBool(bytes).is_none());
-}
-
-#[test]
-fn property_literal_one_as_bool()
-{
-    let bytes : [u8; 5] = JSON::new("{'a':1}").get("a").value;
-
-    assert(asBool(bytes).is_none());
-}
-
-#[test]
-fn property_string_one_as_bool()
-{
-    let bytes : [u8; 5] = JSON::new("{'a':'1'}").get("a").value;
-
-    assert(asBool(bytes).is_none());
-}
-
-#[test]
-fn property_literal_false_as_bool()
-{
-    let bytes : [u8; 5] = JSON::new("{'a':false}").get("a").value;
-    let result = asBool(bytes);
-
-    assert(result.is_some());
-    assert(result.unwrap_unchecked() == false);
-}
-
-#[test]
-fn property_string_false_as_bool()
-{
-    let bytes : [u8; 5] = JSON::new("{'a':'false'}").get("a").value;
-
-    assert(asBool(bytes).is_none());
-}
-
-#[test]
-fn property_number_zero_as_bool()
-{
-    let bytes : [u8; 5] = JSON::new("{'a':0}").get("a").value;
-
-    assert(asBool(bytes).is_none());
-}
-
-fn property_string_quote_zero_quote_as_bool()
-{
-    let bytes : [u8; 5] = JSON::new("{'a':'0'}").get("a").value;
-
-    assert(asBool(bytes).is_none());
-}
-
-#[test]
+unconstrained
 fn property_literal_null_as_bool()
 {
-    let bytes : [u8; 5] = JSON::new("{'a':null}").get("a").value;
-    let result = asBool(bytes);
+    let result = JSON::parse("{'a':null}").getBool("a");
 
     assert(result.is_some());
     assert(result.unwrap_unchecked() == false);
 }
 
 #[test]
+unconstrained
+fn property_literal_false_as_bool()
+{
+    let result = JSON::parse("{'a':false}").getBool("a");
+
+    assert(result.is_some());
+    assert(result.unwrap_unchecked() == false);
+}
+
+#[test]
+unconstrained
+fn property_string_true_as_bool()
+{
+    assert(JSON::parse("{'a':'true'}").getBool("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_literal_one_as_bool()
+{
+    assert(JSON::parse("{'a':1}").getBool("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_string_one_as_bool()
+{
+    assert(JSON::parse("{'a':'1'}").getBool("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_string_false_as_bool()
+{
+    assert(JSON::parse("{'a':'false'}").getBool("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_number_zero_as_bool()
+{
+    assert(JSON::parse("{'a':0}").getBool("a").is_none() == true);
+}
+
+unconstrained
+fn property_string_quote_zero_quote_as_bool()
+{
+    assert(JSON::parse("{'a':'0'}").getBool("a").is_none() == true);
+}
+
+#[test]
+unconstrained
 fn property_string_null_as_bool()
 {
-    let bytes : [u8; 5] = JSON::new("{'a':'null'}").get("a").value;
-
-    assert(asBool(bytes).is_none());
+    assert(JSON::parse("{'a':'null'}").getBool("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_literal_wrong_letter_as_bool_true()
 {
-    let bytes : [u8; 5] = JSON::new("{'a':trye}").get("a").value;
-
-    assert(asBool(bytes).is_none());
+    assert(JSON::parse("{'a':trye}").getBool("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_literal_wrong_letter_as_bool_false()
 {
-    let bytes : [u8; 5] = JSON::new("{'a':falle}").get("a").value;
-
-    assert(asBool(bytes).is_none());
+    assert(JSON::parse("{'a':falle}").getBool("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_literal_wrong_letter_as_bool_null()
 {
-    let bytes : [u8; 5] = JSON::new("{'a':nulm}").get("a").value;
-
-    assert(asBool(bytes).is_none());
+    assert(JSON::parse("{'a':nulm}").getBool("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_zero_one_as_bool()
 {
-    let bytes : [u8; 5] = JSON::new("{'a':01}").get("a").value;
-
-    assert(asBool(bytes).is_none());
+    assert(JSON::parse("{'a':01}").getBool("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_three_zero_as_bool()
 {
-    let bytes : [u8; 5] = JSON::new("{'a':000}").get("a").value;
-
-    assert(asBool(bytes).is_none());
+    assert(JSON::parse("{'a':000}").getBool("a").is_none() == true);
 }
