@@ -1,345 +1,284 @@
-use dep::rontosoft::parse::JSON;
+use dep::rontosoft::JSON;
+use dep::rontosoft::utils::slice_eq_array;
 
 #[test]
+unconstrained
 fn property_number_zero()
 {
     let (key, value) = ("a", "0");
+    let bytes = JSON::parse("{'a':0}").bytesOf(key).unwrap_unchecked();
 
-    let kvp = JSON::new("{'a':0}").get(key);
-
-    assert(kvp.key == key.as_bytes());
-    assert(kvp.value == value.as_bytes());
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
+unconstrained
 fn property_number_one()
 {
     let (key, value) = ("a", "1");
+    let bytes = JSON::parse("{'a':1}").bytesOf(key).unwrap_unchecked();
 
-    let kvp = JSON::new("{'a':1}").get(key);
-
-    assert(kvp.key == key.as_bytes());
-    assert(kvp.value == value.as_bytes());
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
+unconstrained
 fn property_number_one_zero_zero()
 {
     let (key, value) = ("a", "100");
+    let bytes = JSON::parse("{'a':100}").bytesOf(key).unwrap_unchecked();
 
-    let kvp = JSON::new("{'a':100}").get(key);
-
-    assert(kvp.key == key.as_bytes());
-    assert(kvp.value == value.as_bytes());
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
+unconstrained
 fn property_number_one_zero_zero_one()
 {
     let (key, value) = ("a", "1001");
+    let bytes = JSON::parse("{'a':1001}").bytesOf(key).unwrap_unchecked();
 
-    let kvp = JSON::new("{'a':1001}").get(key);
-
-    assert(kvp.key == key.as_bytes());
-    assert(kvp.value == value.as_bytes());
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
+unconstrained
 fn property_number_multiple_one_two_three_four_five()
 {
     let (key, value) = ("a", "12345");
+    let bytes = JSON::parse("{'a':12345}").bytesOf(key).unwrap_unchecked();
 
-    let kvp = JSON::new("{'a':12345}").get(key);
-
-    assert(kvp.key == key.as_bytes());
-    assert(kvp.value == value.as_bytes());
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
+unconstrained
 fn property_number_minus()
 {
-    let kvp = JSON::new("{'a':-}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':-}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_minus_zero()
 {
     let (key, value) = ("a", "-0");
+    let bytes = JSON::parse("{'a':-0}").bytesOf(key).unwrap_unchecked();
 
-    let kvp = JSON::new("{'a':-0}").get(key);
-
-    assert(kvp.key == key.as_bytes());
-    assert(kvp.value == value.as_bytes());
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
+unconstrained
 fn property_number_minus_one()
 {
     let (key, value) = ("a", "-1");
+    let bytes = JSON::parse("{'a':-1}").bytesOf(key).unwrap_unchecked();
 
-    let kvp = JSON::new("{'a':-1}").get(key);
-
-    assert(kvp.key == key.as_bytes());
-    assert(kvp.value == value.as_bytes());
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
+unconstrained
 fn property_number_minus_one_zero_zero()
 {
     let (key, value) = ("a", "-100");
+    let bytes = JSON::parse("{'a':-100}").bytesOf(key).unwrap_unchecked();
 
-    let kvp = JSON::new("{'a':-100}").get(key);
-
-    assert(kvp.key == key.as_bytes());
-    assert(kvp.value == value.as_bytes());
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
-fn property_number_minux_one_zero_zero_one()
+unconstrained
+fn property_number_minus_one_zero_zero_one()
 {
     let (key, value) = ("a", "-1001");
+    let bytes = JSON::parse("{'a':-1001}").bytesOf(key).unwrap_unchecked();
 
-    let kvp = JSON::new("{'a':-1001}").get(key);
-
-    assert(kvp.key == key.as_bytes());
-    assert(kvp.value == value.as_bytes());
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
+unconstrained
 fn property_number_minus_one_two_three_four_five()
 {
     let (key, value) = ("a", "-12345");
+    let bytes = JSON::parse("{'a':-12345}").bytesOf(key).unwrap_unchecked();
 
-    let kvp = JSON::new("{'a':-12345}").get(key);
-
-    assert(kvp.key == key.as_bytes());
-    assert(kvp.value == value.as_bytes());
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
+unconstrained
 fn property_number_plus()
 {
-    let kvp = JSON::new("{'a':+}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':+}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_plus_zero()
 {
-    let kvp = JSON::new("{'a':+0}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':+0}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_plus_one()
 {
-    let kvp = JSON::new("{'a':+1}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':+1}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_plus_one_two_three_four_five()
 {
-    let kvp = JSON::new("{'a':+12345}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':+12345}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_double_zero()
 {
-    let kvp = JSON::new("{'a':00}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':00}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_leading_zero_one()
 {
-    let kvp = JSON::new("{'a':01}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':01}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_zero_zero_one()
 {
-    let kvp = JSON::new("{'a':001}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':001}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_zero_one_two_three_four_five()
 {
-    let kvp = JSON::new("{'a':012345}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':012345}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_double_minus_zero()
 {
-    let kvp = JSON::new("{'a':--0}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':--0}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_double_minus_one()
 {
-    let kvp = JSON::new("{'a':--1}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':--1}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_zero_minus()
 {
-    let kvp = JSON::new("{'a':0-}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':0-}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_one_minus()
 {
-    let kvp = JSON::new("{'a':1-}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':1-}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_minus_zero_minus()
 {
-    let kvp = JSON::new("{'a':-0-}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':-0-}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_minus_one_minus()
 {
-    let kvp = JSON::new("{'a':-1-}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':-1-}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_zero_minus_zero()
 {
-    let kvp = JSON::new("{'a':0-0}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':0-0}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_one_minus_one()
 {
-    let kvp = JSON::new("{'a':1-1}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':1-1}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_minus_zero_minus_zero()
 {
-    let kvp = JSON::new("{'a':-0-0}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':-0-0}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_minus_one_minus_one()
 {
-    let kvp = JSON::new("{'a':-1-1}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':-1-1}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_one_comma()
 {
-    let kvp = JSON::new("{'a':1,}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':1,}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_one_colon()
 {
-    let kvp = JSON::new("{'a':1:}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':1:}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_one_quote()
 {
-    let kvp = JSON::new("{'a':1'}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':1'}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_one_left_brace()
 {
-    let kvp = JSON::new("{'a':1{}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':1{}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_one_right_brace()
 {
-    let kvp = JSON::new("{'a':1}}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':1}}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_one_left_bracket()
 {
-    let kvp = JSON::new("{'a':1[}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':1[}").bytesOf("a").is_none() == true);
 }
 
 #[test]
+unconstrained
 fn property_number_one_right_bracket()
 {
-    let kvp = JSON::new("{'a':1]}").get("a");
-
-    assert(kvp.key == [0; 1]);
-    assert(kvp.value == [0; 1]);
+    assert(JSON::parse("{'a':1]}").bytesOf("a").is_none() == true);
 }
