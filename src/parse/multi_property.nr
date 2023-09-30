@@ -1,8 +1,8 @@
 use dep::rontosoft::JSON;
 use dep::rontosoft::utils::slice_eq_array;
-use dep::rontosoft::convert_::asBool;
-use dep::rontosoft::convert_::asField;
-use dep::rontosoft::convert_::asInteger;
+use dep::rontosoft::convert::asBool;
+use dep::rontosoft::convert::asField;
+use dep::rontosoft::convert::asInteger;
 
 #[test]
 unconstrained
@@ -94,10 +94,9 @@ unconstrained
 fn two_properties_same_name_replace_property_check_length()
 {
     let (key, value) = ("a", "3");
-    let bytes = "{'a' : 5, 'a' : 3}".as_bytes();
-    let json = dep::rontosoft::parse::parse(bytes);
+    let json = dep::rontosoft::JSON::parse("{'a' : 5, 'a' : 3}");
 
-    assert(json.len() == 1);
-    assert(json[0].key[0] == key.as_bytes()[0]);
-    assert(json[0].value[0] == value.as_bytes()[0]);
+    assert(json.doc.len() == 1);
+    assert(json.doc[0].key[0] == key.as_bytes()[0]);
+    assert(json.doc[0].value[0] == value.as_bytes()[0]);
 }

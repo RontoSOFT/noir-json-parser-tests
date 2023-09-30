@@ -1,5 +1,5 @@
 use dep::rontosoft::JSON;
-use dep::rontosoft::convert_::asBool;
+use dep::rontosoft::convert::asBool;
 
 #[test]
 unconstrained

@@ -4,7 +4,7 @@ use dep::rontosoft::globals::MINUS;
 use dep::rontosoft::globals::BYTE_NULL;
 use dep::rontosoft::utils::int127FromUnsigned;
 use dep::rontosoft::JSON;
-use dep::rontosoft::convert_::asInteger;
+use dep::rontosoft::convert::asInteger;
 
 
 #[test]
