@@ -1,5 +1,4 @@
 use dep::rontosoft::JSON;
-use dep::rontosoft::utils::slice_eq_array;
 
 #[test]
 unconstrained
@@ -8,7 +7,7 @@ fn property_literal_null()
     let (key, value) = ("a", "null");
     let bytes = JSON::parse("{'a':null}").bytesOf(key).unwrap_unchecked();
 
-    assert(slice_eq_array(bytes, value.as_bytes()) == true);
+    assert(bytes.eq_string(value) == true);
 }
 
 #[test]
@@ -18,7 +17,7 @@ fn property_literal_true()
     let (key, value) = ("a", "true");
     let bytes = JSON::parse("{'a':true}").bytesOf(key).unwrap_unchecked();
 
-    assert(slice_eq_array(bytes, value.as_bytes()) == true);
+    assert(bytes.eq_string(value) == true);
 }
 
 #[test]
@@ -28,7 +27,7 @@ fn property_literal_false()
     let (key, value) = ("a", "false");
     let bytes = JSON::parse("{'a':false}").bytesOf(key).unwrap_unchecked();
 
-    assert(slice_eq_array(bytes, value.as_bytes()) == true);
+    assert(bytes.eq_string(value) == true);
 }
 
 #[test]
