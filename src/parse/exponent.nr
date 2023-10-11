@@ -1,4 +1,5 @@
 use dep::rontosoft::JSON;
+use dep::rontosoft::utils::slice_eq_array;
 
 #[test]
 unconstrained
@@ -7,7 +8,7 @@ fn property_number_zero_e_zero()
     let (key, value) = ("a", "0e0");
     let bytes = JSON::parse("{'a':0e0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -17,7 +18,7 @@ fn property_number_zero_E_zero()
     let (key, value) = ("a", "0E0");
     let bytes = JSON::parse("{'a':0E0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -27,7 +28,7 @@ fn property_number_zero_e_plus_zero()
     let (key, value) = ("a", "0e+0");
     let bytes = JSON::parse("{'a':0e+0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -37,7 +38,7 @@ fn property_number_zero_e_minus_zero()
     let (key, value) = ("a", "0e-0");
     let bytes = JSON::parse("{'a':0e-0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -47,7 +48,7 @@ fn property_number_minus_zero_e_minus_zero()
     let (key, value) = ("a", "-0e-0");
     let bytes = JSON::parse("{'a':-0e-0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -57,7 +58,7 @@ fn property_number_minus_zero_e_plus_zero()
     let (key, value) = ("a", "-0e+0");
     let bytes = JSON::parse("{'a':-0e+0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -95,7 +96,7 @@ fn property_number_zero_point_zero_e_zero_plus_zero()
     let (key, value) = ("a", "0.0e+0");
     let bytes = JSON::parse("{'a':0.0e+0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -105,7 +106,7 @@ fn property_number_zero_point_zero_e_zero_minus_zero()
     let (key, value) = ("a", "0.0e-0");
     let bytes = JSON::parse("{'a':0.0e-0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -115,7 +116,7 @@ fn property_number_minus_zero_point_zero_e_zero_minus_zero()
     let (key, value) = ("a", "-0.0e-0");
     let bytes = JSON::parse("{'a':-0.0e-0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -125,7 +126,7 @@ fn property_number_minus_zero_point_zero_e_zero_plus_zero()
     let (key, value) = ("a", "-0.0e+0");
     let bytes = JSON::parse("{'a':-0.0e+0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -289,7 +290,7 @@ fn property_number_zero_e_zero_one()
     let (key, value) = ("a", "0e01");
     let bytes = JSON::parse("{'a':0e01}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -299,7 +300,7 @@ fn property_number_zero_e_one_zero()
     let (key, value) = ("a", "0e10");
     let bytes = JSON::parse("{'a':0e10}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -309,7 +310,7 @@ fn property_number_zero_e_one_zero_one()
     let (key, value) = ("a", "0e101");
     let bytes = JSON::parse("{'a':0e101}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -319,7 +320,7 @@ fn property_number_one_e_plus_zero()
     let (key, value) = ("a", "1e+0");
     let bytes = JSON::parse("{'a':1e+0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -329,7 +330,7 @@ fn property_number_one_e_minus_zero()
     let (key, value) = ("a", "0e-0");
     let bytes = JSON::parse("{'a':0e-0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -339,7 +340,7 @@ fn property_number_one_zero_e_plus_zero()
     let (key, value) = ("a", "10e+0");
     let bytes = JSON::parse("{'a':10e+0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -349,7 +350,7 @@ fn property_number_one_zero_e_minus_zero()
     let (key, value) = ("a", "10e-0");
     let bytes = JSON::parse("{'a':10e-0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -359,7 +360,7 @@ fn property_number_one_zero_zero_e_plus_zero()
     let (key, value) = ("a", "100e+0");
     let bytes = JSON::parse("{'a':100e+0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -369,7 +370,7 @@ fn property_number_one_zero_zero_e_minus_zero()
     let (key, value) = ("a", "100e-0");
     let bytes = JSON::parse("{'a':100e-0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -379,7 +380,7 @@ fn property_number_one_zero_zero_one_e_plus_zero()
     let (key, value) = ("a", "1001e+0");
     let bytes = JSON::parse("{'a':1001e+0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -389,5 +390,5 @@ fn property_number_one_zero_zero_one_e_minus_zero()
     let (key, value) = ("a", "1001e-0");
     let bytes = JSON::parse("{'a':1001e-0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }

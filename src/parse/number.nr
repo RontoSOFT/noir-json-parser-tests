@@ -1,4 +1,5 @@
 use dep::rontosoft::JSON;
+use dep::rontosoft::utils::slice_eq_array;
 
 #[test]
 unconstrained
@@ -7,7 +8,7 @@ fn property_number_zero()
     let (key, value) = ("a", "0");
     let bytes = JSON::parse("{'a':0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -17,7 +18,7 @@ fn property_number_one()
     let (key, value) = ("a", "1");
     let bytes = JSON::parse("{'a':1}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -27,7 +28,7 @@ fn property_number_one_zero_zero()
     let (key, value) = ("a", "100");
     let bytes = JSON::parse("{'a':100}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -37,7 +38,7 @@ fn property_number_one_zero_zero_one()
     let (key, value) = ("a", "1001");
     let bytes = JSON::parse("{'a':1001}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -47,7 +48,7 @@ fn property_number_multiple_one_two_three_four_five()
     let (key, value) = ("a", "12345");
     let bytes = JSON::parse("{'a':12345}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -64,7 +65,7 @@ fn property_number_minus_zero()
     let (key, value) = ("a", "-0");
     let bytes = JSON::parse("{'a':-0}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -74,7 +75,7 @@ fn property_number_minus_one()
     let (key, value) = ("a", "-1");
     let bytes = JSON::parse("{'a':-1}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -84,7 +85,7 @@ fn property_number_minus_one_zero_zero()
     let (key, value) = ("a", "-100");
     let bytes = JSON::parse("{'a':-100}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -94,7 +95,7 @@ fn property_number_minus_one_zero_zero_one()
     let (key, value) = ("a", "-1001");
     let bytes = JSON::parse("{'a':-1001}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -104,7 +105,7 @@ fn property_number_minus_one_two_three_four_five()
     let (key, value) = ("a", "-12345");
     let bytes = JSON::parse("{'a':-12345}").bytesOf(key).unwrap_unchecked();
 
-    assert(bytes.eq_string(value) == true);
+    assert(slice_eq_array(bytes, value.as_bytes()) == true);
 }
 
 #[test]
@@ -237,9 +238,7 @@ fn property_number_minus_one_minus_one()
 unconstrained
 fn property_number_one_comma()
 {
-    let json = JSON::parse("{'a':1,}");
-    dep::std::println(json.doc.len());
-    // assert(JSON::parse("{'a':1,}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':1,}").bytesOf("a").is_none() == true);
 }
 
 #[test]

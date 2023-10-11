@@ -2,7 +2,7 @@
 name = "noir_json_parser_tests"
 type = "lib"
 authors = [""]
-compiler_version = "0.16.0-aztec.1"
+compiler_version = "0.15.0"
 
 [dependencies]
 rontosoft = { path = "../lib" }
