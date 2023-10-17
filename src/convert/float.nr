@@ -12,6 +12,9 @@ use dep::rontosoft::convert::asFloat;
 unconstrained
 fn float_test_precision_max_bits_fraction()
 {
+    // 0.46zeros anything after is not representable
+    // 2^(-128) == 2^(-128) - 0.[..]1
+    // 2^(-128) - 0.[..]2
 }
 
 #[test]
