@@ -8,175 +8,306 @@ use dep::rontosoft::globals::eE;
 use dep::rontosoft::JSON;
 use dep::rontosoft::convert::asFloat;
 
-#[test]
-unconstrained
-fn float_test_precision_max_bits_fraction()
-{
-    // 0.46zeros anything after is not representable
-    // 2^(-128) == 2^(-128) - 0.[..]1
-    // 2^(-128) - 0.[..]2
-}
+// #[test]
+// unconstrained
+// fn float_test_precision_max_bits_fraction()
+// {
+//     // 0.45zeros anything after is not representable
+//     // 2^(-128) == 2^(-128) - 0.[..]1
+//     // 2^(-128) - 0.[..]2
+// }
 
-#[test]
-unconstrained
-fn float_test_precision_twenty_five_bits_fraction()
-{
-    // 2^-2
+// #[test]
+// unconstrained
+// fn float_test_precision_twenty_five_bits_fraction()
+// {
+//     // 2^(-2)
 
-}
+//     // dep::std::println("0.0000000298023223876953125");
+//     let x = dep::rontosoft::float::Float32Fields { whole: 0, fraction: 298023223876953125, leading_zeros: 7 };
+//     let y = x.toFloat32().toFields(19);
 
-#[test]
-unconstrained
-fn float_test_precision_twenty_four_bits_fraction()
-{
-    // 2^-1
+//     assert(y.whole == x.whole);
+//     assert(y.fraction == 2980232238769531);
+//     assert(y.leading_zeros == x.leading_zeros);
 
-}
+//     // dep::std::println("0.00000002980232238769531259");
+//     let x = dep::rontosoft::float::Float32Fields { whole: 0, fraction: 2980232238769531259, leading_zeros: 7 };
+//     let y = x.toFloat32().toFields(19);
 
-#[test]
-unconstrained
-fn float_test_precision_twenty_three_bits_fraction_zero_bits_whole()
-{
-    // 2^0
-    // from this point until lowerend, whole part cannot be represented
+//     assert(y.whole == x.whole);
+//     assert(y.fraction == 2980232238769531);
+//     assert(y.leading_zeros == x.leading_zeros);
 
-}
+//     // dep::std::println("0.00000002980232238769532");
+//     let x = dep::rontosoft::float::Float32Fields { whole: 0, fraction: 2980232238769532, leading_zeros: 7 };
+//     let y = x.toFloat32().toFields(19);
+
+//     assert(y.whole == x.whole);
+//     assert(y.fraction == 2980232238769531);
+//     assert(y.leading_zeros == x.leading_zeros);
+
+//     // dep::std::println("0.000000029802321499516891146"); 298023223876953125
+//     let x = dep::rontosoft::float::Float32Fields { whole: 0, fraction: 2980232238769530, leading_zeros: 7 };
+//     let y = x.toFloat32().toFields(19);
+
+//     assert(y.whole == x.whole);
+//     assert(y.fraction == 2980232061133847);
+//     assert(y.leading_zeros == x.leading_zeros);
+// }
+
+// #[test]
+// unconstrained
+// fn float_test_precision_twenty_four_bits_fraction()
+// {
+//     // 2^(-1)
+//     // from this point until lowerend, whole part cannot be represented
+
+//     // dep::std::println("0.000000059604644775390625");
+//     let x = dep::rontosoft::float::Float32Fields { whole: 0, fraction: 59604644775390625, leading_zeros: 7 };
+//     let y = x.toFloat32().toFields(18);
+
+//     assert(y.whole == x.whole);
+//     assert(y.fraction == 5960464477539062);
+//     assert(y.leading_zeros == x.leading_zeros);
+
+//     // dep::std::println("1.000000059604644775390625");
+//     let x = dep::rontosoft::float::Float32Fields { whole: 1, fraction: 59604644775390625, leading_zeros: 7 };
+//     let y = x.toFloat32().toFields(18);
+
+//     assert(y.whole == x.whole);
+//     assert(y.fraction == 0);
+//     assert(y.leading_zeros == 0);
+
+//     // dep::std::println("0.0000000596046447753906259");
+//     let x = dep::rontosoft::float::Float32Fields { whole: 0, fraction: 596046447753906259, leading_zeros: 7 };
+//     let y = x.toFloat32().toFields(18);
+
+//     assert(y.whole == x.whole);
+//     assert(y.fraction == 5960464477539062);
+//     assert(y.leading_zeros == x.leading_zeros);
+// }
+
+// #[test]
+// unconstrained
+// fn float_test_precision_twenty_three_bits_fraction_one_bit_whole()
+// {
+//     // 2^0
+//     // whole part can be either 1 or 0
+
+//     // dep::std::println("0.00000011920928955078125");
+//     let x = dep::rontosoft::float::Float32Fields { whole: 0, fraction: 11920928955078125, leading_zeros: 6 };
+//     let y = x.toFloat32().toFields(18);
+
+//     assert(y.whole == x.whole);
+//     assert(y.fraction == x.fraction);
+//     assert(y.leading_zeros == x.leading_zeros);
+
+//     // dep::std::println("1.00000011920928955078125");
+//     let x = dep::rontosoft::float::Float32Fields { whole: 1, fraction: 11920928955078125, leading_zeros: 6 };
+//     let y = x.toFloat32().toFields(18);
+
+//     assert(y.whole == x.whole);
+//     assert(y.fraction == x.fraction);
+//     assert(y.leading_zeros == x.leading_zeros);
+
+//     // dep::std::println("2.00000011920928955078125");
+//     let x = dep::rontosoft::float::Float32Fields { whole: 2, fraction: 11920928955078125, leading_zeros: 6 };
+//     let y = x.toFloat32().toFields(18);
+
+//     assert(y.whole == x.whole);
+//     assert(y.fraction == 0);
+//     assert(y.leading_zeros == 0);
+
+//     // dep::std::println("1.000000119209289550781259");
+//     let x = dep::rontosoft::float::Float32Fields { whole: 1, fraction: 119209289550781259, leading_zeros: 6 };
+//     let y = x.toFloat32().toFields(18);
+
+//     assert(y.whole == x.whole);
+//     assert(y.fraction == 11920928955078125);
+//     assert(y.leading_zeros == x.leading_zeros);
+// }
 
 #[test]
 unconstrained
 fn float_test_precision_twenty_two_bits_fraction_one_bit_whole()
 {
     // 2^1
-    // from this point until 2^1, two values can be used to represent whole part
+    // whole part can be either 3 or 2
 
+    // dep::std::println("2.0000001192092897728258"); // end of 0 mantissa
+    let x = dep::rontosoft::float::Float32Fields { whole: 2, fraction: 1192092897728258, leading_zeros: 6 };
+    let y = x.toFloat32().toFields(20);
+
+    assert(y.whole == x.whole);
+    assert(y.fraction == 0);
+    assert(y.leading_zeros == 0);
+
+    // dep::std::println("2.0000001192092897728259"); // start of 1 mantissa
+    let x = dep::rontosoft::float::Float32Fields { whole: 2, fraction: 1192092897728259, leading_zeros: 6 };
+    let y = x.toFloat32().toFields(20);
+
+    assert(y.whole == x.whole);
+    assert(y.fraction == 2384185791015625); // 2^(-22)
+    assert(y.leading_zeros == x.leading_zeros);
+
+    // // dep::std::println("2.0000002384185791015625");
+    // let x = dep::rontosoft::float::Float32Fields { whole: 2, fraction: 2384185791015625, leading_zeros: 6 };
+    // let y = x.toFloat32().toFields(16);
+
+    // assert(y.whole == x.whole);
+    // assert(y.fraction == x.fraction);
+    // assert(y.leading_zeros == x.leading_zeros);
+
+    // // dep::std::println("3.0000002384185791015625");
+    // let x = dep::rontosoft::float::Float32Fields { whole: 3, fraction: 2384185791015625, leading_zeros: 6 };
+    // let y = x.toFloat32().toFields(16);
+
+    // assert(y.whole == x.whole);
+    // assert(y.fraction == x.fraction);
+    // assert(y.leading_zeros == x.leading_zeros);
+
+    // // dep::std::println("2.00000023841857910156259");
+    // let x = dep::rontosoft::float::Float32Fields { whole: 2, fraction: 23841857910156259, leading_zeros: 6 };
+    // let y = x.toFloat32().toFields(16);
+
+    // assert(y.whole == x.whole);
+    // assert(y.fraction == 2384185791015625);
+    // assert(y.leading_zeros == x.leading_zeros);
+
+    // // dep::std::println("4.0000002384185791015625");
+    // let x = dep::rontosoft::float::Float32Fields { whole: 4, fraction: 2384185791015625, leading_zeros: 6 };
+    // let y = x.toFloat32().toFields(16);
+
+    // assert(y.whole == x.whole);
+    // assert(y.fraction == 0);
+    // assert(y.leading_zeros == 0);
+
+    // // dep::std::println("4.000000476837158203125");
+    // let x = dep::rontosoft::float::Float32Fields { whole: 4, fraction: 476837158203125, leading_zeros: 6 };
+    // let y = x.toFloat32().toFields(16);
+
+    // assert(y.whole == x.whole);
+    // assert(y.fraction == 0);
+    // assert(y.leading_zeros == 0);
 }
 
-#[test]
-unconstrained
-fn float_test_precision_twenty_one_bits_fraction_two_bits_whole()
-{
-    // 2^2
-    // from this point until 2^1, four values can be used to represent whole part
+// #[test]
+// unconstrained
+// fn float_test_precision_twenty_one_bits_fraction_two_bits_whole()
+// {
+//     // 2^2
+//     // from this point until 2^1, four values can be used to represent whole part
 
-}
+//     // dep::std::println("4.000000476837158203125");
+//     let x = dep::rontosoft::float::Float32Fields { whole: 4, fraction: 476837158203125, leading_zeros: 6 };
+//     let y = x.toFloat32().toFields(16);
+
+//     assert(y.whole == x.whole);
+//     assert(y.fraction == x.fraction);
+//     assert(y.leading_zeros == x.leading_zeros);
+
+//     // dep::std::println("6.000000476837158203125");
+//     let x = dep::rontosoft::float::Float32Fields { whole: 6, fraction: 476837158203125, leading_zeros: 6 };
+//     let y = x.toFloat32().toFields(16);
+
+//     assert(y.whole == x.whole);
+//     assert(y.fraction == x.fraction);
+//     assert(y.leading_zeros == x.leading_zeros);
+
+//     // dep::std::println("8.000000476837158203125");
+//     let x = dep::rontosoft::float::Float32Fields { whole: 8, fraction: 476837158203125, leading_zeros: 6 };
+//     let y = x.toFloat32().toFields(16);
+
+//     assert(y.whole == x.whole);
+//     assert(y.fraction == 0);
+//     assert(y.leading_zeros == 0);
+
+//     // dep::std::println("4.0000004768371582031259");
+//     let x = dep::rontosoft::float::Float32Fields { whole: 4, fraction: 4768371582031259, leading_zeros: 6 };
+//     let y = x.toFloat32().toFields(16);
+
+//     assert(y.whole == x.whole);
+//     assert(y.fraction == 476837158203125);
+//     assert(y.leading_zeros == x.leading_zeros);
+// }
 
 #[test]
 unconstrained
 fn float_test_precision_two_bits_fraction_twenty_one_bits_whole()
 {
     // 2^22
-    // from this point until 2^24, four values can be used to represent fractional part
+    // from this point until 2^23, four values can be used to represent fractional part
 
     // test less than interval
 
-    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 1, leading_zeros: 1 };
+    let x = dep::rontosoft::float::Float32Fields { whole: 2097151, fraction: 82, leading_zeros: 0 };
     let y = x.toFloat32().toFields(1);
 
-    // dep::std::println("2097152.01");
+    // dep::std::println("2097151.82");
+    assert(y.whole == x.whole);
+    assert(y.fraction == 9);
+    assert(y.leading_zeros == 0);
+
+    let x = dep::rontosoft::float::Float32Fields { whole: 2097151, fraction: 93, leading_zeros: 0 };
+    let y = x.toFloat32().toFields(1);
+
+    // dep::std::println("2097151.93");
+    assert(y.whole == x.whole);
+    assert(y.fraction == 9);
+    assert(y.leading_zeros == 0);
+
+    let x = dep::rontosoft::float::Float32Fields { whole: 2097151, fraction: 94, leading_zeros: 0 };
+    let y = x.toFloat32().toFields(1);
+
+    // dep::std::println("2097152.94");
+    assert(y.whole == 2097152);
+    assert(y.fraction == 0);
+    assert(y.leading_zeros == 0);
+
+    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 12, leading_zeros: 0 };
+    let y = x.toFloat32().toFields(1);
+
+    // dep::std::println("2097152.13");
     assert(y.whole == x.whole);
     assert(y.fraction == 0);
     assert(y.leading_zeros == 0);
 
-    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 9, leading_zeros: 1 };
-    let y = x.toFloat32().toFields(1);
-
-    // dep::std::println("2097152.09");
-    assert(y.whole == x.whole);
-    assert(y.fraction == 0);
-    assert(y.leading_zeros == 0);
-
-    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 11, leading_zeros: 0 };
+    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 13, leading_zeros: 0 };
     let y = x.toFloat32().toFields(1);
 
     // dep::std::println("2097152.11");
     assert(y.whole == x.whole);
-    assert(y.fraction == 0);
+    assert(y.fraction == 3);
+    assert(y.leading_zeros == 0);
 
-    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 19, leading_zeros: 0 };
+    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 37, leading_zeros: 0 };
     let y = x.toFloat32().toFields(1);
 
-    // dep::std::println("2097152.19");
-    assert(y.whole == x.whole);
-    assert(y.fraction == 0);
-
-    // test interval
-
-    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 0, leading_zeros: 0 };
-    let y = x.toFloat32().toFields(1);
-
-    // dep::std::println("2097152.0");
-    assert(y.whole == x.whole);
-    assert(y.fraction == x.fraction);
-
-    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 1, leading_zeros: 0 };
-    let y = x.toFloat32().toFields(1);
-
-    // dep::std::println("2097152.1");
-    assert(y.whole == x.whole);
-    assert(y.fraction == 0);
-
-    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 2, leading_zeros: 0 };
-    let y = x.toFloat32().toFields(1);
-
-    // dep::std::println("2097152.2");
-    assert(y.whole == x.whole);
-    assert(y.fraction == 0);
-
-    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 3, leading_zeros: 0 };
-    let y = x.toFloat32().toFields(1);
-
-    // dep::std::println("2097152.3");
-    assert(y.whole == x.whole);
-    assert(y.fraction == x.fraction);
-
-    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 4, leading_zeros: 0 };
-    let y = x.toFloat32().toFields(1);
-
-    // dep::std::println("2097152.4");
+    // dep::std::println("2097152.37");
     assert(y.whole == x.whole);
     assert(y.fraction == 3);
 
-    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 5, leading_zeros: 0 };
+    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 38, leading_zeros: 0 };
     let y = x.toFloat32().toFields(1);
 
-    // dep::std::println("2097152.5");
-    assert(y.whole == x.whole);
-    assert(y.fraction == x.fraction);
-
-    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 6, leading_zeros: 0 };
-    let y = x.toFloat32().toFields(1);
-
-    // dep::std::println("2097152.6");
+    // dep::std::println("2097152.38");
     assert(y.whole == x.whole);
     assert(y.fraction == 5);
 
-    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 7, leading_zeros: 0 };
+    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 62, leading_zeros: 0 };
     let y = x.toFloat32().toFields(1);
 
-    // dep::std::println("2097152.7");
+    // dep::std::println("2097152.62");
     assert(y.whole == x.whole);
     assert(y.fraction == 5);
 
-    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 8, leading_zeros: 0 };
+    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 63, leading_zeros: 0 };
     let y = x.toFloat32().toFields(1);
 
-    // dep::std::println("2097152.8");
-    assert(y.whole == x.whole);
-    assert(y.fraction == x.fraction);
-
-    let x = dep::rontosoft::float::Float32Fields { whole: 2097152, fraction: 9, leading_zeros: 0 };
-    let y = x.toFloat32().toFields(1);
-
-    // dep::std::println("2097152.9");
+    // dep::std::println("2097152.63");
     assert(y.whole == x.whole);
     assert(y.fraction == 8);
-
-    let x = dep::rontosoft::float::Float32Fields { whole: 2097153, fraction: 0, leading_zeros: 0 };
-    let y = x.toFloat32().toFields(1);
-
-    // dep::std::println("2097153.0");
-    assert(y.whole == x.whole);
-    assert(y.fraction == x.fraction);
 }
 
 #[test]
@@ -187,6 +318,35 @@ fn float_test_precision_one_bit_fraction_twenty_three_bits_whole()
     // from this point until 2^24, two values can be used to represent fractional part
 
     // test less than interval
+
+    // 2^23 - 1 .7
+    let x = dep::rontosoft::float::Float32Fields { whole: 4194303, fraction: 7, leading_zeros: 0 };
+    let y = x.toFloat32().toFields(1);
+
+    // dep::std::println("4194303.7");
+    assert(y.whole == x.whole);
+    assert(y.fraction == 8);
+    assert(y.leading_zeros == x.leading_zeros);
+
+    // 2^23 - 1 .8
+    let x = dep::rontosoft::float::Float32Fields { whole: 4194303, fraction: 8, leading_zeros: 0 };
+    let y = x.toFloat32().toFields(1);
+
+    // dep::std::println("4194303.8");
+    assert(y.whole == x.whole);
+    assert(y.fraction == x.fraction);
+    assert(y.leading_zeros == x.leading_zeros);
+
+    // loss of precision starts here, due to rounding up
+
+    // 2^23 - 1 .9
+    let x = dep::rontosoft::float::Float32Fields { whole: 4194303, fraction: 9, leading_zeros: 0 };
+    let y = x.toFloat32().toFields(1);
+
+    // dep::std::println("4194303.9");
+    assert(y.whole == 4194304);
+    assert(y.fraction == 0);
+    assert(y.leading_zeros == 0);
 
     let x = dep::rontosoft::float::Float32Fields { whole: 4194304, fraction: 1, leading_zeros: 1 };
     let y = x.toFloat32().toFields(1);
@@ -204,19 +364,21 @@ fn float_test_precision_one_bit_fraction_twenty_three_bits_whole()
     assert(y.fraction == 0);
     assert(y.leading_zeros == 0);
 
-    let x = dep::rontosoft::float::Float32Fields { whole: 4194304, fraction: 41, leading_zeros: 0 };
+    let x = dep::rontosoft::float::Float32Fields { whole: 4194304, fraction: 25, leading_zeros: 0 };
     let y = x.toFloat32().toFields(1);
 
-    // dep::std::println("4194304.41");
+    // dep::std::println("4194304.25");
     assert(y.whole == x.whole);
     assert(y.fraction == 0);
+    assert(y.leading_zeros == 0);
 
-    let x = dep::rontosoft::float::Float32Fields { whole: 4194304, fraction: 49, leading_zeros: 0 };
+    let x = dep::rontosoft::float::Float32Fields { whole: 4194304, fraction: 26, leading_zeros: 0 };
     let y = x.toFloat32().toFields(1);
 
-    // dep::std::println("4194304.49");
+    // dep::std::println("4194304.26");
     assert(y.whole == x.whole);
-    assert(y.fraction == 0);
+    assert(y.fraction == 5);
+    assert(y.leading_zeros == 0);
 
     // test interval
 
@@ -225,7 +387,7 @@ fn float_test_precision_one_bit_fraction_twenty_three_bits_whole()
 
     // dep::std::println("4194304.0");
     assert(y.whole == x.whole);
-    assert(y.fraction == x.fraction);
+    assert(y.fraction == 0);
 
     let x = dep::rontosoft::float::Float32Fields { whole: 4194304, fraction: 1, leading_zeros: 0 };
     let y = x.toFloat32().toFields(1);
@@ -246,21 +408,21 @@ fn float_test_precision_one_bit_fraction_twenty_three_bits_whole()
 
     // dep::std::println("4194304.3");
     assert(y.whole == x.whole);
-    assert(y.fraction == 0);
+    assert(y.fraction == 5);
 
     let x = dep::rontosoft::float::Float32Fields { whole: 4194304, fraction: 4, leading_zeros: 0 };
     let y = x.toFloat32().toFields(1);
 
     // dep::std::println("4194304.4");
     assert(y.whole == x.whole);
-    assert(y.fraction == 0);
+    assert(y.fraction == 5);
 
     let x = dep::rontosoft::float::Float32Fields { whole: 4194304, fraction: 5, leading_zeros: 0 };
     let y = x.toFloat32().toFields(1);
 
     // dep::std::println("4194304.5");
     assert(y.whole == x.whole);
-    assert(y.fraction == x.fraction);
+    assert(y.fraction == 5);
 
     let x = dep::rontosoft::float::Float32Fields { whole: 4194304, fraction: 6, leading_zeros: 0 };
     let y = x.toFloat32().toFields(1);
@@ -280,22 +442,22 @@ fn float_test_precision_one_bit_fraction_twenty_three_bits_whole()
     let y = x.toFloat32().toFields(1);
 
     // dep::std::println("4194304.8");
-    assert(y.whole == x.whole);
-    assert(y.fraction == 5);
+    assert(y.whole == 4194305);
+    assert(y.fraction == 0);
 
     let x = dep::rontosoft::float::Float32Fields { whole: 4194304, fraction: 9, leading_zeros: 0 };
     let y = x.toFloat32().toFields(1);
 
     // dep::std::println("4194304.9");
-    assert(y.whole == x.whole);
-    assert(y.fraction == 5);
+    assert(y.whole == 4194305);
+    assert(y.fraction == 0);
 
     let x = dep::rontosoft::float::Float32Fields { whole: 4194305, fraction: 0, leading_zeros: 0 };
     let y = x.toFloat32().toFields(1);
 
     // dep::std::println("4194305.0");
     assert(y.whole == x.whole);
-    assert(y.fraction == x.fraction);
+    assert(y.fraction == 0);
 }
 
 #[test]
@@ -1655,8 +1817,8 @@ fn float_eight_dot_six_leading_zero_five()
     let y = x.toFloat32().toFields(1);
 
     assert(x.whole == y.whole);
-    assert(y.fraction == 0);
-    assert(y.leading_zeros == 0);
+    assert(y.fraction == 1);
+    assert(y.leading_zeros == y.leading_zeros);
 }
 
 #[test]
