@@ -38,4 +38,4 @@ jobs:
 
       - name: Run tests
         run: |
-          ../nargo test --show-output
+          ../nargo test --silence-warnings
