@@ -4,7 +4,7 @@ use dep::rontosoft::JSON;
 unconstrained
 fn array_single_as_slice()
 {
-    let result : [ [u8] ] = JSON::parse("[1]").getSlice("").unwrap_unchecked();
+    let result : [ [u8] ] = JSON::parse("[1]").asSlice().unwrap_unchecked();
 
     assert(result.len() == 1);
     assert(result[0].asField().unwrap_unchecked() == 1);
@@ -14,7 +14,7 @@ fn array_single_as_slice()
 unconstrained
 fn array_multiple_numbers_as_slice()
 {
-    let result : [ [u8] ] = JSON::parse("[1,2,3]").getSlice("").unwrap_unchecked();
+    let result : [ [u8] ] = JSON::parse("[1,2,3]").asSlice().unwrap_unchecked();
 
     assert(result.len() == 3);
     assert(result[0].asField().unwrap_unchecked() == 1);
@@ -26,7 +26,7 @@ fn array_multiple_numbers_as_slice()
 unconstrained
 fn array_multiple_numbers_nested_as_slice()
 {
-    let result : [ [u8] ] = JSON::parse("[[1],[2],[3]]").getSlice("").unwrap_unchecked();
+    let result : [ [u8] ] = JSON::parse("[[1],[2],[3]]").asSlice().unwrap_unchecked();
 
     assert(result.len() == 3);
 
@@ -47,7 +47,7 @@ fn array_multiple_numbers_nested_as_slice()
 unconstrained
 fn array_multiple_array_numbers_nested_as_slice()
 {
-    let result : [ [u8] ] = JSON::parse("[[1,8],[2,7],[3,6]]").getSlice("").unwrap_unchecked();
+    let result : [ [u8] ] = JSON::parse("[[1,8],[2,7],[3,6]]").asSlice().unwrap_unchecked();
 
     assert(result.len() == 3);
 
@@ -71,7 +71,7 @@ fn array_multiple_array_numbers_nested_as_slice()
 unconstrained
 fn array_multiple_mixed_types_as_slice()
 {
-    let result : [ [u8] ] = JSON::parse("[true,2,'3']").getSlice("").unwrap_unchecked();
+    let result : [ [u8] ] = JSON::parse("[true,2,'3']").asSlice().unwrap_unchecked();
 
     assert(result.len() == 3);
     assert(result[0].asBool().unwrap_unchecked() == true);
