@@ -4,160 +4,128 @@ use dep::rontosoft::JSON;
 unconstrained
 fn property_number_zero_point_zero()
 {
-    let (key, value) = ("a", "0.0");
-    let bytes = JSON::parse("{'a':0.0}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "0.0";
+    assert(JSON::parse("{'a':0.0}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_number_zero_point_single_digits()
 {
-    let (key, value) = ("a", "0.1");
-    let bytes = JSON::parse("{'a':0.1}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "0.1";
+    assert(JSON::parse("{'a':0.1}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_number_zero_point_multiple_digits()
 {
-    let (key, value) = ("a", "0.12345");
-    let bytes = JSON::parse("{'a':0.12345}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "0.12345";
+    assert(JSON::parse("{'a':0.12345}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_number_minus_zero_point_multiple_digits()
 {
-    let (key, value) = ("a", "-0.12345");
-    let bytes = JSON::parse("{'a':-0.12345}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "-0.12345";
+    assert(JSON::parse("{'a':-0.12345}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_number_single_digit_point_zero()
 {
-    let (key, value) = ("a", "1.0");
-    let bytes = JSON::parse("{'a':1.0}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "1.0";
+    assert(JSON::parse("{'a':1.0}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_number_minus_single_digit_point_zero()
 {
-    let (key, value) = ("a", "-1.0");
-    let bytes = JSON::parse("{'a':-1.0}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "-1.0";
+    assert(JSON::parse("{'a':-1.0}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_number_single_digit_point_single_digit()
 {
-    let (key, value) = ("a", "1.2");
-    let bytes = JSON::parse("{'a':1.2}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "1.2";
+    assert(JSON::parse("{'a':1.2}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_number_minus_single_digit_point_single_digit()
 {
-    let (key, value) = ("a", "-1.2");
-    let bytes = JSON::parse("{'a':-1.2}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "-1.2";
+    assert(JSON::parse("{'a':-1.2}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_number_single_digit_point_multiple_digits()
 {
-    let (key, value) = ("a", "1.23456");
-    let bytes = JSON::parse("{'a':1.23456}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "1.23456";
+    assert(JSON::parse("{'a':1.23456}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_number_minus_single_digit_point_multiple_digits()
 {
-    let (key, value) = ("a", "-1.23456");
-    let bytes = JSON::parse("{'a':-1.23456}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "-1.23456";
+    assert(JSON::parse("{'a':-1.23456}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_number_multiple_digits_point_zero()
 {
-    let (key, value) = ("a", "12345.0");
-    let bytes = JSON::parse("{'a':12345.0}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "12345.0";
+    assert(JSON::parse("{'a':12345.0}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_number_minus_multiple_digits_point_zero()
 {
-    let (key, value) = ("a", "-12345.0");
-    let bytes = JSON::parse("{'a':-12345.0}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "-12345.0";
+    assert(JSON::parse("{'a':-12345.0}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_number_multiple_digits_point_single_digit()
 {
-    let (key, value) = ("a", "12345.6");
-    let bytes = JSON::parse("{'a':12345.6}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "12345.6";
+    assert(JSON::parse("{'a':12345.6}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_number_minus_multiple_digits_point_single_digit()
 {
-    let (key, value) = ("a", "-12345.6");
-    let bytes = JSON::parse("{'a':-12345.6}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "-12345.6";
+    assert(JSON::parse("{'a':-12345.6}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_number_multiple_digits_point_multiple_digits()
 {
-    let (key, value) = ("a", "12345.67890");
-    let bytes = JSON::parse("{'a':12345.67890}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "12345.67890";
+    assert(JSON::parse("{'a':12345.67890}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_number_minus_multiple_digits_point_multiple_digits()
 {
-    let (key, value) = ("a", "-12345.67890");
-    let bytes = JSON::parse("{'a':-12345.67890}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "-12345.67890";
+    assert(JSON::parse("{'a':-12345.67890}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]

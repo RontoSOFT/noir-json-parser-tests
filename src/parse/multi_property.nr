@@ -6,11 +6,11 @@ fn two_properties_number()
 {
     let json = JSON::parse("{'a' : 5, 'b' : 3}");
 
-    let (key, value) = ("a", "5");
-    assert(json.bytesOf(key).unwrap_unchecked().eq_string(value) == true);
+    let value = "5";
+    assert(json.bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 
-    let (key2, value2) = ("b", "3");
-    assert(json.bytesOf(key2).unwrap_unchecked().eq_string(value2) == true);
+    let value2 = "3";
+    assert(json.bytesOf("b").unwrap_unchecked().eq_string(value2) == true);
 }
 
 #[test]
@@ -19,11 +19,11 @@ fn two_properties_string_and_number()
 {
     let json = JSON::parse("{'a' : '5', 'b' : 3}");
 
-    let (key, value) = ("a", "'5'");
-    assert(json.bytesOf(key).unwrap_unchecked().eq_string(value) == true);
+    let value = "'5'";
+    assert(json.bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 
-    let (key2, value2) = ("b", "3");
-    assert(json.bytesOf(key2).unwrap_unchecked().eq_string(value2) == true);
+    let value2 = "3";
+    assert(json.bytesOf("b").unwrap_unchecked().eq_string(value2) == true);
 }
 
 #[test]
@@ -32,20 +32,18 @@ fn two_properties_string_and_string()
 {
     let json = JSON::parse("{'a' : '5', 'b' : '3'}");
 
-    let (key, value) = ("a", "'5'");
-    assert(json.bytesOf(key).unwrap_unchecked().eq_string(value) == true);
+    let value = "'5'";
+    assert(json.bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 
-    let (key2, value2) = ("b", "'3'");
-    assert(json.bytesOf(key2).unwrap_unchecked().eq_string(value2) == true);
+    let value2 = "'3'";
+    assert(json.bytesOf("b").unwrap_unchecked().eq_string(value2) == true);
 }
 
 #[test]
 unconstrained
 fn two_properties_same_name_replace_property()
 {
-    let bytes = JSON::parse("{'a' : 5, 'a' : 3}").bytesOf("a").unwrap_unchecked();
-
-    assert(bytes.eq_string("3") == true);
+    assert(JSON::parse("{'a' : 5, 'a' : 3}").bytesOf("a").unwrap_unchecked().eq_string("3") == true);
 }
 
 #[test]

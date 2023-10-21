@@ -8,140 +8,98 @@ use dep::rontosoft::JSON;
 unconstrained
 fn property_number_three_zero_as_integer()
 {
-    let result = JSON::parse("{'a':30}").getInteger("a");
-
-    assert(result.is_some() == true);
-    assert(result.unwrap_unchecked() == 30);
+    assert(JSON::parse("{'a':30}").getInteger("a").unwrap() == 30);
 }
 
 #[test]
 unconstrained
 fn property_number_minus_three_zero_as_integer()
 {
-    let result = JSON::parse("{'a':-30}").getInteger("a");
-
-    assert(result.is_some() == true);
-    assert(result.unwrap_unchecked() == -30);
+    assert(JSON::parse("{'a':-30}").getInteger("a").unwrap() == -30);
 }
 
 #[test]
 unconstrained
 fn property_number_three_zero_e_zero_as_integer()
 {
-    let result = JSON::parse("{'a':30e0}").getInteger("a");
-
-    assert(result.is_some() == true);
-    assert(result.unwrap_unchecked() == 30);
+    assert(JSON::parse("{'a':30e0}").getInteger("a").unwrap() == 30);
 }
 
 #[test]
 unconstrained
 fn property_number_minus_three_zero_e_zero_as_integer()
 {
-    let result = JSON::parse("{'a':-30e0}").getInteger("a");
-
-    assert(result.is_some() == true);
-    assert(result.unwrap_unchecked() == -30);
+    assert(JSON::parse("{'a':-30e0}").getInteger("a").unwrap() == -30);
 }
 
 #[test]
 unconstrained
 fn property_number_three_zero_e_plus_zero_as_integer()
 {
-    let result = JSON::parse("{'a':30e+0}").getInteger("a");
-
-    assert(result.is_some() == true);
-    assert(result.unwrap_unchecked() == 30);
+    assert(JSON::parse("{'a':30e+0}").getInteger("a").unwrap() == 30);
 }
 
 #[test]
 unconstrained
 fn property_number_minus_three_zero_e_plus_zero_as_integer()
 {
-    let result = JSON::parse("{'a':-30e+0}").getInteger("a");
-
-    assert(result.is_some() == true);
-    assert(result.unwrap_unchecked() == -30);
+    assert(JSON::parse("{'a':-30e+0}").getInteger("a").unwrap() == -30);
 }
 
 #[test]
 unconstrained
 fn property_number_three_zero_e_minus_zero_as_integer()
 {
-    let result = JSON::parse("{'a':30e-0}").getInteger("a");
-
-    assert(result.is_some() == true);
-    assert(result.unwrap_unchecked() == 30);
+    assert(JSON::parse("{'a':30e-0}").getInteger("a").unwrap() == 30);
 }
 
 #[test]
 unconstrained
 fn property_number_minus_three_zero_e_minus_zero_as_integer()
 {
-    let result = JSON::parse("{'a':-30e-0}").getInteger("a");
-
-    assert(result.is_some() == true);
-    assert(result.unwrap_unchecked() == -30);
+    assert(JSON::parse("{'a':-30e-0}").getInteger("a").unwrap() == -30);
 }
 
 #[test]
 unconstrained
 fn property_number_three_zero_e_one_as_integer()
 {
-    let result = JSON::parse("{'a':30e1}").getInteger("a");
-
-    assert(result.is_some() == true);
-    assert(result.unwrap_unchecked() == 300);
+    assert(JSON::parse("{'a':30e1}").getInteger("a").unwrap() == 300);
 }
 
 #[test]
 unconstrained
 fn property_number_minus_three_zero_e_one_as_integer()
 {
-    let result = JSON::parse("{'a':-30e1}").getInteger("a");
-
-    assert(result.is_some() == true);
-    assert(result.unwrap_unchecked() == -300);
+    assert(JSON::parse("{'a':-30e1}").getInteger("a").unwrap() == -300);
 }
 
 #[test]
 unconstrained
 fn property_number_three_zero_e_plus_one_as_integer()
 {
-    let result = JSON::parse("{'a':30e+1}").getInteger("a");
-
-    assert(result.is_some() == true);
-    assert(result.unwrap_unchecked() == 300);
+    assert(JSON::parse("{'a':30e+1}").getInteger("a").unwrap() == 300);
 }
 
 #[test]
 unconstrained
 fn property_number_minus_three_zero_e_plus_one_as_integer()
 {
-    let result = JSON::parse("{'a':-30e+1}").getInteger("a");
-
-    assert(result.is_some() == true);
-    assert(result.unwrap_unchecked() == -300);
+    assert(JSON::parse("{'a':-30e+1}").getInteger("a").unwrap() == -300);
 }
 
 #[test]
 unconstrained
 fn property_number_three_zero_e_minus_one_as_integer()
 {
-    let result = JSON::parse("{'a':30e-1}").getInteger("a");
-
-    assert(result.is_some() == true);
-    assert(result.unwrap_unchecked() == 3);
+    assert(JSON::parse("{'a':30e-1}").getInteger("a").unwrap() == 3);
 }
 
 #[test]
 unconstrained
 fn property_number_minus_three_zero_e_minus_one_as_integer()
 {
-    let result = JSON::parse("{'a':-30e-1}").getInteger("a");
-
-    assert(result.is_some() == true);
-    assert(result.unwrap_unchecked() == -3);
+    assert(JSON::parse("{'a':-30e-1}").getInteger("a").unwrap() == -3);
 }
 
 #[test]

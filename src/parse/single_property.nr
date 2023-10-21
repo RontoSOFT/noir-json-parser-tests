@@ -4,20 +4,14 @@ use dep::rontosoft::JSON;
 unconstrained
 fn property_name_single()
 {
-    let (key, value) = ("a", "5");
-    let bytes = JSON::parse("{'a':5}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    assert(JSON::parse("{'a':5}").bytesOf("a").unwrap_unchecked().eq_string("5") == true);
 }
 
 #[test]
 unconstrained
 fn property_name_multi()
 {
-    let (key, value) = ("abc", "5");
-    let bytes = JSON::parse("{'abc':5}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    assert(JSON::parse("{'abc':5}").bytesOf("abc").unwrap_unchecked().eq_string("5") == true);
 }
 
 #[test]
@@ -38,120 +32,84 @@ fn property_name_missing_value2()
 unconstrained
 fn property_name_single_spaces()
 {
-    let (key, value) = ("a", "5");
-    let bytes = JSON::parse(" { 'a' : 5 } ").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    assert(JSON::parse(" { 'a' : 5 } ").bytesOf("a").unwrap_unchecked().eq_string("5") == true);
 }
 
 #[test]
 unconstrained
 fn property_name_single_repeated_spaces()
 {
-    let (key, value) = ("a", "5");
-    let bytes = JSON::parse("  {  'a'  :  5  }  ").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    assert(JSON::parse("  {  'a'  :  5  }  ").bytesOf("a").unwrap_unchecked().eq_string("5") == true);
 }
 
 #[test]
 unconstrained
 fn property_name_single_random_spaces()
 {
-    let (key, value) = ("a", "5");
-    let bytes = JSON::parse("{  'a':  5} ").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    assert(JSON::parse("{  'a':  5} ").bytesOf("a").unwrap_unchecked().eq_string("5") == true);
 }
 
 #[test]
 unconstrained
 fn property_name_colon()
 {
-    let (key, value) = ("a:", "5");
-    let bytes = JSON::parse("{'a:':5}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    assert(JSON::parse("{'a:':5}").bytesOf("a:").unwrap_unchecked().eq_string("5") == true);
 }
 
 #[test]
 unconstrained
 fn property_name_space()
 {
-    let (key, value) = ("a ", "5");
-    let bytes = JSON::parse("{'a ':5}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    assert(JSON::parse("{'a ':5}").bytesOf("a ").unwrap_unchecked().eq_string("5") == true);
 }
 
 #[test]
 unconstrained
 fn property_name_right_brace()
 {
-    let (key, value) = ("a}", "5");
-    let bytes = JSON::parse("{'a}':5}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    assert(JSON::parse("{'a}':5}").bytesOf("a}").unwrap_unchecked().eq_string("5") == true);
 }
 
 #[test]
 unconstrained
 fn property_name_left_brace()
 {
-    let (key, value) = ("a{", "5");
-    let bytes = JSON::parse("{'a{':5}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    assert(JSON::parse("{'a{':5}").bytesOf("a{").unwrap_unchecked().eq_string("5") == true);
 }
 
 #[test]
 unconstrained
 fn property_name_right_bracket()
 {
-    let (key, value) = ("a]", "5");
-    let bytes = JSON::parse("{'a]':5}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    assert(JSON::parse("{'a]':5}").bytesOf("a]").unwrap_unchecked().eq_string("5") == true);
 }
 
 #[test]
 unconstrained
 fn property_name_left_bracket()
 {
-    let (key, value) = ("a[", "5");
-    let bytes = JSON::parse("{'a[':5}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    assert(JSON::parse("{'a[':5}").bytesOf("a[").unwrap_unchecked().eq_string("5") == true);
 }
 
 #[test]
 unconstrained
 fn property_name_escaped_left_and_right()
 {
-    let (key, value) = ("a", "5");
-    let bytes = JSON::parse("{\\'a\\':5}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    assert(JSON::parse("{\\'a\\':5}").bytesOf("a").unwrap_unchecked().eq_string("5") == true);
 }
 
 #[test]
 unconstrained
 fn property_name_escaped_left()
 {
-    let (key, value) = ("a", "5");
-    let bytes = JSON::parse("{\\'a':5}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    assert(JSON::parse("{\\'a':5}").bytesOf("a").unwrap_unchecked().eq_string("5") == true);
 }
 
 #[test]
 unconstrained
 fn property_name_escaped_right()
 {
-    let (key, value) = ("a", "5");
-    let bytes = JSON::parse("{'a\\':5}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    assert(JSON::parse("{'a\\':5}").bytesOf("a").unwrap_unchecked().eq_string("5") == true);
 }
 
 #[test]

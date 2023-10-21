@@ -4,30 +4,24 @@ use dep::rontosoft::JSON;
 unconstrained
 fn property_literal_null()
 {
-    let (key, value) = ("a", "null");
-    let bytes = JSON::parse("{'a':null}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "null";
+    assert(JSON::parse("{'a':null}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_literal_true()
 {
-    let (key, value) = ("a", "true");
-    let bytes = JSON::parse("{'a':true}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "true";
+    assert(JSON::parse("{'a':true}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
 unconstrained
 fn property_literal_false()
 {
-    let (key, value) = ("a", "false");
-    let bytes = JSON::parse("{'a':false}").bytesOf(key).unwrap_unchecked();
-
-    assert(bytes.eq_string(value) == true);
+    let value = "false";
+    assert(JSON::parse("{'a':false}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
 }
 
 #[test]
