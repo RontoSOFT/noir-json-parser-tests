@@ -13,7 +13,7 @@ unconstrained
 fn array_single_number_nested()
 {
     let value = "[[1]]";
-    assert(JSON::parse("[[1]]").doc[0].value.eq_string(value) == true);
+    assert(JSON::parse(value).doc[0].value.eq_string(value) == true);
 }
 
 #[test]
@@ -21,7 +21,7 @@ unconstrained
 fn array_multiple_numbers()
 {
     let value = "[1,2,3]";
-    assert(JSON::parse("[1,2,3]").doc[0].value.eq_string(value) == true);
+    assert(JSON::parse(value).doc[0].value.eq_string(value) == true);
 }
 
 #[test]
@@ -29,7 +29,7 @@ unconstrained
 fn array_multiple_numbers_nested()
 {
     let value = "[[1],[2],[3]]";
-    assert(JSON::parse("[[1],[2],[3]]").doc[0].value.eq_string(value) == true);
+    assert(JSON::parse(value).doc[0].value.eq_string(value) == true);
 }
 
 #[test]
@@ -37,7 +37,7 @@ unconstrained
 fn array_multiple_array_numbers_nested()
 {
     let value = "[[1,1],[2,2],[3,3]]";
-    assert(JSON::parse("[[1,1],[2,2],[3,3]]").doc[0].value.eq_string(value) == true);
+    assert(JSON::parse(value).doc[0].value.eq_string(value) == true);
 }
 
 #[test]
@@ -45,7 +45,7 @@ unconstrained
 fn array_as_value_multiple_strings()
 {
     let value = "['1','2','3']";
-    assert(JSON::parse("['1','2','3']").doc[0].value.eq_string(value) == true);
+    assert(JSON::parse(value).doc[0].value.eq_string(value) == true);
 }
 
 #[test]
@@ -53,7 +53,7 @@ unconstrained
 fn array_as_value_multiple_mixed_types()
 {
     let value = "[1,'2',true]";
-    assert(JSON::parse("[1,'2',true]").doc[0].value.eq_string(value) == true);
+    assert(JSON::parse(value).doc[0].value.eq_string(value) == true);
 }
 
 #[test]
