@@ -4,30 +4,21 @@ use dep::rontosoft::JSON;
 unconstrained
 fn property_literal_true_as_bool()
 {
-    let result = JSON::parse("{'a':true}").getBool("a");
-
-    assert(result.is_some());
-    assert(result.unwrap_unchecked() == true);
+    assert(JSON::parse("{'a':true}").getBool("a").unwrap() == true);
 }
 
 #[test]
 unconstrained
 fn property_literal_null_as_bool()
 {
-    let result = JSON::parse("{'a':null}").getBool("a");
-
-    assert(result.is_some());
-    assert(result.unwrap_unchecked() == false);
+    assert(JSON::parse("{'a':null}").getBool("a").unwrap() == false);
 }
 
 #[test]
 unconstrained
 fn property_literal_false_as_bool()
 {
-    let result = JSON::parse("{'a':false}").getBool("a");
-
-    assert(result.is_some());
-    assert(result.unwrap_unchecked() == false);
+    assert(JSON::parse("{'a':false}").getBool("a").unwrap() == false);
 }
 
 #[test]

@@ -5,7 +5,7 @@ unconstrained
 fn property_number_zero_point_zero()
 {
     let value = "0.0";
-    assert(JSON::parse("{'a':0.0}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':0.0}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -13,7 +13,7 @@ unconstrained
 fn property_number_zero_point_single_digits()
 {
     let value = "0.1";
-    assert(JSON::parse("{'a':0.1}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':0.1}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -21,7 +21,7 @@ unconstrained
 fn property_number_zero_point_multiple_digits()
 {
     let value = "0.12345";
-    assert(JSON::parse("{'a':0.12345}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':0.12345}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -29,7 +29,7 @@ unconstrained
 fn property_number_minus_zero_point_multiple_digits()
 {
     let value = "-0.12345";
-    assert(JSON::parse("{'a':-0.12345}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':-0.12345}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -37,7 +37,7 @@ unconstrained
 fn property_number_single_digit_point_zero()
 {
     let value = "1.0";
-    assert(JSON::parse("{'a':1.0}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':1.0}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -45,7 +45,7 @@ unconstrained
 fn property_number_minus_single_digit_point_zero()
 {
     let value = "-1.0";
-    assert(JSON::parse("{'a':-1.0}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':-1.0}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -53,7 +53,7 @@ unconstrained
 fn property_number_single_digit_point_single_digit()
 {
     let value = "1.2";
-    assert(JSON::parse("{'a':1.2}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':1.2}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -61,7 +61,7 @@ unconstrained
 fn property_number_minus_single_digit_point_single_digit()
 {
     let value = "-1.2";
-    assert(JSON::parse("{'a':-1.2}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':-1.2}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -69,7 +69,7 @@ unconstrained
 fn property_number_single_digit_point_multiple_digits()
 {
     let value = "1.23456";
-    assert(JSON::parse("{'a':1.23456}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':1.23456}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -77,7 +77,7 @@ unconstrained
 fn property_number_minus_single_digit_point_multiple_digits()
 {
     let value = "-1.23456";
-    assert(JSON::parse("{'a':-1.23456}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':-1.23456}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -85,7 +85,7 @@ unconstrained
 fn property_number_multiple_digits_point_zero()
 {
     let value = "12345.0";
-    assert(JSON::parse("{'a':12345.0}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':12345.0}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -93,7 +93,7 @@ unconstrained
 fn property_number_minus_multiple_digits_point_zero()
 {
     let value = "-12345.0";
-    assert(JSON::parse("{'a':-12345.0}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':-12345.0}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -101,7 +101,7 @@ unconstrained
 fn property_number_multiple_digits_point_single_digit()
 {
     let value = "12345.6";
-    assert(JSON::parse("{'a':12345.6}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':12345.6}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -109,7 +109,7 @@ unconstrained
 fn property_number_minus_multiple_digits_point_single_digit()
 {
     let value = "-12345.6";
-    assert(JSON::parse("{'a':-12345.6}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':-12345.6}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -117,7 +117,7 @@ unconstrained
 fn property_number_multiple_digits_point_multiple_digits()
 {
     let value = "12345.67890";
-    assert(JSON::parse("{'a':12345.67890}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':12345.67890}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -125,7 +125,7 @@ unconstrained
 fn property_number_minus_multiple_digits_point_multiple_digits()
 {
     let value = "-12345.67890";
-    assert(JSON::parse("{'a':-12345.67890}").bytesOf("a").unwrap_unchecked().eq_string(value) == true);
+    assert(JSON::parse("{'a':-12345.67890}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
