@@ -135,6 +135,13 @@ fn property_string_escaped_minus_three_zero_as_integer()
 
 #[test]
 unconstrained
+fn property_string_thirty_as_integer()
+{
+    assert(JSON::parse("{'a':'thirty'}").getInteger("a").is_none() == true);
+}
+
+#[test]
+unconstrained
 fn property_number_three_zero_point_zero_as_integer()
 {
     assert(JSON::parse("{'a':30.0}").getInteger("a").is_none() == true);
@@ -145,13 +152,6 @@ unconstrained
 fn property_number_minus_three_zero_point_zero_as_integer()
 {
     assert(JSON::parse("{'a':-30.0}").getInteger("a").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_string_thirty_as_integer()
-{
-    assert(JSON::parse("{'a':'thirty'}").getInteger("a").is_none() == true);
 }
 
 #[test]
