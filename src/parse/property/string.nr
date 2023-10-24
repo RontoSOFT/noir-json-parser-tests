@@ -52,8 +52,8 @@ fn property_string_with_double_escape()
 unconstrained
 fn property_string_with_escaped_double_quote()
 {
-    let (key, value) = ("a", "'a\"bc'");
-    assert(JSON::parse("{'a':'a\"bc'}").bytesOf(key).unwrap().eq_string(value) == true);
+    let value = "'a\"bc'";
+    assert(JSON::parse("{'a':'a\"bc'}").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
