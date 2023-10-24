@@ -2,7 +2,7 @@ use dep::rontosoft::JSON;
 
 #[test]
 unconstrained
-fn two_properties_number()
+fn two_keys_number()
 {
     let json = JSON::parse("{'a' : 5, 'b' : 3}");
 
@@ -12,7 +12,7 @@ fn two_properties_number()
 
 #[test]
 unconstrained
-fn two_properties_string_and_number()
+fn two_keys_string_and_number()
 {
     let json = JSON::parse("{'a' : '5', 'b' : 3}");
 
@@ -22,7 +22,7 @@ fn two_properties_string_and_number()
 
 #[test]
 unconstrained
-fn two_properties_string_and_string()
+fn two_keys_string_and_string()
 {
     let json = JSON::parse("{'a' : '5', 'b' : '3'}");
 
@@ -32,14 +32,14 @@ fn two_properties_string_and_string()
 
 #[test]
 unconstrained
-fn two_properties_same_name_replace_property()
+fn two_keys_same_name_replace_property()
 {
     assert(JSON::parse("{'a' : 5, 'a' : 3}").bytesOf("a").unwrap().eq_string("3") == true);
 }
 
 #[test]
 unconstrained
-fn three_properties_unique_values()
+fn three_keys_unique_values()
 {
     let json = JSON::parse("{'name':'John Doe','age':30,'isEmployed':true}"); //, 'fivehundred':500, 'somelongpropnameasstring' : 'stringtest123' }");
 
@@ -59,7 +59,7 @@ fn three_properties_unique_values()
 
 #[test]
 unconstrained
-fn two_properties_same_name_replace_property_check_length()
+fn two_keys_same_name_replace_property_check_length()
 {
     let (key, value) = ("a", "3");
     let json = dep::rontosoft::JSON::parse("{'a' : 5, 'a' : 3}");
