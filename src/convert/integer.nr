@@ -202,3 +202,17 @@ fn property_number_three_comma_zero_as_integer()
 {
     assert(JSON::parse("{'a':3,0}").getInteger("a").is_none() == true);
 }
+
+#[test]
+unconstrained
+fn property_number_three_comma_space_zero_as_integer()
+{
+    assert(JSON::parse("{'a':3, 0}").getInteger("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_number_three_space_comma_zero_as_integer()
+{
+    assert(JSON::parse("{'a':3 ,0}").getInteger("a").is_none() == true);
+}
