@@ -33,42 +33,70 @@ fn value_literal_escaped()
 
 #[test]
 unconstrained
-fn value_literal_incomplete()
+fn value_literal_fals()
 {
     assert(JSON::parse("fals").doc.len() == 0);
 }
 
 #[test]
 unconstrained
-fn value_literal_incomplete2()
+fn value_literal_t()
 {
     assert(JSON::parse("t").doc.len() == 0);
 }
 
 #[test]
 unconstrained
-fn value_literal_incomplete3()
+fn value_literal_nul()
 {
     assert(JSON::parse("nul").doc.len() == 0);
 }
 
 #[test]
 unconstrained
-fn value_literal_wrong()
+fn value_literal_falst()
 {
     assert(JSON::parse("falst").doc.len() == 0);
 }
 
 #[test]
 unconstrained
-fn value_literal_wrong2()
+fn value_literal_nult()
 {
     assert(JSON::parse("nult").doc.len() == 0);
 }
 
 #[test]
 unconstrained
-fn value_literal_wrong3()
+fn value_literal_truf()
 {
     assert(JSON::parse("truf").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_literal_plus_true()
+{
+    assert(JSON::parse("+true").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_literal_true_plus()
+{
+    assert(JSON::parse("true+").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_literal_minus_false()
+{
+    assert(JSON::parse("-false").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_literal_false_minus()
+{
+    assert(JSON::parse("false-").doc.len() == 0);
 }

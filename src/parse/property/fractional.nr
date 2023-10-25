@@ -146,7 +146,14 @@ fn property_minus_fraction_one_point_minus_zero()
 unconstrained
 fn property_fraction_one_point_minus_zero()
 {
-    assert(JSON::parse("{'a':-1.-0}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':1.-0}").bytesOf("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_fraction_zero_point_point_zero()
+{
+    assert(JSON::parse("{'a':0..0}").bytesOf("a").is_none() == true);
 }
 
 #[test]

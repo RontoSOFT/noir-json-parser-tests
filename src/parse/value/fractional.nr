@@ -146,7 +146,14 @@ fn value_minus_fraction_one_point_minus_zero()
 unconstrained
 fn value_fraction_one_point_minus_zero()
 {
-    assert(JSON::parse("-1.-0").doc.len() == 0);
+    assert(JSON::parse("1.-0").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_fraction_zero_point_point_zero()
+{
+    assert(JSON::parse("0..0").doc.len() == 0);
 }
 
 #[test]
