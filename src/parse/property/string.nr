@@ -82,7 +82,7 @@ fn property_string_false()
 
 #[test]
 unconstrained
-fn property_name_string_value_right_brace()
+fn property_string_value_right_brace()
 {
     let value = "'5}'";
     assert(JSON::parse("{'a':'5}'}").bytesOf("a").unwrap().eq_string(value) == true);
@@ -90,7 +90,7 @@ fn property_name_string_value_right_brace()
 
 #[test]
 unconstrained
-fn property_name_string_value_left_brace()
+fn property_string_value_left_brace()
 {
     let value = "'5{'";
     assert(JSON::parse("{'a':'5{'}").bytesOf("a").unwrap().eq_string(value) == true);

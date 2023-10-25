@@ -82,7 +82,7 @@ fn value_string_false()
 
 #[test]
 unconstrained
-fn value_name_string_value_right_brace()
+fn value_string_value_right_brace()
 {
     let json = "'5}'";
     assert(JSON::parse(json).doc[0].value.eq_string(json) == true);
@@ -90,7 +90,7 @@ fn value_name_string_value_right_brace()
 
 #[test]
 unconstrained
-fn value_name_string_value_left_brace()
+fn value_string_value_left_brace()
 {
     let json = "'5{'";
     assert(JSON::parse(json).doc[0].value.eq_string(json) == true);

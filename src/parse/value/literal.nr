@@ -40,14 +40,14 @@ fn value_literal_incomplete()
 
 #[test]
 unconstrained
-fn incvalue_literal_incomplete2()
+fn value_literal_incomplete2()
 {
     assert(JSON::parse("t").doc.len() == 0);
 }
 
 #[test]
 unconstrained
-fn incvalue_literal_incomplete3()
+fn value_literal_incomplete3()
 {
     assert(JSON::parse("nul").doc.len() == 0);
 }
