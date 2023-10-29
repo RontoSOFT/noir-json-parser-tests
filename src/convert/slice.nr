@@ -81,6 +81,16 @@ fn array_multiple_mixed_types_as_slice()
 
 #[test]
 unconstrained
+fn property_array_single_number_as_slice()
+{
+    let result : [ [u8] ] = JSON::parse("{'a':[1]}").getSlice("a").unwrap();
+
+    assert(result.len() == 1);
+    assert(result[0].asField().unwrap() == 1);
+}
+
+#[test]
+unconstrained
 fn property_array_multiple_numbers_as_slice()
 {
     let result : [ [u8] ] = JSON::parse("{'a':[1,2,3]}").getSlice("a").unwrap();
@@ -95,10 +105,46 @@ fn property_array_multiple_numbers_as_slice()
 unconstrained
 fn property_array_multiple_mixed_types_as_slice()
 {
-    let result : [ [u8] ] = JSON::parse("{'a':[true,2,'3']}").getSlice("a").unwrap();
+    let result : [ [u8] ] = JSON::parse("{'a':[true,2,'3',10.35e+5,{}]}").getSlice("a").unwrap();
 
-    assert(result.len() == 3);
+    assert(result.len() == 5);
     assert(result[0].asBool().unwrap() == true);
     assert(result[1].asField().unwrap() == 2);
     assert(result[2].eq_string("'3'") == true);
+    assert(result[3].eq_string("10.35e+5") == true);
+    assert(result[4].eq_string("{}") == true);
+}
+
+#[test]
+unconstrained
+fn property_array_multiple_empty_objects_as_slice()
+{
+    let result : [ [u8] ] = JSON::parse("{'a':[{},{},{}]}").getSlice("a").unwrap();
+
+    assert(result.len() == 3);
+    assert(result[0].eq_string("{}") == true);
+    assert(result[1].eq_string("{}") == true);
+    assert(result[2].eq_string("{}") == true);
+}
+
+#[test]
+unconstrained
+fn property_array_multiple_objects_single_property_as_slice()
+{
+    let result : [ [u8] ] = JSON::parse("{'a':[{'a':1},{'a':2}]}").getSlice("a").unwrap();
+
+    assert(result.len() == 2);
+    assert(result[0].eq_string("{'a':1}") == true);
+    assert(result[1].eq_string("{'a':2}") == true);
+}
+
+#[test]
+unconstrained
+fn property_array_multiple_objects_multiple_properties_as_slice()
+{
+    let result : [ [u8] ] = JSON::parse("{'a':[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]}").getSlice("a").unwrap();
+
+    assert(result.len() == 2);
+    assert(result[0].eq_string("{'a':1,'b':true,'c':'123'}") == true);
+    assert(result[1].eq_string("{'a':2,'b':false,'c':'456'}") == true);
 }
