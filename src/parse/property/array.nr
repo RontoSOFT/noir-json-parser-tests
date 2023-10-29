@@ -101,7 +101,6 @@ fn property_array_one_object_one_property_whitespaces()
 {
     let value = "[{'a':1}]";
     assert(JSON::parse("{ 'a' : [ { 'a' : 1 } ] }").bytesOf("a").unwrap().eq_string(value) == true);
-
     assert(JSON::parse("   {    'a'  :   [  {   'a'   :   1   }     ]     }    ").bytesOf("a").unwrap().eq_string(value) == true);
 }
 
