@@ -61,16 +61,9 @@ fn value_literal_falst()
 
 #[test]
 unconstrained
-fn value_literal_nult()
+fn value_literal_random()
 {
-    assert(JSON::parse("nult").doc.len() == 0);
-}
-
-#[test]
-unconstrained
-fn value_literal_truf()
-{
-    assert(JSON::parse("truf").doc.len() == 0);
+    assert(JSON::parse("lfseu").doc.len() == 0);
 }
 
 #[test]
@@ -99,4 +92,18 @@ unconstrained
 fn value_literal_false_minus()
 {
     assert(JSON::parse("false-").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_literal_tru_dot_e()
+{
+    assert(JSON::parse("tru.e").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_literal_tru_space_e()
+{
+    assert(JSON::parse("tru e").doc.len() == 0);
 }

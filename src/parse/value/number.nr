@@ -261,3 +261,24 @@ fn value_number_one_right_bracket()
 {
     assert(JSON::parse("1]").doc.len() == 0);
 }
+
+#[test]
+unconstrained
+fn value_number_one_space()
+{
+    assert(JSON::parse("1 2").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_number_one_letter()
+{
+    assert(JSON::parse("1x").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_number_one_literal_letter()
+{
+    assert(JSON::parse("1f").doc.len() == 0);
+}

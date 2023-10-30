@@ -261,3 +261,24 @@ fn property_number_one_right_bracket()
 {
     assert(JSON::parse("{'a':1]}").bytesOf("a").is_none() == true);
 }
+
+#[test]
+unconstrained
+fn property_number_one_space()
+{
+    assert(JSON::parse("{'a':1 2}").bytesOf("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_number_one_letter()
+{
+    assert(JSON::parse("{'a':1x}").bytesOf("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_number_one_literal_letter()
+{
+    assert(JSON::parse("{'a':1f}").bytesOf("a").is_none() == true);
+}

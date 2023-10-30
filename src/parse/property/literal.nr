@@ -61,16 +61,9 @@ fn property_literal_falst()
 
 #[test]
 unconstrained
-fn property_literal_nult()
+fn property_literal_random()
 {
-    assert(JSON::parse("{'a':nult}").bytesOf("a").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_literal_truf()
-{
-    assert(JSON::parse("{'a':truf}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':lfseu}").bytesOf("a").is_none() == true);
 }
 
 #[test]
@@ -99,4 +92,18 @@ unconstrained
 fn property_literal_false_minus()
 {
     assert(JSON::parse("{'a':false-}").bytesOf("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_literal_tru_dot_e()
+{
+    assert(JSON::parse("{'a':tru.e}").bytesOf("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_literal_tru_space_e()
+{
+    assert(JSON::parse("{'a':tru e}").bytesOf("a").is_none() == true);
 }
