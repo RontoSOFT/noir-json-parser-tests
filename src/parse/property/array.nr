@@ -142,6 +142,13 @@ fn property_array_single_number_missing_value()
 
 #[test]
 unconstrained
+fn property_array_number_faulty_colon()
+{
+    assert(JSON::parse("{'a':[1:]}").bytesOf("a").is_none() == true);
+}
+
+#[test]
+unconstrained
 fn property_array_numbers_multiple()
 {
     let value = "[1,2,3]";
@@ -266,6 +273,13 @@ unconstrained
 fn property_array_single_literal_wrong_random()
 {
     assert(JSON::parse("{'a':[lfseu]}").bytesOf("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_array_literal_faulty_colon()
+{
+    assert(JSON::parse("{'a':[true:]}").bytesOf("a").is_none() == true);
 }
 
 #[test]

@@ -142,6 +142,13 @@ fn value_array_single_number_missing_value()
 
 #[test]
 unconstrained
+fn value_array_number_faulty_colon()
+{
+    assert(JSON::parse("[1:]").doc.len() == 0);
+}
+
+#[test]
+unconstrained
 fn value_array_multiple_numbers()
 {
     let json = "[1,2,3]";
@@ -266,6 +273,13 @@ unconstrained
 fn value_array_single_literal_wrong_random()
 {
     assert(JSON::parse("[lfseu]").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_array_literal_faulty_colon()
+{
+    assert(JSON::parse("[true:]").doc.len() == 0);
 }
 
 #[test]
