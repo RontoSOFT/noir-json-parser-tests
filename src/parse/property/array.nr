@@ -19,7 +19,7 @@ fn property_array_empty_values()
 unconstrained
 fn property_array_faulty_colon()
 {
-    // assert(JSON::parse("{'a':[:]}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':[:]}").bytesOf("a").is_none() == true);
 }
 
 #[test]

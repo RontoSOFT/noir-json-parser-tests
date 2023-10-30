@@ -35,6 +35,7 @@ fn value_array_right_brace_outer()
 {
     assert(JSON::parse("[]}").doc.len() == 0);
 }
+
 #[test]
 unconstrained
 fn value_array_left_brace_inner()
@@ -55,6 +56,7 @@ fn value_array_duplicate_left_bracket()
 {
     assert(JSON::parse("[[]").doc.len() == 0);
 }
+
 #[test]
 unconstrained
 fn value_array_duplicate_right_bracket()
@@ -293,11 +295,9 @@ fn value_array_one_object_one_property()
 unconstrained
 fn value_array_one_object_one_property_whitespaces()
 {
-    let json = "[ { 'a' : 1 } ]";
-    assert(JSON::parse(json).doc[0].value.eq_string("[{'a':1}]") == true);
-
-    let json = "[    {  'a' : 1   }     ]";
-    assert(JSON::parse(json).doc[0].value.eq_string("[{'a':1}]") == true);
+    let value = "[{'a':1}]";
+    assert(JSON::parse("[ { 'a' : 1 } ]").doc[0].value.eq_string(value) == true);
+    assert(JSON::parse("[    {  'a' : 1   }     ]").doc[0].value.eq_string(value) == true);
 }
 
 #[test]
