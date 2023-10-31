@@ -168,70 +168,70 @@ fn property_exponent_zero_point_zero_e_zero_plus_plus_zero()
 unconstrained
 fn property_exponent_e()
 {
-    assert(JSON::parse("{'a':e}").doc.len() == 0);
+    assert(JSON::parse("{'a':e}").doc[0].len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_exponent_dot_e()
 {
-    assert(JSON::parse("{'a':.e}").doc.len() == 0);
+    assert(JSON::parse("{'a':.e}").doc[0].len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_exponent_minus_e()
 {
-    assert(JSON::parse("{'a':-e}").doc.len() == 0);
+    assert(JSON::parse("{'a':-e}").doc[0].len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_exponent_plus_e()
 {
-    assert(JSON::parse("{'a':+e}").doc.len() == 0);
+    assert(JSON::parse("{'a':+e}").doc[0].len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_exponent_e_minus()
 {
-    assert(JSON::parse("{'a':e-}").doc.len() == 0);
+    assert(JSON::parse("{'a':e-}").doc[0].len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_exponent_e_plus()
 {
-    assert(JSON::parse("{'a':e+}").doc.len() == 0);
+    assert(JSON::parse("{'a':e+}").doc[0].len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_exponent_e_minus_zero()
 {
-    assert(JSON::parse("{'a':e-0}").doc.len() == 0);
+    assert(JSON::parse("{'a':e-0}").doc[0].len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_exponent_e_plus_zero()
 {
-    assert(JSON::parse("{'a':e+0}").doc.len() == 0);
+    assert(JSON::parse("{'a':e+0}").doc[0].len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_exponent_minus_dot_e()
 {
-    assert(JSON::parse("{'a':-.e}").doc.len() == 0);
+    assert(JSON::parse("{'a':-.e}").doc[0].len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_exponent_plus_dot_e()
 {
-    assert(JSON::parse("{'a':+.e}").doc.len() == 0);
+    assert(JSON::parse("{'a':+.e}").doc[0].len() == 0);
 }
 
 #[test]

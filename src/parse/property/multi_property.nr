@@ -64,7 +64,7 @@ fn two_properties_same_name_replace_property_check_length()
     let (key, value) = ("a", "3");
     let json = dep::rontosoft::JSON::parse("{'a' : 5, 'a' : 3}");
 
-    assert(json.doc.len() == 1);
-    assert(json.doc[0].key.eq_string(key));
-    assert(json.doc[0].value.eq_string(value));
+    assert(json.doc[0].len() == 1);
+    assert(json.doc[0][0].key.eq_string(key));
+    assert(json.doc[0][0].value.eq_string(value));
 }
