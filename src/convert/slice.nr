@@ -1,10 +1,11 @@
 use dep::rontosoft::JSON;
+use crate::utils::object_one;
 
 #[test]
 unconstrained
 fn array_single_as_slice()
 {
-    let result : [ [u8] ] = JSON::parse("[1]").doc[0][0].value.asSlice().unwrap();
+    let result : [ [u8] ] = JSON::parse("[1]").doc[0].value.asSlice().unwrap();
 
     assert(result.len() == 1);
     assert(result[0].asField().unwrap() == 1);
@@ -14,7 +15,7 @@ fn array_single_as_slice()
 unconstrained
 fn array_multiple_numbers_as_slice()
 {
-    let result : [ [u8] ] = JSON::parse("[1,2,3]").doc[0][0].value.asSlice().unwrap();
+    let result : [ [u8] ] = JSON::parse("[1,2,3]").doc[0].value.asSlice().unwrap();
 
     assert(result.len() == 3);
     assert(result[0].asField().unwrap() == 1);
@@ -26,7 +27,7 @@ fn array_multiple_numbers_as_slice()
 unconstrained
 fn array_multiple_numbers_nested_as_slice()
 {
-    let result : [ [u8] ] = JSON::parse("[[1],[2],[3]]").doc[0][0].value.asSlice().unwrap();
+    let result : [ [u8] ] = JSON::parse("[[1],[2],[3]]").doc[0].value.asSlice().unwrap();
 
     assert(result.len() == 3);
 
@@ -47,7 +48,7 @@ fn array_multiple_numbers_nested_as_slice()
 unconstrained
 fn array_multiple_array_numbers_nested_as_slice()
 {
-    let result : [ [u8] ] = JSON::parse("[[1,8],[2,7],[3,6]]").doc[0][0].value.asSlice().unwrap();
+    let result : [ [u8] ] = JSON::parse("[[1,8],[2,7],[3,6]]").doc[0].value.asSlice().unwrap();
 
     assert(result.len() == 3);
 
@@ -71,7 +72,7 @@ fn array_multiple_array_numbers_nested_as_slice()
 unconstrained
 fn array_multiple_mixed_types_as_slice()
 {
-    let result : [ [u8] ] = JSON::parse("[true,2,'3']").doc[0][0].value.asSlice().unwrap();
+    let result : [ [u8] ] = JSON::parse("[true,2,'3']").doc[0].value.asSlice().unwrap();
 
     assert(result.len() == 3);
     assert(result[0].asBool().unwrap() == true);
@@ -112,7 +113,8 @@ fn property_array_multiple_mixed_types_as_slice()
     assert(result[1].asField().unwrap() == 2);
     assert(result[2].eq_string("'3'") == true);
     assert(result[3].eq_string("10.35e+5") == true);
-    assert(result[4].eq_string("{}") == true);
+
+    assert(result[4].eq_array(object_one) == true);
 }
 
 #[test]
@@ -122,9 +124,11 @@ fn property_array_multiple_empty_objects_as_slice()
     let result : [ [u8] ] = JSON::parse("{'a':[{},{},{}]}").getSlice("a").unwrap();
 
     assert(result.len() == 3);
-    assert(result[0].eq_string("{}") == true);
-    assert(result[1].eq_string("{}") == true);
-    assert(result[2].eq_string("{}") == true);
+
+    assert(result[0].eq_array(object_one) == true);
+    let mut value = object_one;
+    value[1] = 1; assert(result[1].eq_array(value) == true);
+    value[1] = 2; assert(result[2].eq_array(value) == true);
 }
 
 #[test]
@@ -134,8 +138,10 @@ fn property_array_multiple_objects_single_property_as_slice()
     let result : [ [u8] ] = JSON::parse("{'a':[{'a':1},{'a':2}]}").getSlice("a").unwrap();
 
     assert(result.len() == 2);
-    assert(result[0].eq_string("{'a':1}") == true);
-    assert(result[1].eq_string("{'a':2}") == true);
+
+    assert(result[0].eq_array(object_one) == true);
+    let mut value = object_one;
+    value[1] = 1; assert(result[1].eq_array(value) == true);
 }
 
 #[test]
@@ -145,6 +151,8 @@ fn property_array_multiple_objects_multiple_properties_as_slice()
     let result : [ [u8] ] = JSON::parse("{'a':[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]}").getSlice("a").unwrap();
 
     assert(result.len() == 2);
-    assert(result[0].eq_string("{'a':1,'b':true,'c':'123'}") == true);
-    assert(result[1].eq_string("{'a':2,'b':false,'c':'456'}") == true);
+
+    assert(result[0].eq_array(object_one) == true);
+    let mut value = object_one;
+    value[1] = 1; assert(result[1].eq_array(value) == true);
 }
