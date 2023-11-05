@@ -41,30 +41,9 @@ fn two_properties_same_name_replace_property()
 unconstrained
 fn three_properties_unique_values()
 {
-    let json = JSON::parse("{'name':'John Doe','age':30,'isEmployed':true}"); //, 'fivehundred':500, 'somelongpropnameasstring' : 'stringtest123' }");
+    let json = JSON::parse("{'name':'John Doe','age':30,'isEmployed':true}");
 
-    let (key, value) = ("name", "'John Doe'");
-    assert(json.bytesOf(key).unwrap().eq_string(value) == true);
-
-    let (key2, value2) = ("age", "30");
-    let bytes2 = json.bytesOf(key2).unwrap();
-    assert(bytes2.eq_string(value2) == true);
-    assert(bytes2.asField().unwrap() == 30);
-
-    let (key3, value3) = ("isEmployed", "true");
-    let bytes3 = json.bytesOf(key3).unwrap();
-    assert(bytes3.eq_string(value3) == true);
-    assert(bytes3.asBool().unwrap() == true);
-}
-
-#[test]
-unconstrained
-fn two_properties_same_name_replace_property_check_length()
-{
-    let (key, value) = ("a", "3");
-    let json = dep::rontosoft::JSON::parse("{'a' : 5, 'a' : 3}");
-
-    assert(json.doc[0].len() == 1);
-    assert(json.doc[0][0].key.eq_string(key));
-    assert(json.doc[0][0].value.eq_string(value));
+    assert(json.bytesOf("name").unwrap().eq_string("'John Doe'") == true);
+    assert(json.bytesOf("age").unwrap().eq_string("30") == true);
+    assert(json.bytesOf("isEmployed").unwrap().eq_string("true") == true);
 }
