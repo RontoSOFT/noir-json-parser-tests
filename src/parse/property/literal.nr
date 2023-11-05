@@ -28,82 +28,82 @@ fn property_literal_false()
 unconstrained
 fn property_literal_escaped()
 {
-    assert(JSON::parse("{'a':fals\\e}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':fals\\e}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_literal_fals()
 {
-    assert(JSON::parse("{'a':fals}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':fals}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_literal_t()
 {
-    assert(JSON::parse("{'a':t}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':t}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_literal_nul()
 {
-    assert(JSON::parse("{'a':nul}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':nul}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_literal_falst()
 {
-    assert(JSON::parse("{'a':falst}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':falst}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_literal_random()
 {
-    assert(JSON::parse("{'a':lfseu}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':lfseu}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_literal_plus_true()
 {
-    assert(JSON::parse("{'a':+true}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':+true}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_literal_true_plus()
 {
-    assert(JSON::parse("{'a':true+}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':true+}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_literal_minus_false()
 {
-    assert(JSON::parse("{'a':-false}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':-false}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_literal_false_minus()
 {
-    assert(JSON::parse("{'a':false-}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':false-}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_literal_tru_dot_e()
 {
-    assert(JSON::parse("{'a':tru.e}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':tru.e}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
 fn property_literal_tru_space_e()
 {
-    assert(JSON::parse("{'a':tru e}").bytesOf("a").is_none() == true);
+    assert(JSON::parse("{'a':tru e}").doc.len() == 0);
 }
