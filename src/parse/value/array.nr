@@ -115,7 +115,7 @@ fn value_array_empty_object()
     assert(json.doc[0].value.eq_array(array_object_one) == true);
 
     assert(json.children.len() == 1);
-    assert(json.child(0).is_empty_object());
+    assert(json.child(0).is_none());
 }
 
 #[test]
@@ -132,9 +132,9 @@ fn value_array_empty_multiple_object()
     assert(json.doc[0].value.eq_array(value) == true);
 
     assert(json.children.len() == 3);
-    assert(json.child(0).is_empty_object());
-    assert(json.child(1).is_empty_object());
-    assert(json.child(2).is_empty_object());
+    assert(json.child(0).is_none());
+    assert(json.child(1).is_none());
+    assert(json.child(2).is_none());
 }
 
 #[test]
@@ -152,9 +152,9 @@ fn value_array_empty_multiple_objects_nested_arrays()
     assert(json.doc[0].value.eq_array(value) == true);
 
     assert(json.children.len() == 3);
-    assert(json.child(0).is_empty_object());
-    assert(json.child(1).is_empty_object());
-    assert(json.child(2).is_empty_object());
+    assert(json.child(0).is_none());
+    assert(json.child(1).is_none());
+    assert(json.child(2).is_none());
 }
 
 #[test]
@@ -334,7 +334,7 @@ fn value_array_mixed_types_null_object_array()
     assert(json.doc[0].value.eq_array(value) == true);
 
     assert(json.children.len() == 1);
-    assert(json.child(0).is_empty_object());
+    assert(json.child(0).is_none());
 }
 
 #[test]
@@ -356,7 +356,7 @@ fn value_array_object_one_one_property()
     assert(json.children.len() == 1);
 
     assert(json.child(0).len() == 1);
-    assert(json.child(0).bytesOf("a").unwrap().eq_string("1") == true);
+    assert(json.child(0).get("a").unwrap().eq_string("1") == true);
 }
 
 #[test]
@@ -371,7 +371,7 @@ fn value_array_object_one_one_property_whitespaces()
     assert(json.children.len() == 1);
 
     assert(json.child(0).len() == 1);
-    assert(json.child(0).bytesOf("a").unwrap().eq_string("1") == true);
+    assert(json.child(0).get("a").unwrap().eq_string("1") == true);
 
     let json = JSON::parse("   [  {   'a'   :   1   }     ] ");
 
@@ -381,7 +381,7 @@ fn value_array_object_one_one_property_whitespaces()
     assert(json.children.len() == 1);
 
     assert(json.child(0).len() == 1);
-    assert(json.child(0).bytesOf("a").unwrap().eq_string("1") == true);
+    assert(json.child(0).get("a").unwrap().eq_string("1") == true);
 }
 
 #[test]
@@ -396,9 +396,9 @@ fn value_array_object_one_multiple_properties()
     assert(json.children.len() == 1);
 
     assert(json.child(0).len() == 3);
-    assert(json.child(0).bytesOf("a").unwrap().eq_string("1") == true);
-    assert(json.child(0).bytesOf("b").unwrap().eq_string("true") == true);
-    assert(json.child(0).bytesOf("c").unwrap().eq_string("'123'") == true);
+    assert(json.child(0).get("a").unwrap().eq_string("1") == true);
+    assert(json.child(0).get("b").unwrap().eq_string("true") == true);
+    assert(json.child(0).get("c").unwrap().eq_string("'123'") == true);
 }
 
 #[test]
@@ -413,14 +413,14 @@ fn value_array_multiple_objects_multiple_properties()
     assert(json.children.len() == 2);
 
     assert(json.child(0).len() == 3);
-    assert(json.child(0).bytesOf("a").unwrap().eq_string("1") == true);
-    assert(json.child(0).bytesOf("b").unwrap().eq_string("true") == true);
-    assert(json.child(0).bytesOf("c").unwrap().eq_string("'123'") == true);
+    assert(json.child(0).get("a").unwrap().eq_string("1") == true);
+    assert(json.child(0).get("b").unwrap().eq_string("true") == true);
+    assert(json.child(0).get("c").unwrap().eq_string("'123'") == true);
 
     assert(json.child(1).len() == 3);
-    assert(json.child(1).bytesOf("a").unwrap().eq_string("2") == true);
-    assert(json.child(1).bytesOf("b").unwrap().eq_string("false") == true);
-    assert(json.child(1).bytesOf("c").unwrap().eq_string("'456'") == true);
+    assert(json.child(1).get("a").unwrap().eq_string("2") == true);
+    assert(json.child(1).get("b").unwrap().eq_string("false") == true);
+    assert(json.child(1).get("c").unwrap().eq_string("'456'") == true);
 }
 
 #[test]
@@ -435,7 +435,7 @@ fn value_array_object_one_one_property_array_one_value()
     assert(json.children.len() == 1);
 
     assert(json.child(0).len() == 1);
-    assert(json.child(0).bytesOf("a").unwrap().eq_string("[1]") == true);
+    assert(json.child(0).get("a").unwrap().eq_string("[1]") == true);
 }
 
 #[test]
@@ -450,10 +450,10 @@ fn value_array_multiple_objects_one_property_array_one_value()
     assert(json.children.len() == 2);
 
     assert(json.child(0).len() == 1);
-    assert(json.child(0).bytesOf("a").unwrap().eq_string("[1]") == true);
+    assert(json.child(0).get("a").unwrap().eq_string("[1]") == true);
 
     assert(json.child(1).len() == 1);
-    assert(json.child(1).bytesOf("b").unwrap().eq_string("[2]") == true);
+    assert(json.child(1).get("b").unwrap().eq_string("[2]") == true);
 }
 
 #[test]
@@ -468,7 +468,7 @@ fn value_array_object_one_one_property_array_multiple_values()
     assert(json.children.len() == 1);
 
     assert(json.child(0).len() == 1);
-    assert(json.child(0).bytesOf("abc").unwrap().eq_string("[1,2,3]") == true);
+    assert(json.child(0).get("abc").unwrap().eq_string("[1,2,3]") == true);
 }
 
 #[test]
@@ -483,10 +483,10 @@ fn value_array_multiple_objects_one_property_array_multiple_values()
     assert(json.children.len() == 2);
 
     assert(json.child(0).len() == 1);
-    assert(json.child(0).bytesOf("abc").unwrap().eq_string("[1,2,3]") == true);
+    assert(json.child(0).get("abc").unwrap().eq_string("[1,2,3]") == true);
 
     assert(json.child(1).len() == 1);
-    assert(json.child(1).bytesOf("def").unwrap().eq_string("[4,5,6]") == true);
+    assert(json.child(1).get("def").unwrap().eq_string("[4,5,6]") == true);
 }
 
 #[test]
@@ -501,9 +501,9 @@ fn value_array_object_one_one_property_with_array_single_value()
     assert(json.children.len() == 1);
 
     assert(json.child(0).len() == 3);
-    assert(json.child(0).bytesOf("a").unwrap().eq_string("1") == true);
-    assert(json.child(0).bytesOf("b").unwrap().eq_string("true") == true);
-    assert(json.child(0).bytesOf("c").unwrap().eq_string("[1]") == true);
+    assert(json.child(0).get("a").unwrap().eq_string("1") == true);
+    assert(json.child(0).get("b").unwrap().eq_string("true") == true);
+    assert(json.child(0).get("c").unwrap().eq_string("[1]") == true);
 }
 
 #[test]
@@ -518,14 +518,14 @@ fn value_array_multiple_objects_one_property_with_array_single_value()
     assert(json.children.len() == 2);
 
     assert(json.child(0).len() == 3);
-    assert(json.child(0).bytesOf("a").unwrap().eq_string("1") == true);
-    assert(json.child(0).bytesOf("b").unwrap().eq_string("true") == true);
-    assert(json.child(0).bytesOf("c").unwrap().eq_string("[1]") == true);
+    assert(json.child(0).get("a").unwrap().eq_string("1") == true);
+    assert(json.child(0).get("b").unwrap().eq_string("true") == true);
+    assert(json.child(0).get("c").unwrap().eq_string("[1]") == true);
 
     assert(json.child(1).len() == 3);
-    assert(json.child(1).bytesOf("a").unwrap().eq_string("2") == true);
-    assert(json.child(1).bytesOf("b").unwrap().eq_string("false") == true);
-    assert(json.child(1).bytesOf("c").unwrap().eq_string("[2]") == true);
+    assert(json.child(1).get("a").unwrap().eq_string("2") == true);
+    assert(json.child(1).get("b").unwrap().eq_string("false") == true);
+    assert(json.child(1).get("c").unwrap().eq_string("[2]") == true);
 }
 
 #[test]
@@ -540,9 +540,9 @@ fn value_array_object_one_one_property_with_array_multiple_values()
     assert(json.children.len() == 1);
 
     assert(json.child(0).len() == 3);
-    assert(json.child(0).bytesOf("a").unwrap().eq_string("1") == true);
-    assert(json.child(0).bytesOf("b").unwrap().eq_string("true") == true);
-    assert(json.child(0).bytesOf("abc").unwrap().eq_string("[1,2,3]") == true);
+    assert(json.child(0).get("a").unwrap().eq_string("1") == true);
+    assert(json.child(0).get("b").unwrap().eq_string("true") == true);
+    assert(json.child(0).get("abc").unwrap().eq_string("[1,2,3]") == true);
 }
 
 #[test]
@@ -557,12 +557,12 @@ fn value_array_multiple_objects_one_property_with_array_multiple_values()
     assert(json.children.len() == 2);
 
     assert(json.child(0).len() == 3);
-    assert(json.child(0).bytesOf("a").unwrap().eq_string("1") == true);
-    assert(json.child(0).bytesOf("b").unwrap().eq_string("true") == true);
-    assert(json.child(0).bytesOf("abc").unwrap().eq_string("[1,2,3]") == true);
+    assert(json.child(0).get("a").unwrap().eq_string("1") == true);
+    assert(json.child(0).get("b").unwrap().eq_string("true") == true);
+    assert(json.child(0).get("abc").unwrap().eq_string("[1,2,3]") == true);
 
     assert(json.child(1).len() == 3);
-    assert(json.child(1).bytesOf("x").unwrap().eq_string("2") == true);
-    assert(json.child(1).bytesOf("y").unwrap().eq_string("false") == true);
-    assert(json.child(1).bytesOf("def").unwrap().eq_string("[4,5,6]") == true);
+    assert(json.child(1).get("x").unwrap().eq_string("2") == true);
+    assert(json.child(1).get("y").unwrap().eq_string("false") == true);
+    assert(json.child(1).get("def").unwrap().eq_string("[4,5,6]") == true);
 }

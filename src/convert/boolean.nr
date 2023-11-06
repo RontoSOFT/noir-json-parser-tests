@@ -4,40 +4,40 @@ use dep::rontosoft::JSON;
 unconstrained
 fn convert_value_literal_true_as_bool()
 {
-    assert(JSON::parse("true").getBool("").unwrap() == true);
+    assert(JSON::parse("true").get_bool("").unwrap() == true);
 }
 
 #[test]
 unconstrained
 fn convert_value_literal_null_as_bool()
 {
-    assert(JSON::parse("null").getBool("").unwrap() == false);
+    assert(JSON::parse("null").get_bool("").unwrap() == false);
 }
 
 #[test]
 unconstrained
 fn convert_value_literal_false_as_bool()
 {
-    assert(JSON::parse("false").getBool("").unwrap() == false);
+    assert(JSON::parse("false").get_bool("").unwrap() == false);
 }
 
 #[test]
 unconstrained
 fn convert_propery_literal_true_as_bool()
 {
-    assert(JSON::parse("{'a':true}").getBool("a").unwrap() == true);
+    assert(JSON::parse("{'a':true}").get_bool("a").unwrap() == true);
 }
 
 #[test]
 unconstrained
 fn convert_propery_literal_null_as_bool()
 {
-    assert(JSON::parse("{'a':null}").getBool("a").unwrap() == false);
+    assert(JSON::parse("{'a':null}").get_bool("a").unwrap() == false);
 }
 
 #[test]
 unconstrained
 fn convert_propery_literal_false_as_bool()
 {
-    assert(JSON::parse("{'a':false}").getBool("a").unwrap() == false);
+    assert(JSON::parse("{'a':false}").get_bool("a").unwrap() == false);
 }

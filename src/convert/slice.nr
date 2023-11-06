@@ -6,9 +6,9 @@ use crate::utils::object_three;
 
 #[test]
 unconstrained
-fn array_single_as_slice()
+fn array_single_as_array()
 {
-    let result : [ [u8] ] = JSON::parse("[1]").doc[0].value.asSlice().unwrap();
+    let result : [ [u8] ] = JSON::parse("[1]").doc[0].value.as_array().unwrap();
 
     assert(result.len() == 1);
     assert(result[0].eq_string("1") == true);
@@ -16,9 +16,9 @@ fn array_single_as_slice()
 
 #[test]
 unconstrained
-fn array_multiple_numbers_as_slice()
+fn array_multiple_numbers_as_array()
 {
-    let result : [ [u8] ] = JSON::parse("[1,2,3]").doc[0].value.asSlice().unwrap();
+    let result : [ [u8] ] = JSON::parse("[1,2,3]").doc[0].value.as_array().unwrap();
 
     assert(result.len() == 3);
     assert(result[0].eq_string("1") == true);
@@ -28,44 +28,44 @@ fn array_multiple_numbers_as_slice()
 
 #[test]
 unconstrained
-fn array_multiple_numbers_nested_as_slice()
+fn array_multiple_numbers_nested_as_array()
 {
-    let result : [ [u8] ] = JSON::parse("[[1],[2],[3]]").doc[0].value.asSlice().unwrap();
+    let result : [ [u8] ] = JSON::parse("[[1],[2],[3]]").doc[0].value.as_array().unwrap();
 
     assert(result.len() == 3);
 
-    let mut sub_array : [ [u8] ] = result[0].asSlice().unwrap();
+    let mut sub_array : [ [u8] ] = result[0].as_array().unwrap();
     assert(sub_array.len() == 1);
     assert(sub_array[0].eq_string("1") == true);
 
-    sub_array = result[1].asSlice().unwrap();
+    sub_array = result[1].as_array().unwrap();
     assert(sub_array.len() == 1);
     assert(sub_array[0].eq_string("2") == true);
 
-    sub_array = result[2].asSlice().unwrap();
+    sub_array = result[2].as_array().unwrap();
     assert(sub_array.len() == 1);
     assert(sub_array[0].eq_string("3") == true);
 }
 
 #[test]
 unconstrained
-fn array_multiple_array_numbers_nested_as_slice()
+fn array_multiple_array_numbers_nested_as_array()
 {
-    let result : [ [u8] ] = JSON::parse("[[1,8],[2,7],[3,6]]").doc[0].value.asSlice().unwrap();
+    let result : [ [u8] ] = JSON::parse("[[1,8],[2,7],[3,6]]").doc[0].value.as_array().unwrap();
 
     assert(result.len() == 3);
 
-    let mut sub_array : [ [u8] ] = result[0].asSlice().unwrap();
+    let mut sub_array : [ [u8] ] = result[0].as_array().unwrap();
     assert(sub_array.len() == 2);
     assert(sub_array[0].eq_string("1") == true);
     assert(sub_array[1].eq_string("8") == true);
 
-    sub_array = result[1].asSlice().unwrap();
+    sub_array = result[1].as_array().unwrap();
     assert(sub_array.len() == 2);
     assert(sub_array[0].eq_string("2") == true);
     assert(sub_array[1].eq_string("7") == true);
 
-    sub_array = result[2].asSlice().unwrap();
+    sub_array = result[2].as_array().unwrap();
     assert(sub_array.len() == 2);
     assert(sub_array[0].eq_string("3") == true);
     assert(sub_array[1].eq_string("6") == true);
@@ -73,9 +73,9 @@ fn array_multiple_array_numbers_nested_as_slice()
 
 #[test]
 unconstrained
-fn array_multiple_mixed_types_as_slice()
+fn array_multiple_mixed_types_as_array()
 {
-    let result : [ [u8] ] = JSON::parse("[true,2,'3']").doc[0].value.asSlice().unwrap();
+    let result : [ [u8] ] = JSON::parse("[true,2,'3']").doc[0].value.as_array().unwrap();
 
     assert(result.len() == 3);
     assert(result[0].eq_string("true") == true);
@@ -85,9 +85,9 @@ fn array_multiple_mixed_types_as_slice()
 
 #[test]
 unconstrained
-fn property_array_single_number_as_slice()
+fn property_array_single_number_as_array()
 {
-    let result : [ [u8] ] = JSON::parse("{'a':[1]}").getSlice("a").unwrap();
+    let result : [ [u8] ] = JSON::parse("{'a':[1]}").get_slice("a").unwrap();
 
     assert(result.len() == 1);
     assert(result[0].eq_string("1") == true);
@@ -95,9 +95,9 @@ fn property_array_single_number_as_slice()
 
 #[test]
 unconstrained
-fn property_array_multiple_numbers_as_slice()
+fn property_array_multiple_numbers_as_array()
 {
-    let result : [ [u8] ] = JSON::parse("{'a':[1,2,3]}").getSlice("a").unwrap();
+    let result : [ [u8] ] = JSON::parse("{'a':[1,2,3]}").get_slice("a").unwrap();
 
     assert(result.len() == 3);
     assert(result[0].eq_string("1") == true);
@@ -107,9 +107,9 @@ fn property_array_multiple_numbers_as_slice()
 
 #[test]
 unconstrained
-fn property_array_multiple_mixed_types_as_slice()
+fn property_array_multiple_mixed_types_as_array()
 {
-    let result : [ [u8] ] = JSON::parse("{'a':[true,2,'3',10.35e+5,{}]}").getSlice("a").unwrap();
+    let result : [ [u8] ] = JSON::parse("{'a':[true,2,'3',10.35e+5,{}]}").get_slice("a").unwrap();
 
     assert(result.len() == 5);
     assert(result[0].eq_string("true") == true);
@@ -121,9 +121,9 @@ fn property_array_multiple_mixed_types_as_slice()
 
 #[test]
 unconstrained
-fn property_array_multiple_empty_objects_as_slice()
+fn property_array_multiple_empty_objects_as_array()
 {
-    let result : [ [u8] ] = JSON::parse("{'a':[{},{},{}]}").getSlice("a").unwrap();
+    let result : [ [u8] ] = JSON::parse("{'a':[{},{},{}]}").get_slice("a").unwrap();
 
     assert(result.len() == 3);
     assert(result[0].eq_array(object_one) == true);
@@ -133,9 +133,9 @@ fn property_array_multiple_empty_objects_as_slice()
 
 #[test]
 unconstrained
-fn property_array_multiple_objects_single_property_as_slice()
+fn property_array_multiple_objects_single_property_as_array()
 {
-    let result : [ [u8] ] = JSON::parse("{'a':[{'a':1},{'a':2}]}").getSlice("a").unwrap();
+    let result : [ [u8] ] = JSON::parse("{'a':[{'a':1},{'a':2}]}").get_slice("a").unwrap();
 
     assert(result.len() == 2);
     assert(result[0].eq_array(object_one) == true);
@@ -144,9 +144,9 @@ fn property_array_multiple_objects_single_property_as_slice()
 
 #[test]
 unconstrained
-fn property_array_multiple_objects_multiple_properties_as_slice()
+fn property_array_multiple_objects_multiple_properties_as_array()
 {
-    let result : [ [u8] ] = JSON::parse("{'a':[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]}").getSlice("a").unwrap();
+    let result : [ [u8] ] = JSON::parse("{'a':[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]}").get_slice("a").unwrap();
 
     assert(result.len() == 2);
     assert(result[0].eq_array(object_one) == true);
