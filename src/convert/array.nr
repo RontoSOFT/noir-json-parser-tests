@@ -6,7 +6,7 @@ use crate::utils::object_three;
 
 #[test]
 unconstrained
-fn array_single_as_array()
+fn convert_value_array_single()
 {
     let result : [ [u8] ] = JSON::parse("[1]").doc[0].value.as_array().unwrap();
 
@@ -16,7 +16,7 @@ fn array_single_as_array()
 
 #[test]
 unconstrained
-fn array_multiple_numbers_as_array()
+fn convert_value_array_multiple_numbers()
 {
     let result : [ [u8] ] = JSON::parse("[1,2,3]").doc[0].value.as_array().unwrap();
 
@@ -28,7 +28,7 @@ fn array_multiple_numbers_as_array()
 
 #[test]
 unconstrained
-fn array_multiple_numbers_nested_as_array()
+fn convert_value_array_multiple_numbers_nested()
 {
     let result : [ [u8] ] = JSON::parse("[[1],[2],[3]]").doc[0].value.as_array().unwrap();
 
@@ -49,7 +49,7 @@ fn array_multiple_numbers_nested_as_array()
 
 #[test]
 unconstrained
-fn array_multiple_array_numbers_nested_as_array()
+fn convert_value_array_multiple_array_numbers_nested()
 {
     let result : [ [u8] ] = JSON::parse("[[1,8],[2,7],[3,6]]").doc[0].value.as_array().unwrap();
 
@@ -73,7 +73,7 @@ fn array_multiple_array_numbers_nested_as_array()
 
 #[test]
 unconstrained
-fn array_multiple_mixed_types_as_array()
+fn convert_value_array_multiple_mixed_types()
 {
     let result : [ [u8] ] = JSON::parse("[true,2,'3']").doc[0].value.as_array().unwrap();
 
@@ -85,7 +85,7 @@ fn array_multiple_mixed_types_as_array()
 
 #[test]
 unconstrained
-fn property_array_single_number_as_array()
+fn convert_property_array_single_number()
 {
     let result : [ [u8] ] = JSON::parse("{'a':[1]}").get_slice("a").unwrap();
 
@@ -95,7 +95,7 @@ fn property_array_single_number_as_array()
 
 #[test]
 unconstrained
-fn property_array_multiple_numbers_as_array()
+fn convert_property_array_multiple_numbers()
 {
     let result : [ [u8] ] = JSON::parse("{'a':[1,2,3]}").get_slice("a").unwrap();
 
@@ -107,7 +107,7 @@ fn property_array_multiple_numbers_as_array()
 
 #[test]
 unconstrained
-fn property_array_multiple_mixed_types_as_array()
+fn convert_property_array_multiple_mixed_types()
 {
     let result : [ [u8] ] = JSON::parse("{'a':[true,2,'3',10.35e+5,{}]}").get_slice("a").unwrap();
 
@@ -121,7 +121,7 @@ fn property_array_multiple_mixed_types_as_array()
 
 #[test]
 unconstrained
-fn property_array_multiple_empty_objects_as_array()
+fn convert_property_array_multiple_empty_objects()
 {
     let result : [ [u8] ] = JSON::parse("{'a':[{},{},{}]}").get_slice("a").unwrap();
 
@@ -133,7 +133,7 @@ fn property_array_multiple_empty_objects_as_array()
 
 #[test]
 unconstrained
-fn property_array_multiple_objects_single_property_as_array()
+fn convert_property_array_multiple_objects_single_property()
 {
     let result : [ [u8] ] = JSON::parse("{'a':[{'a':1},{'a':2}]}").get_slice("a").unwrap();
 
@@ -144,7 +144,7 @@ fn property_array_multiple_objects_single_property_as_array()
 
 #[test]
 unconstrained
-fn property_array_multiple_objects_multiple_properties_as_array()
+fn convert_property_array_multiple_objects_multiple_properties()
 {
     let result : [ [u8] ] = JSON::parse("{'a':[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]}").get_slice("a").unwrap();
 
