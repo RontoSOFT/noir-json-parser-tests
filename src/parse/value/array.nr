@@ -115,7 +115,7 @@ fn value_array_empty_object()
     assert(json.doc[0].value.eq_array(array_object_one) == true);
 
     assert(json.children.len() == 1);
-    assert(json.child(0).is_none());
+    assert(json.child(0).is_none() == true);
 }
 
 #[test]
@@ -132,9 +132,9 @@ fn value_array_empty_multiple_object()
     assert(json.doc[0].value.eq_array(value) == true);
 
     assert(json.children.len() == 3);
-    assert(json.child(0).is_none());
-    assert(json.child(1).is_none());
-    assert(json.child(2).is_none());
+    assert(json.child(0).is_none() == true);
+    assert(json.child(1).is_none() == true);
+    assert(json.child(2).is_none() == true);
 }
 
 #[test]
@@ -152,9 +152,9 @@ fn value_array_empty_multiple_objects_nested_arrays()
     assert(json.doc[0].value.eq_array(value) == true);
 
     assert(json.children.len() == 3);
-    assert(json.child(0).is_none());
-    assert(json.child(1).is_none());
-    assert(json.child(2).is_none());
+    assert(json.child(0).is_none() == true);
+    assert(json.child(1).is_none() == true);
+    assert(json.child(2).is_none() == true);
 }
 
 #[test]
@@ -334,7 +334,7 @@ fn value_array_mixed_types_null_object_array()
     assert(json.doc[0].value.eq_array(value) == true);
 
     assert(json.children.len() == 1);
-    assert(json.child(0).is_none());
+    assert(json.child(0).is_none() == true);
 }
 
 #[test]

@@ -17,7 +17,7 @@ fn property_object_empty()
     assert(json.get("a").unwrap().eq_array(object_one) == true);
 
     assert(json.children.len() == 1);
-    assert(json.child(0).is_none());
+    assert(json.child(0).is_none() == true);
 }
 
 #[test]

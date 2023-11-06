@@ -6,7 +6,7 @@ use crate::utils::object_one;
 unconstrained
 fn value_object_empty()
 {
-    assert(JSON::parse("{}").doc.is_none());
+    assert(JSON::parse("{}").doc.is_none() == true);
 }
 
 #[test]
