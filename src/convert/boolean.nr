@@ -4,21 +4,21 @@ use dep::rontosoft::JSON;
 unconstrained
 fn convert_value_literal_true_as_bool()
 {
-    assert(JSON::parse("true").doc[0].value.asBool().unwrap() == true);
+    assert(JSON::parse("true").getBool("").unwrap() == true);
 }
 
 #[test]
 unconstrained
 fn convert_value_literal_null_as_bool()
 {
-    assert(JSON::parse("null").doc[0].value.asBool().unwrap() == false);
+    assert(JSON::parse("null").getBool("").unwrap() == false);
 }
 
 #[test]
 unconstrained
 fn convert_value_literal_false_as_bool()
 {
-    assert(JSON::parse("false").doc[0].value.asBool().unwrap() == false);
+    assert(JSON::parse("false").getBool("").unwrap() == false);
 }
 
 #[test]
