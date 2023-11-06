@@ -22,16 +22,23 @@ fn property_object_empty()
 
 #[test]
 unconstrained
-fn property_object_faulty_colon()
+fn property_object_empty_colon()
 {
     assert(JSON::parse("{'a':{:}}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
-fn property_object_faulty_comma()
+fn property_object_empty_comma()
 {
     assert(JSON::parse("{'a':{'b':{,}}}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn property_object_empty_key()
+{
+    assert(JSON::parse("{'a':{''}}").doc.len() == 0);
 }
 
 #[test]
@@ -64,23 +71,39 @@ fn property_object_empty_key_with_value()
 
 #[test]
 unconstrained
-fn property_object_empty_key_second_key()
+fn property_object_single_character_key_with_value()
 {
-    assert(JSON::parse("{'a':{'b':1,''}}").doc.len() == 0);
+    let json = JSON::parse("{'a':{'b':1}}");
+
+    assert(json.doc.len() == 1);
+    assert(json.bytesOf("a").unwrap().eq_array(object_one) == true);
+
+    assert(json.children.len() == 1);
+    assert(json.child(0).bytesOf("b").unwrap().eq_string("1") == true);
 }
 
 #[test]
 unconstrained
-fn property_object_missing_colon_second_key()
+fn property_object_multi_character_key_with_value()
 {
-    assert(JSON::parse("{'a':{'b':1,'c'}}").doc.len() == 0);
+    let json = JSON::parse("{'abc':{'b':1}}");
+
+    assert(json.doc.len() == 1);
+    assert(json.bytesOf("abc").unwrap().eq_array(object_one) == true);
+
+    assert(json.children.len() == 1);
+    assert(json.child(0).bytesOf("b").unwrap().eq_string("1") == true);
 }
+
+// whitespace tests skipped
+
+// key with control character tests skipped
 
 #[test]
 unconstrained
-fn property_object_missing_value_second_key()
+fn property_object_faulty_colon()
 {
-    assert(JSON::parse("{'a':{'b':1,'c':}}").doc.len() == 0);
+    assert(JSON::parse("{'a':{:'b':1}}").doc.len() == 0);
 }
 
 #[test]
@@ -155,20 +178,70 @@ fn property_object_right_bracket_after_key()
 
 #[test]
 unconstrained
-fn property_object_one_child()
+fn property_object_leading_comma()
 {
-    let json = JSON::parse("{'a':{'value':1}}");
-
-    assert(json.doc.len() == 1);
-    assert(json.bytesOf("a").unwrap().eq_array(object_one) == true);
-
-    assert(json.children.len() == 1);
-    assert(json.child(0).bytesOf("value").unwrap().eq_string("1") == true);
+    assert(JSON::parse("{'a':{,'b':1}}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
-fn property_object_two_children()
+fn property_object_comma_after_key()
+{
+    assert(JSON::parse("{'a':{'b',:1}}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn property_object_comma_after_colon()
+{
+    assert(JSON::parse("{'a':{'b':,1}}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn property_object_trailing_comma()
+{
+    assert(JSON::parse("{'a':{'b':1,}}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn property_object_one_comma_minus()
+{
+    assert(JSON::parse("{'a':{'b':1,-}}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn property_object_empty_key_second_key()
+{
+    assert(JSON::parse("{'a':{'b':1,''}}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn property_object_missing_colon_second_key()
+{
+    assert(JSON::parse("{'a':{'b':1,'c'}}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn property_object_missing_value_second_key()
+{
+    assert(JSON::parse("{'a':{'b':1,'c':}}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn property_object_faulty_minus_second_key()
+{
+    assert(JSON::parse("{'a':{'b':1,'c':-}}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn property_object_two_keys()
 {
     let json = JSON::parse("{'a':{'value':1},'b':{'value':2}}");
 
@@ -178,6 +251,20 @@ fn property_object_two_children()
 
     assert(json.children.len() == 2);
     assert(json.child(0).bytesOf("value").unwrap().eq_string("1") == true);
+    assert(json.child(1).bytesOf("value").unwrap().eq_string("2") == true);
+}
+
+// TODO: fix this
+#[test]
+unconstrained
+fn property_object_two_keys_same_name_replace_property()
+{
+    let json = JSON::parse("{'a':{'value':1},'a':{'value':2}}");
+
+    assert(json.doc.len() == 1);
+    assert(json.bytesOf("a").unwrap().eq_array(object_two) == true);
+
+    assert(json.children.len() == 2); // TODO: 1
     assert(json.child(1).bytesOf("value").unwrap().eq_string("2") == true);
 }
 

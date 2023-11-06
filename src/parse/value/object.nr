@@ -1,151 +1,6 @@
 use dep::rontosoft::JSON;
 
-#[test]
-unconstrained
-fn value_object_single()
-{
-    assert(JSON::parse("{'a':5}").bytesOf("a").unwrap().eq_string("5") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_multi()
-{
-    assert(JSON::parse("{'abc':5}").bytesOf("abc").unwrap().eq_string("5") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_single_spaces()
-{
-    assert(JSON::parse(" { 'a' : 5 } ").bytesOf("a").unwrap().eq_string("5") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_single_repeated_spaces()
-{
-    assert(JSON::parse("  {  'a'  :  5  }  ").bytesOf("a").unwrap().eq_string("5") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_single_random_spaces()
-{
-    assert(JSON::parse("{  'a':  5} ").bytesOf("a").unwrap().eq_string("5") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_colon()
-{
-    assert(JSON::parse("{'a:':5}").bytesOf("a:").unwrap().eq_string("5") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_space()
-{
-    assert(JSON::parse("{'a ':5}").bytesOf("a ").unwrap().eq_string("5") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_right_brace()
-{
-    assert(JSON::parse("{'a}':5}").bytesOf("a}").unwrap().eq_string("5") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_left_brace()
-{
-    assert(JSON::parse("{'a{':5}").bytesOf("a{").unwrap().eq_string("5") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_right_bracket()
-{
-    assert(JSON::parse("{'a]':5}").bytesOf("a]").unwrap().eq_string("5") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_left_bracket()
-{
-    assert(JSON::parse("{'a[':5}").bytesOf("a[").unwrap().eq_string("5") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_escaped_left_and_right()
-{
-    assert(JSON::parse("{\\'a\\':5}").bytesOf("a").unwrap().eq_string("5") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_escaped_left()
-{
-    assert(JSON::parse("{\\'a':5}").bytesOf("a").unwrap().eq_string("5") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_escaped_right()
-{
-    assert(JSON::parse("{'a\\':5}").bytesOf("a").unwrap().eq_string("5") == true);
-}
-
-#[test]
-unconstrained
-fn property_faulty_colon()
-{
-    assert(JSON::parse("{:'a':1}").doc.len() == 0);
-}
-
-#[test]
-unconstrained
-fn value_object_leading_comma()
-{
-    assert(JSON::parse("{,'a':1}").doc.len() == 0);
-}
-
-#[test]
-unconstrained
-fn value_object_comma_after_key()
-{
-    assert(JSON::parse("{'a',:1}").doc.len() == 0);
-}
-
-#[test]
-unconstrained
-fn value_object_comma_after_colon()
-{
-    assert(JSON::parse("{'a':,1}").doc.len() == 0);
-}
-
-#[test]
-unconstrained
-fn value_object_trailing_comma()
-{
-    assert(JSON::parse("{'a':1,}").doc.len() == 0);
-}
-
-#[test]
-unconstrained
-fn value_object_one_comma_minus()
-{
-    assert(JSON::parse("{'a':1,-}").doc.len() == 0);
-}
-
-#[test]
-unconstrained
-fn value_object_empty_key()
-{
-    assert(JSON::parse("{''}").doc.len() == 0);
-}
+use crate::utils::object_one;
 
 #[test]
 unconstrained
@@ -156,7 +11,7 @@ fn value_object_empty()
 
 #[test]
 unconstrained
-fn value_object_faulty_colon()
+fn value_object_empty_colon()
 {
     assert(JSON::parse("{:}").doc.len() == 0);
 }
@@ -166,6 +21,13 @@ unconstrained
 fn value_object_empty_comma()
 {
     assert(JSON::parse("{,}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_object_empty_key()
+{
+    assert(JSON::parse("{''}").doc.len() == 0);
 }
 
 #[test]
@@ -198,23 +60,107 @@ fn value_object_empty_key_with_value()
 
 #[test]
 unconstrained
-fn value_object_empty_key_second_key()
+fn value_object_single_character_key_with_value()
 {
-    assert(JSON::parse("{'a':1,''}").doc.len() == 0);
+    assert(JSON::parse("{'a':1}").bytesOf("a").unwrap().eq_string("1") == true);
 }
 
 #[test]
 unconstrained
-fn value_object_missing_colon_second_key()
+fn value_object_multi_character_key_with_value()
 {
-    assert(JSON::parse("{'a':1,'b'}").doc.len() == 0);
+    assert(JSON::parse("{'abc':1}").bytesOf("abc").unwrap().eq_string("1") == true);
 }
 
 #[test]
 unconstrained
-fn value_object_missing_value_second_key()
+fn value_object_single_spaces()
 {
-    assert(JSON::parse("{'a':1,'b':}").doc.len() == 0);
+    assert(JSON::parse(" { 'a' : 1 } ").bytesOf("a").unwrap().eq_string("1") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_single_multiple_spaces()
+{
+    assert(JSON::parse("   {   'a'   :   1   }   ").bytesOf("a").unwrap().eq_string("1") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_single_random_spaces()
+{
+    assert(JSON::parse(" {  'a':   1}  ").bytesOf("a").unwrap().eq_string("1") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_key_with_colon()
+{
+    assert(JSON::parse("{'a:':1}").bytesOf("a:").unwrap().eq_string("1") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_key_with_space()
+{
+    assert(JSON::parse("{'a ':1}").bytesOf("a ").unwrap().eq_string("1") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_key_with_right_brace()
+{
+    assert(JSON::parse("{'a}':1}").bytesOf("a}").unwrap().eq_string("1") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_key_with_left_brace()
+{
+    assert(JSON::parse("{'a{':1}").bytesOf("a{").unwrap().eq_string("1") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_key_with_right_bracket()
+{
+    assert(JSON::parse("{'a]':1}").bytesOf("a]").unwrap().eq_string("1") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_key_with_left_bracket()
+{
+    assert(JSON::parse("{'a[':1}").bytesOf("a[").unwrap().eq_string("1") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_key_with_escaped_left_and_right()
+{
+    assert(JSON::parse("{\\'a\\':1}").bytesOf("a").unwrap().eq_string("1") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_key_with_escaped_left()
+{
+    assert(JSON::parse("{\\'a':1}").bytesOf("a").unwrap().eq_string("1") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_key_with_escaped_right()
+{
+    assert(JSON::parse("{'a\\':1}").bytesOf("a").unwrap().eq_string("1") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_faulty_colon()
+{
+    assert(JSON::parse("{:'a':1}").doc.len() == 0);
 }
 
 #[test]
@@ -289,46 +235,111 @@ fn value_object_right_bracket_after_key()
 
 #[test]
 unconstrained
-fn value_object_two_properties_number()
+fn value_object_leading_comma()
 {
-    let json = JSON::parse("{'a' : 5, 'b' : 3}");
-
-    assert(json.bytesOf("a").unwrap().eq_string("5") == true);
-    assert(json.bytesOf("b").unwrap().eq_string("3") == true);
+    assert(JSON::parse("{,'a':1}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
-fn value_object_two_properties_string_and_number()
+fn value_object_comma_after_key()
 {
-    let json = JSON::parse("{'a' : '5', 'b' : 3}");
-
-    assert(json.bytesOf("a").unwrap().eq_string("'5'") == true);
-    assert(json.bytesOf("b").unwrap().eq_string("3") == true);
+    assert(JSON::parse("{'a',:1}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
-fn value_object_two_properties_string_and_string()
+fn value_object_comma_after_colon()
 {
-    let json = JSON::parse("{'a' : '5', 'b' : '3'}");
-
-    assert(json.bytesOf("a").unwrap().eq_string("'5'") == true);
-    assert(json.bytesOf("b").unwrap().eq_string("'3'") == true);
+    assert(JSON::parse("{'a':,1}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
-fn value_object_two_properties_same_name_replace_property()
+fn value_object_trailing_comma()
 {
-    assert(JSON::parse("{'a' : 5, 'a' : 3}").bytesOf("a").unwrap().eq_string("3") == true);
+    assert(JSON::parse("{'a':1,}").doc.len() == 0);
 }
 
 #[test]
 unconstrained
-fn value_object_three_properties_unique_values()
+fn value_object_one_comma_minus()
+{
+    assert(JSON::parse("{'a':1,-}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_object_empty_key_second_key()
+{
+    assert(JSON::parse("{'a':1,''}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_object_missing_colon_second_key()
+{
+    assert(JSON::parse("{'a':1,'b'}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_object_missing_value_second_key()
+{
+    assert(JSON::parse("{'a':1,'b':}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_object_faulty_minus_second_key()
+{
+    assert(JSON::parse("{'a':1,'b':-}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_object_two_keys_number()
+{
+    let json = JSON::parse("{'a':1,'b':2}");
+
+    assert(json.bytesOf("a").unwrap().eq_string("1") == true);
+    assert(json.bytesOf("b").unwrap().eq_string("2") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_two_keys_string_and_number()
+{
+    let json = JSON::parse("{'a':'1','b':2}");
+
+    assert(json.bytesOf("a").unwrap().eq_string("'1'") == true);
+    assert(json.bytesOf("b").unwrap().eq_string("2") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_two_keys_string_and_string()
+{
+    let json = JSON::parse("{'a':'1','b':'2'}");
+
+    assert(json.bytesOf("a").unwrap().eq_string("'1'") == true);
+    assert(json.bytesOf("b").unwrap().eq_string("'2'") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_two_keys_same_name_replace_property()
+{
+    assert(JSON::parse("{'a':1,'a':2}").bytesOf("a").unwrap().eq_string("2") == true);
+}
+
+#[test]
+unconstrained
+fn value_object_three_keys_unique_values()
 {
     let json = JSON::parse("{'name':'John Doe','age':30,'isEmployed':true}");
+
+    assert(json.doc.len() == 3);
 
     assert(json.bytesOf("name").unwrap().eq_string("'John Doe'") == true);
     assert(json.bytesOf("age").unwrap().eq_string("30") == true);
