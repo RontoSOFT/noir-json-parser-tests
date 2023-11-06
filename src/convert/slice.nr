@@ -1,5 +1,8 @@
 use dep::rontosoft::JSON;
+
 use crate::utils::object_one;
+use crate::utils::object_two;
+use crate::utils::object_three;
 
 #[test]
 unconstrained
@@ -126,9 +129,8 @@ fn property_array_multiple_empty_objects_as_slice()
     assert(result.len() == 3);
 
     assert(result[0].eq_array(object_one) == true);
-    let mut value = object_one;
-    value[1] = 1; assert(result[1].eq_array(value) == true);
-    value[1] = 2; assert(result[2].eq_array(value) == true);
+    assert(result[1].eq_array(object_two) == true);
+    assert(result[2].eq_array(object_three) == true);
 }
 
 #[test]
@@ -140,8 +142,7 @@ fn property_array_multiple_objects_single_property_as_slice()
     assert(result.len() == 2);
 
     assert(result[0].eq_array(object_one) == true);
-    let mut value = object_one;
-    value[1] = 1; assert(result[1].eq_array(value) == true);
+    assert(result[1].eq_array(object_two) == true);
 }
 
 #[test]
@@ -153,6 +154,5 @@ fn property_array_multiple_objects_multiple_properties_as_slice()
     assert(result.len() == 2);
 
     assert(result[0].eq_array(object_one) == true);
-    let mut value = object_one;
-    value[1] = 1; assert(result[1].eq_array(value) == true);
+    assert(result[1].eq_array(object_two) == true);
 }
