@@ -2,7 +2,19 @@ use dep::rontosoft::JSON;
 
 #[test]
 unconstrained
-fn convert_object_multiple_keys_with_objects_with_multiple_keys()
+fn convert_object_one_key_as_object()
+{
+    let json = JSON::parse("{'abc':{'a':1,'b':true,'c':'123'}}");
+
+    let obj = json.get("abc").unwrap().as_object(json).unwrap();
+    assert(obj.get("a").unwrap().eq_string("1") == true);
+    assert(obj.get("b").unwrap().eq_string("true") == true);
+    assert(obj.get("c").unwrap().eq_string("'123'") == true);
+}
+
+#[test]
+unconstrained
+fn convert_object_two_keys_with_objects_with_multiple_keys()
 {
     let json = JSON::parse("{'abc':{'a':1,'b':true,'c':'123'},'def':{'a':2,'b':false,'c':'456'}}");
 
@@ -19,7 +31,7 @@ fn convert_object_multiple_keys_with_objects_with_multiple_keys()
 
 #[test]
 unconstrained
-fn convert_object_multiple_keys_with_nested_objects()
+fn convert_object_two_keys_with_nested_objects()
 {
     let json = JSON::parse("{'abc':{'a':{'b':1}},'def':{'d':{'e':2}}}");
 
@@ -34,7 +46,7 @@ fn convert_object_multiple_keys_with_nested_objects()
 
 #[test]
 unconstrained
-fn convert_object_multiple_keys_with_twice_nested_objects()
+fn convert_object_two_keys_with_twice_nested_objects()
 {
     let json = JSON::parse("{'abc':{'a':{'b':{'c':1}}},'def':{'d':{'e':{'f':2}}}}");
 
