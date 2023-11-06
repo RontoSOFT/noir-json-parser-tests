@@ -356,7 +356,7 @@ fn property_array_one_object_one_property()
     // assert(json.doc.len() == 2);
 
     // ///
-    // let value_a = json.get_slice("a").unwrap();
+    // let value_a = json.get_array("a").unwrap();
     // assert(value_a.len() == 1);
     // assert(value_a[0].eq_array(object_one) == true);
 
@@ -365,7 +365,7 @@ fn property_array_one_object_one_property()
     // assert(value_a[0].as_object(json).unwrap().get("b").unwrap().eq_string("1") == true);
     // ///
 
-    // let obj_1 = json.doc[0].get_slice("a").unwrap()[0].as_object(json).unwrap();
+    // let obj_1 = json.doc[0].get_array("a").unwrap()[0].as_object(json).unwrap();
     // assert(obj_1.get("b").unwrap().eq_string("1") == true);
 }
 

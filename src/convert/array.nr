@@ -87,7 +87,7 @@ fn convert_value_array_multiple_mixed_types()
 unconstrained
 fn convert_property_array_single_number()
 {
-    let result : [ [u8] ] = JSON::parse("{'a':[1]}").get_slice("a").unwrap();
+    let result : [ [u8] ] = JSON::parse("{'a':[1]}").get_array("a").unwrap();
 
     assert(result.len() == 1);
     assert(result[0].eq_string("1") == true);
@@ -97,7 +97,7 @@ fn convert_property_array_single_number()
 unconstrained
 fn convert_property_array_multiple_numbers()
 {
-    let result : [ [u8] ] = JSON::parse("{'a':[1,2,3]}").get_slice("a").unwrap();
+    let result : [ [u8] ] = JSON::parse("{'a':[1,2,3]}").get_array("a").unwrap();
 
     assert(result.len() == 3);
     assert(result[0].eq_string("1") == true);
@@ -109,7 +109,7 @@ fn convert_property_array_multiple_numbers()
 unconstrained
 fn convert_property_array_multiple_mixed_types()
 {
-    let result : [ [u8] ] = JSON::parse("{'a':[true,2,'3',10.35e+5,{}]}").get_slice("a").unwrap();
+    let result : [ [u8] ] = JSON::parse("{'a':[true,2,'3',10.35e+5,{}]}").get_array("a").unwrap();
 
     assert(result.len() == 5);
     assert(result[0].eq_string("true") == true);
@@ -123,7 +123,7 @@ fn convert_property_array_multiple_mixed_types()
 unconstrained
 fn convert_property_array_multiple_empty_objects()
 {
-    let result : [ [u8] ] = JSON::parse("{'a':[{},{},{}]}").get_slice("a").unwrap();
+    let result : [ [u8] ] = JSON::parse("{'a':[{},{},{}]}").get_array("a").unwrap();
 
     assert(result.len() == 3);
     assert(result[0].eq_array(object_one) == true);
@@ -135,7 +135,7 @@ fn convert_property_array_multiple_empty_objects()
 unconstrained
 fn convert_property_array_multiple_objects_single_property()
 {
-    let result : [ [u8] ] = JSON::parse("{'a':[{'a':1},{'a':2}]}").get_slice("a").unwrap();
+    let result : [ [u8] ] = JSON::parse("{'a':[{'a':1},{'a':2}]}").get_array("a").unwrap();
 
     assert(result.len() == 2);
     assert(result[0].eq_array(object_one) == true);
@@ -146,7 +146,7 @@ fn convert_property_array_multiple_objects_single_property()
 unconstrained
 fn convert_property_array_multiple_objects_multiple_properties()
 {
-    let result : [ [u8] ] = JSON::parse("{'a':[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]}").get_slice("a").unwrap();
+    let result : [ [u8] ] = JSON::parse("{'a':[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]}").get_array("a").unwrap();
 
     assert(result.len() == 2);
     assert(result[0].eq_array(object_one) == true);

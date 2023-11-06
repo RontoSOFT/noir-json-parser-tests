@@ -66,7 +66,7 @@ unconstrained
 fn convert_object_array_two_objects_with_multiple_keys()
 {
     let json = JSON::parse("{'abc':[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]}");
-    let array : [[u8]] = json.get_slice("abc").unwrap();
+    let array : [[u8]] = json.get_array("abc").unwrap();
 
     let obj_1 = array[0].as_object(json).unwrap();
     assert(obj_1.get("a").unwrap().eq_string("1") == true);
