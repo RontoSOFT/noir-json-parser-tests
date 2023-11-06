@@ -345,3 +345,24 @@ fn value_object_three_keys_unique_values()
     assert(json.get("age").unwrap().eq_string("30") == true);
     assert(json.get("isEmployed").unwrap().eq_string("true") == true);
 }
+
+#[test]
+unconstrained
+fn value_object_empty_with_null()
+{
+    assert(JSON::parse("{}\0").doc.is_none() == true);
+}
+
+#[test]
+unconstrained
+fn value_object_empty_with_leading_null()
+{
+    assert(JSON::parse("\0{}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_object_empty_with_null_misplaced()
+{
+    assert(JSON::parse("{\0}").doc.len() == 0);
+}
