@@ -5,5 +5,4 @@ mod literal;
 mod multi_property;
 mod number;
 mod object;
-mod single_property;
 mod string;
