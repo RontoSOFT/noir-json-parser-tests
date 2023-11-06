@@ -1,6 +1,7 @@
 use dep::rontosoft::JSON;
 use dep::rontosoft::globals::MINUS;
-use dep::rontosoft::globals::BYTE_NULL;
+
+global BYTE_NULL : u8 = 0x00;
 
 #[test]
 unconstrained
