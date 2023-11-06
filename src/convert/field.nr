@@ -72,6 +72,20 @@ fn convert_value_field_array_with_mixed_null()
 
 #[test]
 unconstrained
+fn convert_value_field_three_zero()
+{
+    assert(JSON::parse("30").get_field("").unwrap() == 30);
+}
+
+#[test]
+unconstrained
+fn convert_value_field_minus_three_zero()
+{
+    assert(JSON::parse("-30").get_field("").unwrap() == -30);
+}
+
+#[test]
+unconstrained
 fn convert_property_field_three_zero()
 {
     assert(JSON::parse("{'a':30}").get_field("a").unwrap() == 30);
