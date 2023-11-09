@@ -348,9 +348,30 @@ fn value_object_three_keys_unique_values()
 
 #[test]
 unconstrained
-fn value_object_empty_with_null()
+fn value_object_empty_with_trailing_null()
 {
     assert(JSON::parse("{}\0").doc.is_none() == true);
+}
+
+#[test]
+unconstrained
+fn value_object_empty_with_trailing_null_with_space()
+{
+    assert(JSON::parse("{} \0").doc.is_none() == true);
+}
+
+#[test]
+unconstrained
+fn value_object_empty_with_trailing_null_with_spaces()
+{
+    assert(JSON::parse("{}   \0").doc.is_none() == true);
+}
+
+#[test]
+unconstrained
+fn value_object_empty_with_trailing_nulls()
+{
+    assert(JSON::parse("{}\0\0").doc.len() == 0);
 }
 
 #[test]
@@ -358,6 +379,20 @@ unconstrained
 fn value_object_empty_with_leading_null()
 {
     assert(JSON::parse("\0{}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_object_empty_with_leading_null_and_space()
+{
+    assert(JSON::parse(" \0{}").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_object_empty_with_leading_null_and_spaces()
+{
+    assert(JSON::parse("   \0{}").doc.len() == 0);
 }
 
 #[test]
