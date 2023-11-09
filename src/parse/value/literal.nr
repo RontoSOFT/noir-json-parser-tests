@@ -107,3 +107,17 @@ fn value_literal_tru_space_e()
 {
     assert(JSON::parse("tru e").doc.len() == 0);
 }
+
+#[test]
+unconstrained
+fn value_literal_tru_one()
+{
+    assert(JSON::parse("tru1").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_literal_tru_minus()
+{
+    assert(JSON::parse("tru-").doc.len() == 0);
+}

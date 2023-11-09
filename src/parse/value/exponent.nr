@@ -82,6 +82,20 @@ fn value_exponent_minus_zero_point_zero_e_zero_plus_zero()
 
 #[test]
 unconstrained
+fn value_exponent_zero_e_minus_plus_zero()
+{
+    assert(JSON::parse("0e-+0").doc.len() == 0);
+}
+
+#[test]
+unconstrained
+fn value_exponent_zero_e_plus_minus_zero()
+{
+    assert(JSON::parse("0e+-0").doc.len() == 0);
+}
+
+#[test]
+unconstrained
 fn value_exponent_plus_zero_e_plus_zero()
 {
     assert(JSON::parse("+0e+0").doc.len() == 0);
