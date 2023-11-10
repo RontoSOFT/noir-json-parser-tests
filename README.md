@@ -1,5 +1,4 @@
-[![CI/CD](https://github.com/rontosoft/noir-json-parser-tests/actions/workflows/main.yml/badge.svg)](https://github.com/rontosoft/noir-json-parser-tests/actions/workflows/main.yml)
-
+[![CI/CD](https://github.com/RontoSOFT/noir-json-parser-tests/actions/workflows/main.yml/badge.svg)](https://github.com/RontoSOFT/noir-json-parser-tests/actions/workflows/main.yml)
 # noir-json-parser-tests
 A library of tests covering the functionality provided by the `noir-json-parser` library. The tests are written in the Noir programming language and are designed to ensure the correct parsing and conversion of JSON data.
 
