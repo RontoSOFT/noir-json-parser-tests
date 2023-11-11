@@ -50,6 +50,31 @@ fn property_fraction_minus_single_digit_point_zero()
 
 #[test]
 unconstrained
+fn property_fraction_single_digit_point_zero_e_zero()
+{
+    let value = "1.0e0";
+    assert(JSON::parse("{'a':1.0e0}").get("a").unwrap().eq_string(value) == true);
+}
+
+#[test]
+unconstrained
+fn property_fraction_single_digit_point_zero_e_plus_zero()
+{
+    let value = "1.0e+0";
+    assert(JSON::parse("{'a':1.0e+0}").get("a").unwrap().eq_string(value) == true);
+}
+
+#[test]
+unconstrained
+fn property_fraction_single_digit_point_zero_e_minus_zero()
+{
+    let value = "1.0e-0";
+    assert(JSON::parse("{'a':1.0e-0}").get("a").unwrap().eq_string(value) == true);
+}
+
+
+#[test]
+unconstrained
 fn property_fraction_single_digit_point_single_digit()
 {
     let value = "1.2";
