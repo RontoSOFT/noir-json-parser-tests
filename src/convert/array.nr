@@ -6,6 +6,98 @@ use crate::utils::object_three;
 
 #[test]
 unconstrained
+fn convert_value_array_from_empty_bytes()
+{
+    let bytes : [u8] = "[ ]".as_bytes().as_slice();
+
+    let result = bytes.as_array().unwrap();
+
+    assert(result.len() == 1);
+    assert(result[0].eq_string(" ") == true);
+}
+
+#[test]
+unconstrained
+fn convert_bytes_array_from_literal()
+{
+    let bytes : [u8] = "true".as_bytes().as_slice();
+
+    let result = bytes.as_array();
+    assert(result.is_none() == true);
+}
+
+#[test]
+unconstrained
+fn convert_bytes_array_from_number()
+{
+    let bytes : [u8] = "123".as_bytes().as_slice();
+
+    let result = bytes.as_array();
+    assert(result.is_none() == true);
+}
+
+#[test]
+unconstrained
+fn convert_bytes_array_from_string()
+{
+    let bytes : [u8] = "'string'".as_bytes().as_slice();
+
+    let result = bytes.as_array();
+    assert(result.is_none() == true);
+}
+
+#[test]
+unconstrained
+fn convert_bytes_array_from_object()
+{
+    let bytes : [u8] = "{}".as_bytes().as_slice();
+
+    let result = bytes.as_array();
+    assert(result.is_none() == true);
+}
+
+#[test]
+unconstrained
+fn convert_bytes_array_malformed_left()
+{
+    let bytes : [u8] = " []".as_bytes().as_slice();
+
+    let result = bytes.as_array();
+    assert(result.is_none() == true);
+}
+
+#[test]
+unconstrained
+fn convert_bytes_array_malformed_right()
+{
+    let bytes : [u8] = "[] ".as_bytes().as_slice();
+
+    let result = bytes.as_array();
+    assert(result.is_none() == true);
+}
+
+#[test]
+unconstrained
+fn convert_bytes_array_malformed_both()
+{
+    let bytes : [u8] = " [] ".as_bytes().as_slice();
+
+    let result = bytes.as_array();
+    assert(result.is_none() == true);
+}
+
+#[test]
+unconstrained
+fn convert_value_array_empty()
+{
+    let result : [ [u8] ] = JSON::parse("[]").doc[0].value.as_array().unwrap();
+
+    assert(result.len() == 1);
+    assert(result[0].eq_string("") == true);
+}
+
+#[test]
+unconstrained
 fn convert_value_array_single()
 {
     let result : [ [u8] ] = JSON::parse("[1]").doc[0].value.as_array().unwrap();
