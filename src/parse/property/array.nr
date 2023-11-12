@@ -17,77 +17,77 @@ fn property_array_empty()
 unconstrained
 fn property_array_empty_values()
 {
-    assert(JSON::parse("{'a':[,]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[,]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_faulty_colon()
 {
-    assert(JSON::parse("{'a':[:]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[:]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_left_brace_outer()
 {
-    assert(JSON::parse("{'a':{[]}").doc.len() == 0);
+    assert(JSON::parse("{'a':{[]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_right_brace_outer()
 {
-    assert(JSON::parse("{'a':[]}}").doc.len() == 0);
+    assert(JSON::parse("{'a':[]}}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_left_brace_inner()
 {
-    assert(JSON::parse("{'a':[{]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[{]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_right_brace_inner()
 {
-    assert(JSON::parse("{'a':[}]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[}]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_duplicate_left_bracket()
 {
-    assert(JSON::parse("{'a':[[]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[[]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_duplicate_right_bracket()
 {
-    assert(JSON::parse("{'a':[]]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[]]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_empty_nested_values()
 {
-    assert(JSON::parse("{'a':[[,]]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[[,]]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_empty_nested_missing_missing_value_before()
 {
-    assert(JSON::parse("{'a':[,[]]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[,[]]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_empty_nested_missing_missing_value_after()
 {
-    assert(JSON::parse("{'a':[[],]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[[],]}").is_empty());
 }
 
 #[test]
@@ -171,14 +171,14 @@ fn property_array_single_number()
 unconstrained
 fn property_array_single_number_missing_value()
 {
-    assert(JSON::parse("{'a':[[1,]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[[1,]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_number_faulty_colon()
 {
-    assert(JSON::parse("{'a':[1:]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[1:]}").is_empty());
 }
 
 #[test]
@@ -193,7 +193,7 @@ fn property_array_numbers_multiple()
 unconstrained
 fn property_array_multiple_numbers_missing_value()
 {
-    assert(JSON::parse("{'a':[[1,2,3,]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[[1,2,3,]}").is_empty());
 }
 
 #[test]
@@ -264,56 +264,56 @@ fn property_array_null_null()
 unconstrained
 fn property_array_single_number_letter()
 {
-    assert(JSON::parse("{'a':[1x]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[1x]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_single_number_literal_letter()
 {
-    assert(JSON::parse("{'a':[1f]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[1f]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_single_number_whitespace()
 {
-    assert(JSON::parse("{'a':[1 2]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[1 2]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_single_literal_wrong_trux()
 {
-    assert(JSON::parse("{'a':[trux]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[trux]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_single_literal_wrong_truf()
 {
-    assert(JSON::parse("{'a':[truf]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[truf]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_single_literal_wrong_nul()
 {
-    assert(JSON::parse("{'a':[nul]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[nul]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_single_literal_wrong_random()
 {
-    assert(JSON::parse("{'a':[lfseu]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[lfseu]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_array_literal_faulty_colon()
 {
-    assert(JSON::parse("{'a':[true:]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[true:]}").is_empty());
 }
 
 #[test]
@@ -336,7 +336,7 @@ fn property_array_mixed_types_null_object_array()
 unconstrained
 fn property_array_mixed_types_missing_value()
 {
-    assert(JSON::parse("{'a':[1,,'2',true,[],{}]}").doc.len() == 0);
+    assert(JSON::parse("{'a':[1,,'2',true,[],{}]}").is_empty());
 }
 
 #[test]

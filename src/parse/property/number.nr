@@ -44,7 +44,7 @@ fn property_number_multiple_one_two_three_four_five()
 unconstrained
 fn property_number_minus()
 {
-    assert(JSON::parse("{'a':-}").doc.len() == 0);
+    assert(JSON::parse("{'a':-}").is_empty());
 }
 
 #[test]
@@ -91,187 +91,187 @@ fn property_number_minus_one_two_three_four_five()
 unconstrained
 fn property_number_plus()
 {
-    assert(JSON::parse("{'a':+}").doc.len() == 0);
+    assert(JSON::parse("{'a':+}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_plus_zero()
 {
-    assert(JSON::parse("{'a':+0}").doc.len() == 0);
+    assert(JSON::parse("{'a':+0}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_plus_one()
 {
-    assert(JSON::parse("{'a':+1}").doc.len() == 0);
+    assert(JSON::parse("{'a':+1}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_plus_one_two_three_four_five()
 {
-    assert(JSON::parse("{'a':+12345}").doc.len() == 0);
+    assert(JSON::parse("{'a':+12345}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_double_zero()
 {
-    assert(JSON::parse("{'a':00}").doc.len() == 0);
+    assert(JSON::parse("{'a':00}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_leading_zero_one()
 {
-    assert(JSON::parse("{'a':01}").doc.len() == 0);
+    assert(JSON::parse("{'a':01}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_zero_zero_one()
 {
-    assert(JSON::parse("{'a':001}").doc.len() == 0);
+    assert(JSON::parse("{'a':001}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_zero_one_two_three_four_five()
 {
-    assert(JSON::parse("{'a':012345}").doc.len() == 0);
+    assert(JSON::parse("{'a':012345}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_double_minus_zero()
 {
-    assert(JSON::parse("{'a':--0}").doc.len() == 0);
+    assert(JSON::parse("{'a':--0}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_double_minus_one()
 {
-    assert(JSON::parse("{'a':--1}").doc.len() == 0);
+    assert(JSON::parse("{'a':--1}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_zero_minus()
 {
-    assert(JSON::parse("{'a':0-}").doc.len() == 0);
+    assert(JSON::parse("{'a':0-}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_one_minus()
 {
-    assert(JSON::parse("{'a':1-}").doc.len() == 0);
+    assert(JSON::parse("{'a':1-}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_minus_zero_minus()
 {
-    assert(JSON::parse("{'a':-0-}").doc.len() == 0);
+    assert(JSON::parse("{'a':-0-}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_minus_one_minus()
 {
-    assert(JSON::parse("{'a':-1-}").doc.len() == 0);
+    assert(JSON::parse("{'a':-1-}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_zero_minus_zero()
 {
-    assert(JSON::parse("{'a':0-0}").doc.len() == 0);
+    assert(JSON::parse("{'a':0-0}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_one_minus_one()
 {
-    assert(JSON::parse("{'a':1-1}").doc.len() == 0);
+    assert(JSON::parse("{'a':1-1}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_minus_zero_minus_zero()
 {
-    assert(JSON::parse("{'a':-0-0}").doc.len() == 0);
+    assert(JSON::parse("{'a':-0-0}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_minus_one_minus_one()
 {
-    assert(JSON::parse("{'a':-1-1}").doc.len() == 0);
+    assert(JSON::parse("{'a':-1-1}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_one_colon()
 {
-    assert(JSON::parse("{'a':1:}").doc.len() == 0);
+    assert(JSON::parse("{'a':1:}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_one_quote()
 {
-    assert(JSON::parse("{'a':1'}").doc.len() == 0);
+    assert(JSON::parse("{'a':1'}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_one_left_brace()
 {
-    assert(JSON::parse("{'a':1{}").doc.len() == 0);
+    assert(JSON::parse("{'a':1{}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_one_right_brace()
 {
-    assert(JSON::parse("{'a':1}}").doc.len() == 0);
+    assert(JSON::parse("{'a':1}}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_one_left_bracket()
 {
-    assert(JSON::parse("{'a':1[}").doc.len() == 0);
+    assert(JSON::parse("{'a':1[}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_one_right_bracket()
 {
-    assert(JSON::parse("{'a':1]}").doc.len() == 0);
+    assert(JSON::parse("{'a':1]}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_one_space()
 {
-    assert(JSON::parse("{'a':1 2}").doc.len() == 0);
+    assert(JSON::parse("{'a':1 2}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_one_letter()
 {
-    assert(JSON::parse("{'a':1x}").doc.len() == 0);
+    assert(JSON::parse("{'a':1x}").is_empty());
 }
 
 #[test]
 unconstrained
 fn property_number_one_literal_letter()
 {
-    assert(JSON::parse("{'a':1f}").doc.len() == 0);
+    assert(JSON::parse("{'a':1f}").is_empty());
 }

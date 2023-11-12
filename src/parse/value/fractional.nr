@@ -132,68 +132,68 @@ fn value_fraction_minus_multiple_digits_point_multiple_digits()
 unconstrained
 fn value_fraction_zero_point_zero_letter()
 {
-    assert(JSON::parse("0.0f").doc.len() == 0);
+    assert(JSON::parse("0.0f").is_empty());
 }
 
 #[test]
 unconstrained
 fn value_minus_fraction_one_point_minus_zero()
 {
-    assert(JSON::parse("-1.-0").doc.len() == 0);
+    assert(JSON::parse("-1.-0").is_empty());
 }
 
 #[test]
 unconstrained
 fn value_fraction_one_point_minus_zero()
 {
-    assert(JSON::parse("1.-0").doc.len() == 0);
+    assert(JSON::parse("1.-0").is_empty());
 }
 
 #[test]
 unconstrained
 fn value_fraction_zero_point_point_zero()
 {
-    assert(JSON::parse("0..0").doc.len() == 0);
+    assert(JSON::parse("0..0").is_empty());
 }
 
 #[test]
 unconstrained
 fn value_fraction_zero_point()
 {
-    assert(JSON::parse("0.").doc.len() == 0);
+    assert(JSON::parse("0.").is_empty());
 }
 
 #[test]
 unconstrained
 fn value_fraction_point_zero()
 {
-    assert(JSON::parse(".0").doc.len() == 0);
+    assert(JSON::parse(".0").is_empty());
 }
 
 #[test]
 unconstrained
 fn value_fraction_minus_point()
 {
-    assert(JSON::parse("-.").doc.len() == 0);
+    assert(JSON::parse("-.").is_empty());
 }
 
 #[test]
 unconstrained
 fn value_fraction_point_minus()
 {
-    assert(JSON::parse(".-").doc.len() == 0);
+    assert(JSON::parse(".-").is_empty());
 }
 
 #[test]
 unconstrained
 fn value_fraction_plus_point()
 {
-    assert(JSON::parse("+.").doc.len() == 0);
+    assert(JSON::parse("+.").is_empty());
 }
 
 #[test]
 unconstrained
 fn value_point_plus()
 {
-    assert(JSON::parse(".+").doc.len() == 0);
+    assert(JSON::parse(".+").is_empty());
 }
