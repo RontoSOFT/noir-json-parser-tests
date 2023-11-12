@@ -2,6 +2,14 @@ use dep::rontosoft::JSON;
 
 #[test]
 unconstrained
+fn property_string_empty()
+{
+    let value = "''";
+    assert(JSON::parse("{'a':''}").get("a").unwrap().eq_string(value) == true);
+}
+
+#[test]
+unconstrained
 fn property_string_number_zero()
 {
     let value = "'0'";
@@ -14,6 +22,14 @@ fn property_string_number_multiple_zero()
 {
     let value = "'000'";
     assert(JSON::parse("{'a':'000'}").get("a").unwrap().eq_string(value) == true);
+}
+
+#[test]
+unconstrained
+fn property_string_minus_and_plus_number_multiple_zero()
+{
+    let value = "'-+000'";
+    assert(JSON::parse("{'a':'-+000'}").get("a").unwrap().eq_string(value) == true);
 }
 
 #[test]
@@ -94,4 +110,20 @@ fn property_string_value_left_brace()
 {
     let value = "'5{'";
     assert(JSON::parse("{'a':'5{'}").get("a").unwrap().eq_string(value) == true);
+}
+
+#[test]
+unconstrained
+fn property_string_value_right_bracket()
+{
+    let value = "'5]'";
+    assert(JSON::parse("{'a':'5]'}").get("a").unwrap().eq_string(value) == true);
+}
+
+#[test]
+unconstrained
+fn property_string_value_left_bracket()
+{
+    let value = "'5['";
+    assert(JSON::parse("{'a':'5['}").get("a").unwrap().eq_string(value) == true);
 }

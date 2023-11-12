@@ -2,6 +2,14 @@ use dep::rontosoft::JSON;
 
 #[test]
 unconstrained
+fn value_string_empty()
+{
+    let json = "''";
+    assert(JSON::parse(json).doc[0].value.eq_string(json) == true);
+}
+
+#[test]
+unconstrained
 fn value_string_number_zero()
 {
     let json = "'0'";
@@ -13,6 +21,14 @@ unconstrained
 fn value_string_number_multiple_zero()
 {
     let json = "'000'";
+    assert(JSON::parse(json).doc[0].value.eq_string(json) == true);
+}
+
+#[test]
+unconstrained
+fn value_string_minus_and_plus_number_multiple_zero()
+{
+    let json = "'-+000'";
     assert(JSON::parse(json).doc[0].value.eq_string(json) == true);
 }
 
@@ -93,5 +109,21 @@ unconstrained
 fn value_string_value_left_brace()
 {
     let json = "'5{'";
+    assert(JSON::parse(json).doc[0].value.eq_string(json) == true);
+}
+
+#[test]
+unconstrained
+fn value_string_value_right_bracket()
+{
+    let json = "'5]'";
+    assert(JSON::parse(json).doc[0].value.eq_string(json) == true);
+}
+
+#[test]
+unconstrained
+fn value_string_value_left_bracket()
+{
+    let json = "'5['";
     assert(JSON::parse(json).doc[0].value.eq_string(json) == true);
 }
