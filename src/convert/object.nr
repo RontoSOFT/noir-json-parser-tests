@@ -36,11 +36,11 @@ fn convert_object_two_keys_with_nested_objects()
     let json = JSON::parse("{'abc':{'a':{'b':1}},'def':{'d':{'e':2}}}");
 
     let sub_obj_1 = json.get_object("abc").unwrap()
-                        .get_child_object("a", json).unwrap();
+                        .get_object("a", json).unwrap();
     assert(sub_obj_1.get("b").unwrap().eq_string("1") == true);
 
     let sub_obj_2 = json.get_object("def").unwrap()
-                        .get_child_object("d", json).unwrap();
+                        .get_object("d", json).unwrap();
     assert(sub_obj_2.get("e").unwrap().eq_string("2") == true);
 }
 
@@ -51,13 +51,13 @@ fn convert_object_two_keys_with_twice_nested_objects()
     let json = JSON::parse("{'abc':{'a':{'b':{'c':1}}},'def':{'d':{'e':{'f':2}}}}");
 
     let sub_sub_obj_1 = json.get_object("abc").unwrap()
-                            .get_child_object("a", json).unwrap()
-                            .get_child_object("b", json).unwrap();
+                            .get_object("a", json).unwrap()
+                            .get_object("b", json).unwrap();
     assert(sub_sub_obj_1.get("c").unwrap().eq_string("1") == true);
 
     let sub_sub_obj_2 = json.get_object("def").unwrap()
-                            .get_child_object("d", json).unwrap()
-                            .get_child_object("e", json).unwrap();
+                            .get_object("d", json).unwrap()
+                            .get_object("e", json).unwrap();
     assert(sub_sub_obj_2.get("f").unwrap().eq_string("2") == true);
 }
 
