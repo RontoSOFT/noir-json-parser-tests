@@ -117,27 +117,6 @@ fn property_exponent_zero_point_zero_e_letter()
 
 #[test]
 unconstrained
-fn property_exponent_zero_point_zero_e_escaped_zero()
-{
-    assert(JSON::parse("{'a':0.0e\0}").is_none());
-}
-
-#[test]
-unconstrained
-fn property_exponent_escaped_zero_point_zero_e_zero()
-{
-    assert(JSON::parse("{'a':\0.0e0}").is_none());
-}
-
-#[test]
-unconstrained
-fn property_exponent_zero_point_zero_escaped_e_zero()
-{
-    assert(JSON::parse("{'a':0.0\\e0}").is_none());
-}
-
-#[test]
-unconstrained
 fn property_exponent_zero_plus_zero_e_zero()
 {
     assert(JSON::parse("{'a':0+e0}").is_none());

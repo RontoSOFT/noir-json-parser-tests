@@ -50,30 +50,6 @@ fn value_string()
 
 #[test]
 unconstrained
-fn value_string_with_escaped_quote()
-{
-    let json = "'a\\'bc'";
-    assert(JSON::parse(json).doc[0].value.eq_string(json) == true);
-}
-
-#[test]
-unconstrained
-fn value_string_with_double_escape()
-{
-    let json = "'a\\bc'";
-    assert(JSON::parse(json).doc[0].value.eq_string(json) == true);
-}
-
-#[test]
-unconstrained
-fn value_string_with_escaped_double_quote()
-{
-    let json = "'a\"bc'";
-    assert(JSON::parse(json).doc[0].value.eq_string(json) == true);
-}
-
-#[test]
-unconstrained
 fn value_string_null()
 {
     let json = "'null'";

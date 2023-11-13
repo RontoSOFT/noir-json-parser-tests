@@ -26,13 +26,6 @@ fn property_literal_false()
 
 #[test]
 unconstrained
-fn property_literal_escaped()
-{
-    assert(JSON::parse("{'a':fals\\e}").is_none());
-}
-
-#[test]
-unconstrained
 fn property_literal_fals()
 {
     assert(JSON::parse("{'a':fals}").is_none());

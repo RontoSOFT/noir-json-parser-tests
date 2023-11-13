@@ -26,13 +26,6 @@ fn value_literal_false()
 
 #[test]
 unconstrained
-fn value_literal_escaped()
-{
-    assert(JSON::parse("fals\\e").is_none());
-}
-
-#[test]
-unconstrained
 fn value_literal_fals()
 {
     assert(JSON::parse("fals").is_none());

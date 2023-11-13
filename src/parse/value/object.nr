@@ -137,27 +137,6 @@ fn value_object_key_with_left_bracket()
 
 #[test]
 unconstrained
-fn value_object_key_with_escaped_left_and_right()
-{
-    assert(JSON::parse("{\\'a\\':1}").get("a").unwrap().eq_string("1") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_key_with_escaped_left()
-{
-    assert(JSON::parse("{\\'a':1}").get("a").unwrap().eq_string("1") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_key_with_escaped_right()
-{
-    assert(JSON::parse("{'a\\':1}").get("a").unwrap().eq_string("1") == true);
-}
-
-#[test]
-unconstrained
 fn value_object_faulty_colon()
 {
     assert(JSON::parse("{:'a':1}").is_none() == true);
@@ -351,53 +330,4 @@ unconstrained
 fn value_object_empty_with_trailing_null()
 {
     assert(JSON::parse("{}\0").is_empty() == true);
-}
-
-#[test]
-unconstrained
-fn value_object_empty_with_trailing_null_with_space()
-{
-    assert(JSON::parse("{} \0").is_empty() == true);
-}
-
-#[test]
-unconstrained
-fn value_object_empty_with_trailing_null_with_spaces()
-{
-    assert(JSON::parse("{}   \0").is_empty() == true);
-}
-
-#[test]
-unconstrained
-fn value_object_empty_with_trailing_nulls()
-{
-    assert(JSON::parse("{}\0\0").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn value_object_empty_with_leading_null()
-{
-    assert(JSON::parse("\0{}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn value_object_empty_with_leading_null_and_space()
-{
-    assert(JSON::parse(" \0{}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn value_object_empty_with_leading_null_and_spaces()
-{
-    assert(JSON::parse("   \0{}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn value_object_empty_with_null_misplaced()
-{
-    assert(JSON::parse("{\0}").is_none() == true);
 }

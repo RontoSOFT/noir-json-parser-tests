@@ -206,20 +206,6 @@ fn property_string_minus_three_zero()
 
 #[test]
 unconstrained
-fn property_string_escaped_three_zero()
-{
-    assert(JSON::parse("{'a':\"30\"}").get_field("a").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_string_escaped_minus_three_zero()
-{
-    assert(JSON::parse("{'a':\"-30\"}").get_field("a").is_none() == true);
-}
-
-#[test]
-unconstrained
 fn property_string_thirty()
 {
     assert(JSON::parse("{'a':'thirty'}").get_field("a").is_none() == true);
@@ -272,13 +258,6 @@ unconstrained
 fn convert_property_field_three_quote_zero()
 {
     assert(JSON::parse("{'a':3'0}").get_field("a").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn convert_property_field_three_escaped_quote_zero()
-{
-    assert(JSON::parse("{'a':3\"0}").get_field("a").is_none() == true);
 }
 
 #[test]

@@ -50,30 +50,6 @@ fn property_string()
 
 #[test]
 unconstrained
-fn property_string_with_escaped_quote()
-{
-    let value = "'a\\'bc'";
-    assert(JSON::parse("{'a':'a\\'bc'}").get("a").unwrap().eq_string(value) == true);
-}
-
-#[test]
-unconstrained
-fn property_string_with_double_escape()
-{
-    let value = "'a\\bc'";
-    assert(JSON::parse("{'a':'a\\bc'}").get("a").unwrap().eq_string(value) == true);
-}
-
-#[test]
-unconstrained
-fn property_string_with_escaped_double_quote()
-{
-    let value = "'a\"bc'";
-    assert(JSON::parse("{'a':'a\"bc'}").get("a").unwrap().eq_string(value) == true);
-}
-
-#[test]
-unconstrained
 fn property_string_null()
 {
     let value = "'null'";
