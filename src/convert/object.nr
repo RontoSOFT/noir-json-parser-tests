@@ -36,11 +36,11 @@ fn convert_object_two_keys_with_nested_objects()
     let json = JSON::parse("{'abc':{'a':{'b':1}},'def':{'d':{'e':2}}}");
 
     let sub_obj_1 = json.get_object("abc").unwrap()
-                        .get_object("a", json).unwrap();
+                        .get_object("a").unwrap();
     assert(sub_obj_1.get("b").unwrap().eq_string("1") == true);
 
     let sub_obj_2 = json.get_object("def").unwrap()
-                        .get_object("d", json).unwrap();
+                        .get_object("d").unwrap();
     assert(sub_obj_2.get("e").unwrap().eq_string("2") == true);
 }
 
@@ -51,13 +51,13 @@ fn convert_object_two_keys_with_twice_nested_objects()
     let json = JSON::parse("{'abc':{'a':{'b':{'c':1}}},'def':{'d':{'e':{'f':2}}}}");
 
     let sub_sub_obj_1 = json.get_object("abc").unwrap()
-                            .get_object("a", json).unwrap()
-                            .get_object("b", json).unwrap();
+                            .get_object("a").unwrap()
+                            .get_object("b").unwrap();
     assert(sub_sub_obj_1.get("c").unwrap().eq_string("1") == true);
 
     let sub_sub_obj_2 = json.get_object("def").unwrap()
-                            .get_object("d", json).unwrap()
-                            .get_object("e", json).unwrap();
+                            .get_object("d").unwrap()
+                            .get_object("e").unwrap();
     assert(sub_sub_obj_2.get("f").unwrap().eq_string("2") == true);
 }
 
@@ -67,6 +67,19 @@ fn convert_object_array_two_objects_with_multiple_keys()
 {
     let json = JSON::parse("{'abc':[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]}");
     let array : [[u8]] = json.get_array("abc").unwrap();
+
+    // // dep::std::println(f"array contents");
+    // // dep::std::println(array[0][0]);
+    // // dep::std::println(array[0][1]);
+    // // dep::std::println(array[0][2]);
+    // // dep::std::println(f"array contents");
+
+    // let obj_1 = array[0].as_object(json).unwrap();
+    // dep::std::println(f"object index");
+    // dep::std::println(obj_1.index);
+    // dep::std::println(f"object index");
+
+    // obj_1.print();
 
     let obj_1 = array[0].as_object(json).unwrap();
     assert(obj_1.get("a").unwrap().eq_string("1") == true);

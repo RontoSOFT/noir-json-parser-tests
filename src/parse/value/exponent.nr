@@ -84,266 +84,266 @@ fn value_exponent_minus_zero_point_zero_e_zero_plus_zero()
 unconstrained
 fn value_exponent_zero_e_minus_plus_zero()
 {
-    assert(JSON::parse("0e-+0").is_empty());
+    assert(JSON::parse("0e-+0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_zero_e_plus_minus_zero()
 {
-    assert(JSON::parse("0e+-0").is_empty());
+    assert(JSON::parse("0e+-0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_plus_zero_e_plus_zero()
 {
-    assert(JSON::parse("+0e+0").is_empty());
+    assert(JSON::parse("+0e+0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_plus_zero_e_minus_zero()
 {
-    assert(JSON::parse("+0e-0").is_empty());
+    assert(JSON::parse("+0e-0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_plus_zero_point_zero_e_plus_zero()
 {
-    assert(JSON::parse("+0.0e+0").is_empty());
+    assert(JSON::parse("+0.0e+0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_plus_zero_point_zero_e_minus_zero()
 {
-    assert(JSON::parse("+0.0e-0").is_empty());
+    assert(JSON::parse("+0.0e-0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_zero_point_zero_e_letter()
 {
-    assert(JSON::parse("0.0ef").is_empty());
+    assert(JSON::parse("0.0ef").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_zero_point_zero_e_escaped_zero()
 {
-    assert(JSON::parse("0.0e\0").is_empty());
+    assert(JSON::parse("0.0e\0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_escaped_zero_point_zero_e_zero()
 {
-    assert(JSON::parse("\0.0e0").is_empty());
+    assert(JSON::parse("\0.0e0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_zero_point_zero_escaped_e_zero()
 {
-    assert(JSON::parse("0.0\\e0").is_empty());
+    assert(JSON::parse("0.0\\e0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_zero_plus_zero_e_zero()
 {
-    assert(JSON::parse("0+e0").is_empty());
+    assert(JSON::parse("0+e0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_zero_plus_zero_E_zero()
 {
-    assert(JSON::parse("0+E0").is_empty());
+    assert(JSON::parse("0+E0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_minus_zero_e_minus_minus_zero()
 {
-    assert(JSON::parse("-0e--0").is_empty());
+    assert(JSON::parse("-0e--0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_zero_point_zero_e_zero_plus_plus_zero()
 {
-    assert(JSON::parse("0.0e++0").is_empty());
+    assert(JSON::parse("0.0e++0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_e()
 {
-    assert(JSON::parse("e").is_empty());
+    assert(JSON::parse("e").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_dot_e()
 {
-    assert(JSON::parse(".e").is_empty());
+    assert(JSON::parse(".e").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_minus_e()
 {
-    assert(JSON::parse("-e").is_empty());
+    assert(JSON::parse("-e").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_plus_e()
 {
-    assert(JSON::parse("+e").is_empty());
+    assert(JSON::parse("+e").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_e_minus()
 {
-    assert(JSON::parse("e-").is_empty());
+    assert(JSON::parse("e-").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_e_plus()
 {
-    assert(JSON::parse("e+").is_empty());
+    assert(JSON::parse("e+").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_e_minus_zero()
 {
-    assert(JSON::parse("e-0").is_empty());
+    assert(JSON::parse("e-0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_e_plus_zero()
 {
-    assert(JSON::parse("e+0").is_empty());
+    assert(JSON::parse("e+0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_minus_dot_e()
 {
-    assert(JSON::parse("-.e").is_empty());
+    assert(JSON::parse("-.e").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_plus_dot_e()
 {
-    assert(JSON::parse("+.e").is_empty());
+    assert(JSON::parse("+.e").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_one_e()
 {
-    assert(JSON::parse("1e").is_empty());
+    assert(JSON::parse("1e").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_one_e_minus()
 {
-    assert(JSON::parse("1e-").is_empty());
+    assert(JSON::parse("1e-").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_one_e_plus()
 {
-    assert(JSON::parse("1e+").is_empty());
+    assert(JSON::parse("1e+").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_one_point_e()
 {
-    assert(JSON::parse("1.e").is_empty());
+    assert(JSON::parse("1.e").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_one_point_e_minus()
 {
-    assert(JSON::parse("1.e-").is_empty());
+    assert(JSON::parse("1.e-").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_one_point_e_plus()
 {
-    assert(JSON::parse("1.e+").is_empty());
+    assert(JSON::parse("1.e+").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_one_point_zero_e()
 {
-    assert(JSON::parse("1.0e").is_empty());
+    assert(JSON::parse("1.0e").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_one_point_zero_e_minus()
 {
-    assert(JSON::parse("1.0e-").is_empty());
+    assert(JSON::parse("1.0e-").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_one_point_zero_e_plus()
 {
-    assert(JSON::parse("1.0e+").is_empty());
+    assert(JSON::parse("1.0e+").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_minus_one_point_zero_e_plus()
 {
-    assert(JSON::parse("-1.0e+").is_empty());
+    assert(JSON::parse("-1.0e+").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_minus_one_point_zero_e_minus()
 {
-    assert(JSON::parse("-1.0e-").is_empty());
+    assert(JSON::parse("-1.0e-").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_zero_e_zero_point_zero_e_zero()
 {
-    assert(JSON::parse("0e0.0e0").is_empty());
+    assert(JSON::parse("0e0.0e0").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_zero_e_plus()
 {
-    assert(JSON::parse("0e+").is_empty());
+    assert(JSON::parse("0e+").is_none());
 }
 
 #[test]
 unconstrained
 fn value_exponent_zero_e_minus()
 {
-    assert(JSON::parse("0e-").is_empty());
+    assert(JSON::parse("0e-").is_none());
 }
 
 #[test]
