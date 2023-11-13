@@ -82,6 +82,13 @@ fn property_exponent_minus_zero_point_zero_e_zero_plus_zero()
 
 #[test]
 unconstrained
+fn value_exponent_zero_e_zero_dot_zero()
+{
+    assert(JSON::parse("{'a':0e0.0}").is_none());
+}
+
+#[test]
+unconstrained
 fn property_exponent_plus_zero_e_plus_zero()
 {
     assert(JSON::parse("{'a':+0e+0}").is_none());

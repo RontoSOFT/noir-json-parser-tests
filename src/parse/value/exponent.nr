@@ -82,6 +82,13 @@ fn value_exponent_minus_zero_point_zero_e_zero_plus_zero()
 
 #[test]
 unconstrained
+fn value_exponent_zero_e_zero_dot_zero()
+{
+    assert(JSON::parse("0e0.0").is_none());
+}
+
+#[test]
+unconstrained
 fn value_exponent_zero_e_minus_plus_zero()
 {
     assert(JSON::parse("0e-+0").is_none());
