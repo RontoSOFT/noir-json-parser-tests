@@ -68,19 +68,6 @@ fn convert_object_array_two_objects_with_multiple_keys()
     let json = JSON::parse("{'abc':[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]}");
     let array : [[u8]] = json.get_array("abc").unwrap();
 
-    // // dep::std::println(f"array contents");
-    // // dep::std::println(array[0][0]);
-    // // dep::std::println(array[0][1]);
-    // // dep::std::println(array[0][2]);
-    // // dep::std::println(f"array contents");
-
-    // let obj_1 = array[0].as_object(json).unwrap();
-    // dep::std::println(f"object index");
-    // dep::std::println(obj_1.index);
-    // dep::std::println(f"object index");
-
-    // obj_1.print();
-
     let obj_1 = array[0].as_object(json).unwrap();
     assert(obj_1.get("a").unwrap().eq_string("1") == true);
     assert(obj_1.get("b").unwrap().eq_string("true") == true);
