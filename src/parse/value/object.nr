@@ -11,6 +11,21 @@ fn value_object_empty()
 
 #[test]
 unconstrained
+fn value_object_empty_space_empty()
+{
+    assert(JSON::parse("{} {}").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn value_object_empty_comma_empty()
+{
+    assert(JSON::parse("{},{}").is_none() == true);
+}
+
+
+#[test]
+unconstrained
 fn value_object_empty_colon()
 {
     assert(JSON::parse("{:}").is_none() == true);

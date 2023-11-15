@@ -14,6 +14,20 @@ fn value_array_empty()
 
 #[test]
 unconstrained
+fn value_array_empty_space_empty()
+{
+    assert(JSON::parse("[] []").is_none());
+}
+
+#[test]
+unconstrained
+fn value_array_empty_comma_empty()
+{
+    assert(JSON::parse("[],[]").is_none());
+}
+
+#[test]
+unconstrained
 fn value_array_empty_values()
 {
     assert(JSON::parse("[,]").is_none());
