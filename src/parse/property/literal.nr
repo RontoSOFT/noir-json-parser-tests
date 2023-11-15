@@ -100,3 +100,17 @@ fn property_literal_tru_space_e()
 {
     assert(JSON::parse("{'a':tru e}").is_none());
 }
+
+#[test]
+unconstrained
+fn property_literal_false_space_false()
+{
+    assert(JSON::parse("{'a':false false}").is_none());
+}
+
+#[test]
+unconstrained
+fn property_literal_false_comma_false()
+{
+    assert(JSON::parse("{'a':false,false}").is_none());
+}

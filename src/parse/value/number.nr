@@ -271,13 +271,6 @@ fn value_number_one_right_bracket()
 
 #[test]
 unconstrained
-fn value_number_one_space()
-{
-    assert(JSON::parse("1 2").is_none());
-}
-
-#[test]
-unconstrained
 fn value_number_one_letter()
 {
     assert(JSON::parse("1x").is_none());
@@ -288,4 +281,18 @@ unconstrained
 fn value_number_one_literal_letter()
 {
     assert(JSON::parse("1f").is_none());
+}
+
+#[test]
+unconstrained
+fn value_number_one_space_two()
+{
+    assert(JSON::parse("1 2").is_none());
+}
+
+#[test]
+unconstrained
+fn value_number_one_comma_two()
+{
+    assert(JSON::parse("1,2").is_none());
 }

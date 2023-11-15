@@ -114,3 +114,17 @@ fn value_literal_tru_minus()
 {
     assert(JSON::parse("tru-").is_none());
 }
+
+#[test]
+unconstrained
+fn value_literal_false_space_false()
+{
+    assert(JSON::parse("false false").is_none());
+}
+
+#[test]
+unconstrained
+fn value_literal_false_comma_false()
+{
+    assert(JSON::parse("false,false").is_none());
+}

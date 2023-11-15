@@ -281,13 +281,6 @@ fn value_array_single_number_literal_letter()
 
 #[test]
 unconstrained
-fn value_array_single_number_whitespace()
-{
-    assert(JSON::parse("[1 2]}").is_none());
-}
-
-#[test]
-unconstrained
 fn value_array_single_literal_wrong_trux()
 {
     assert(JSON::parse("[trux]").is_none());
@@ -319,6 +312,41 @@ unconstrained
 fn value_array_literal_faulty_colon()
 {
     assert(JSON::parse("[true:]").is_none());
+}
+
+#[test]
+unconstrained
+fn value_array_literal_true_space_true()
+{
+    assert(JSON::parse("[true true]").is_none());
+}
+
+#[test]
+unconstrained
+fn value_array_number_one_space_two()
+{
+    assert(JSON::parse("[1 2]}").is_none());
+}
+
+#[test]
+unconstrained
+fn value_array_string_space_string()
+{
+    assert(JSON::parse("['string' 'string']").is_none());
+}
+
+#[test]
+unconstrained
+fn value_array_array_space_array()
+{
+    assert(JSON::parse("[[] []]").is_none());
+}
+
+#[test]
+unconstrained
+fn value_array_object_space_object()
+{
+    assert(JSON::parse("[{} {}]").is_none());
 }
 
 #[test]

@@ -257,13 +257,6 @@ fn property_number_one_right_bracket()
 
 #[test]
 unconstrained
-fn property_number_one_space()
-{
-    assert(JSON::parse("{'a':1 2}").is_none());
-}
-
-#[test]
-unconstrained
 fn property_number_one_letter()
 {
     assert(JSON::parse("{'a':1x}").is_none());
@@ -274,4 +267,18 @@ unconstrained
 fn property_number_one_literal_letter()
 {
     assert(JSON::parse("{'a':1f}").is_none());
+}
+
+#[test]
+unconstrained
+fn property_number_one_space_two()
+{
+    assert(JSON::parse("{'a':1 2}").is_none());
+}
+
+#[test]
+unconstrained
+fn property_number_one_comma_two()
+{
+    assert(JSON::parse("{'a':1,2}").is_none());
 }
