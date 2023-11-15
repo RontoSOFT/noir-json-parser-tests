@@ -380,21 +380,6 @@ fn property_array_one_object_one_property()
 
     assert(json.child(0).len() == 1);
     assert(json.child(0).get("b").unwrap().eq_string("1") == true);
-
-    // assert(json.doc.len() == 2);
-
-    // ///
-    // let value_a = json.get_array("a").unwrap();
-    // assert(value_a.len() == 1);
-    // assert(value_a[0].eq_array(object_one) == true);
-
-    // assert(json.getChild(value_a[0][1]).get("b").unwrap().eq_string("1") == true);
-    // // or
-    // assert(value_a[0].as_object(json).unwrap().get("b").unwrap().eq_string("1") == true);
-    // ///
-
-    // let obj_1 = json.doc[0].get_array("a").unwrap()[0].as_object(json).unwrap();
-    // assert(obj_1.get("b").unwrap().eq_string("1") == true);
 }
 
 #[test]
