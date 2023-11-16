@@ -28,103 +28,103 @@ fn value_literal_false()
 unconstrained
 fn value_literal_fals()
 {
-    assert(JSON::parse("fals").is_none());
+    assert(JSON::parse("fals").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn value_literal_t()
 {
-    assert(JSON::parse("t").is_none());
+    assert(JSON::parse("t").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn value_literal_nul()
 {
-    assert(JSON::parse("nul").is_none());
+    assert(JSON::parse("nul").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn value_literal_falst()
 {
-    assert(JSON::parse("falst").is_none());
+    assert(JSON::parse("falst").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn value_literal_random()
 {
-    assert(JSON::parse("lfseu").is_none());
+    assert(JSON::parse("lfseu").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn value_literal_plus_true()
 {
-    assert(JSON::parse("+true").is_none());
+    assert(JSON::parse("+true").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn value_literal_true_plus()
 {
-    assert(JSON::parse("true+").is_none());
+    assert(JSON::parse("true+").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn value_literal_minus_false()
 {
-    assert(JSON::parse("-false").is_none());
+    assert(JSON::parse("-false").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn value_literal_false_minus()
 {
-    assert(JSON::parse("false-").is_none());
+    assert(JSON::parse("false-").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn value_literal_tru_dot_e()
 {
-    assert(JSON::parse("tru.e").is_none());
+    assert(JSON::parse("tru.e").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn value_literal_tru_space_e()
 {
-    assert(JSON::parse("tru e").is_none());
+    assert(JSON::parse("tru e").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn value_literal_tru_one()
 {
-    assert(JSON::parse("tru1").is_none());
+    assert(JSON::parse("tru1").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn value_literal_tru_minus()
 {
-    assert(JSON::parse("tru-").is_none());
+    assert(JSON::parse("tru-").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn value_literal_false_space_false()
 {
-    assert(JSON::parse("false false").is_none());
+    assert(JSON::parse("false false").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn value_literal_false_comma_false()
 {
-    assert(JSON::parse("false,false").is_none());
+    assert(JSON::parse("false,false").is_none() == true);
 }

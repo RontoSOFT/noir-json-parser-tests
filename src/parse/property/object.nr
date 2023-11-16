@@ -16,49 +16,49 @@ fn property_object_empty()
 unconstrained
 fn property_object_empty_colon()
 {
-    assert(JSON::parse("{'a':{:}}").is_none());
+    assert(JSON::parse("{'a':{:}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_empty_comma()
 {
-    assert(JSON::parse("{'a':{'b':{,}}}").is_none());
+    assert(JSON::parse("{'a':{'b':{,}}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_empty_key()
 {
-    assert(JSON::parse("{'a':{''}}").is_none());
+    assert(JSON::parse("{'a':{''}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_empty_key_with_colon()
 {
-    assert(JSON::parse("{'a':{'':}}").is_none());
+    assert(JSON::parse("{'a':{'':}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_key_with_colon_missing_value()
 {
-    assert(JSON::parse("{'a':{'b':}}").is_none());
+    assert(JSON::parse("{'a':{'b':}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_missing_key_with_value()
 {
-    assert(JSON::parse("{'a':{:1}}").is_none());
+    assert(JSON::parse("{'a':{:1}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_empty_key_with_value()
 {
-    assert(JSON::parse("{'a':{'':1}}").is_none());
+    assert(JSON::parse("{'a':{'':1}}").is_none() == true);
 }
 
 #[test]
@@ -93,140 +93,140 @@ fn property_object_multi_character_key_with_value()
 unconstrained
 fn property_object_faulty_colon()
 {
-    assert(JSON::parse("{'a':{:'b':1}}").is_none());
+    assert(JSON::parse("{'a':{:'b':1}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_quote_before_key()
 {
-    assert(JSON::parse("{'a':{''b':1}}").is_none());
+    assert(JSON::parse("{'a':{''b':1}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_quote_after_key()
 {
-    assert(JSON::parse("{'a':{'b'':1}}").is_none());
+    assert(JSON::parse("{'a':{'b'':1}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_left_brace_before_key()
 {
-    assert(JSON::parse("{'a':{{'b':1}}").is_none());
+    assert(JSON::parse("{'a':{{'b':1}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_left_brace_after_key()
 {
-    assert(JSON::parse("{'a':{'b'{:1}}").is_none());
+    assert(JSON::parse("{'a':{'b'{:1}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_right_brace_before_key()
 {
-    assert(JSON::parse("{'a':{}'b':1}}").is_none());
+    assert(JSON::parse("{'a':{}'b':1}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_right_brace_after_key()
 {
-    assert(JSON::parse("{'a':{'b'}:1}}").is_none());
+    assert(JSON::parse("{'a':{'b'}:1}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_left_bracket_before_key()
 {
-    assert(JSON::parse("{'a':{['b':1}}").is_none());
+    assert(JSON::parse("{'a':{['b':1}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_left_bracket_after_key()
 {
-    assert(JSON::parse("{'a':{'b'[:1}}").is_none());
+    assert(JSON::parse("{'a':{'b'[:1}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_right_bracket_before_key()
 {
-    assert(JSON::parse("{'a':{]'b':1}}").is_none());
+    assert(JSON::parse("{'a':{]'b':1}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_right_bracket_after_key()
 {
-    assert(JSON::parse("{'a':{'b']:1}}").is_none());
+    assert(JSON::parse("{'a':{'b']:1}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_leading_comma()
 {
-    assert(JSON::parse("{'a':{,'b':1}}").is_none());
+    assert(JSON::parse("{'a':{,'b':1}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_comma_after_key()
 {
-    assert(JSON::parse("{'a':{'b',:1}}").is_none());
+    assert(JSON::parse("{'a':{'b',:1}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_comma_after_colon()
 {
-    assert(JSON::parse("{'a':{'b':,1}}").is_none());
+    assert(JSON::parse("{'a':{'b':,1}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_trailing_comma()
 {
-    assert(JSON::parse("{'a':{'b':1,}}").is_none());
+    assert(JSON::parse("{'a':{'b':1,}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_one_comma_minus()
 {
-    assert(JSON::parse("{'a':{'b':1,-}}").is_none());
+    assert(JSON::parse("{'a':{'b':1,-}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_empty_key_second_key()
 {
-    assert(JSON::parse("{'a':{'b':1,''}}").is_none());
+    assert(JSON::parse("{'a':{'b':1,''}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_missing_colon_second_key()
 {
-    assert(JSON::parse("{'a':{'b':1,'c'}}").is_none());
+    assert(JSON::parse("{'a':{'b':1,'c'}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_missing_value_second_key()
 {
-    assert(JSON::parse("{'a':{'b':1,'c':}}").is_none());
+    assert(JSON::parse("{'a':{'b':1,'c':}}").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_object_faulty_minus_second_key()
 {
-    assert(JSON::parse("{'a':{'b':1,'c':-}}").is_none());
+    assert(JSON::parse("{'a':{'b':1,'c':-}}").is_none() == true);
 }
 
 #[test]
