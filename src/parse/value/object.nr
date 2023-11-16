@@ -1,7 +1,5 @@
 use dep::rontosoft::JSON;
 
-use crate::utils::object_one;
-
 #[test]
 unconstrained
 fn value_object_empty()

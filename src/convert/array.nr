@@ -1,9 +1,5 @@
 use dep::rontosoft::JSON;
 
-use crate::utils::object_one;
-use crate::utils::object_two;
-use crate::utils::object_three;
-
 #[test]
 unconstrained
 fn convert_value_array_from_empty_bytes()
@@ -196,6 +192,10 @@ fn convert_property_array_multiple_numbers()
     assert(result[1].eq_string("2") == true);
     assert(result[2].eq_string("3") == true);
 }
+
+global object_one   : [u8; 3] = [0x7B, 0x00, 0x7D];
+global object_two   : [u8; 3] = [0x7B, 0x01, 0x7D];
+global object_three : [u8; 3] = [0x7B, 0x02, 0x7D];
 
 #[test]
 unconstrained

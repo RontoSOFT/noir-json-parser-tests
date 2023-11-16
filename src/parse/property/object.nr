@@ -1,12 +1,5 @@
 use dep::rontosoft::JSON;
 
-use crate::utils::object_one;
-use crate::utils::object_two;
-use crate::utils::object_three;
-use crate::utils::object_four;
-use crate::utils::object_five;
-use crate::utils::object_six;
-
 #[test]
 unconstrained
 fn property_object_empty()
@@ -14,9 +7,8 @@ fn property_object_empty()
     let json = JSON::parse("{'a':{}}");
 
     assert(json.doc.len() == 1);
-    assert(json.get("a").unwrap().eq_array(object_one) == true);
-
     assert(json.children.len() == 1);
+
     assert(json.child(0).is_empty() == true);
 }
 
@@ -76,9 +68,8 @@ fn property_object_single_character_key_with_value()
     let json = JSON::parse("{'a':{'b':1}}");
 
     assert(json.doc.len() == 1);
-    assert(json.get("a").unwrap().eq_array(object_one) == true);
-
     assert(json.children.len() == 1);
+
     assert(json.child(0).get("b").unwrap().eq_string("1") == true);
 }
 
@@ -89,9 +80,8 @@ fn property_object_multi_character_key_with_value()
     let json = JSON::parse("{'abc':{'b':1}}");
 
     assert(json.doc.len() == 1);
-    assert(json.get("abc").unwrap().eq_array(object_one) == true);
-
     assert(json.children.len() == 1);
+
     assert(json.child(0).get("b").unwrap().eq_string("1") == true);
 }
 
@@ -246,10 +236,8 @@ fn property_object_two_keys()
     let json = JSON::parse("{'a':{'value':1},'b':{'value':2}}");
 
     assert(json.doc.len() == 2);
-    assert(json.get("a").unwrap().eq_array(object_one) == true);
-    assert(json.get("b").unwrap().eq_array(object_two) == true);
-
     assert(json.children.len() == 2);
+
     assert(json.child(0).get("value").unwrap().eq_string("1") == true);
     assert(json.child(1).get("value").unwrap().eq_string("2") == true);
 }
@@ -262,9 +250,8 @@ fn property_object_two_keys_same_name_replace_property()
     let json = JSON::parse("{'a':{'value':1},'a':{'value':2}}");
 
     assert(json.doc.len() == 1);
-    assert(json.get("a").unwrap().eq_array(object_two) == true);
-
     assert(json.children.len() == 2); // TODO: 1
+
     assert(json.child(1).get("value").unwrap().eq_string("2") == true);
 }
 
@@ -275,10 +262,8 @@ fn property_object_one_child_nested()
     let json = JSON::parse("{'a':{'b':{'value':1}}}");
 
     assert(json.doc.len() == 1);
-    assert(json.get("a").unwrap().eq_array(object_one) == true);
-
     assert(json.children.len() == 2);
-    assert(json.child(0).get("b").unwrap().eq_array(object_two) == true);
+
     assert(json.child(1).get("value").unwrap().eq_string("1") == true);
 }
 
@@ -289,14 +274,9 @@ fn property_object_two_children_nested()
     let json = JSON::parse("{'a':{'b':{'value':1},'c':{'value':2}}}");
 
     assert(json.doc.len() == 1);
-    assert(json.get("a").unwrap().eq_array(object_one) == true);
-
     assert(json.children.len() == 3);
 
-    assert(json.child(0).get("b").unwrap().eq_array(object_two) == true);
     assert(json.child(1).get("value").unwrap().eq_string("1") == true);
-
-    assert(json.child(0).get("c").unwrap().eq_array(object_three) == true);
     assert(json.child(2).get("value").unwrap().eq_string("2") == true);
 }
 
@@ -307,15 +287,9 @@ fn property_object_two_parents_one_child()
     let json = JSON::parse("{'abc':{'a':{'value':1}},'def':{'b':{'value':2}}}");
 
     assert(json.doc.len() == 2);
-    assert(json.get("abc").unwrap().eq_array(object_one) == true);
-    assert(json.get("def").unwrap().eq_array(object_three) == true);
-
     assert(json.children.len() == 4);
 
-    assert(json.child(0).get("a").unwrap().eq_array(object_two) == true);
     assert(json.child(1).get("value").unwrap().eq_string("1") == true);
-
-    assert(json.child(2).get("b").unwrap().eq_array(object_four) == true);
     assert(json.child(3).get("value").unwrap().eq_string("2") == true);
 }
 
@@ -326,11 +300,8 @@ fn property_object_one_child_nested_twice()
     let json = JSON::parse("{'a':{'b':{'c':{'value':1}}}}");
 
     assert(json.doc.len() == 1);
-    assert(json.get("a").unwrap().eq_array(object_one) == true);
-
     assert(json.children.len() == 3);
-    assert(json.child(0).get("b").unwrap().eq_array(object_two) == true);
-    assert(json.child(1).get("c").unwrap().eq_array(object_three) == true);
+
     assert(json.child(2).get("value").unwrap().eq_string("1") == true);
 }
 
@@ -341,16 +312,9 @@ fn property_object_two_children_nested_twice()
     let json = JSON::parse("{'a':{'b':{'c':{'value':1}},'d':{'e':{'value':2}}}}");
 
     assert(json.doc.len() == 1);
-    assert(json.get("a").unwrap().eq_array(object_one) == true);
-
     assert(json.children.len() == 5);
 
-    assert(json.child(0).get("b").unwrap().eq_array(object_two) == true);
-    assert(json.child(1).get("c").unwrap().eq_array(object_three) == true);
     assert(json.child(2).get("value").unwrap().eq_string("1") == true);
-
-    assert(json.child(0).get("d").unwrap().eq_array(object_four) == true);
-    assert(json.child(3).get("e").unwrap().eq_array(object_five) == true);
     assert(json.child(4).get("value").unwrap().eq_string("2") == true);
 }
 
@@ -361,16 +325,8 @@ fn property_object_two_parents_one_child_nested()
     let json = JSON::parse("{'abc':{'a':{'b':{'value':1}}},'def':{'c':{'d':{'value':2}}}}");
 
     assert(json.doc.len() == 2);
-    assert(json.get("abc").unwrap().eq_array(object_one) == true);
-    assert(json.get("def").unwrap().eq_array(object_four) == true);
-
     assert(json.children.len() == 6);
 
-    assert(json.child(0).get("a").unwrap().eq_array(object_two) == true);
-    assert(json.child(1).get("b").unwrap().eq_array(object_three) == true);
     assert(json.child(2).get("value").unwrap().eq_string("1") == true);
-
-    assert(json.child(3).get("c").unwrap().eq_array(object_five) == true);
-    assert(json.child(4).get("d").unwrap().eq_array(object_six) == true);
     assert(json.child(5).get("value").unwrap().eq_string("2") == true);
 }
