@@ -70,7 +70,7 @@ fn property_object_single_character_key_with_value()
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
 
-    assert(json.child(0).get("b").unwrap().eq_string("1") == true);
+    assert(json.child(0).get("b").eq_string("1") == true);
 }
 
 #[test]
@@ -82,7 +82,7 @@ fn property_object_multi_character_key_with_value()
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
 
-    assert(json.child(0).get("b").unwrap().eq_string("1") == true);
+    assert(json.child(0).get("b").eq_string("1") == true);
 }
 
 // whitespace tests skipped
@@ -238,8 +238,8 @@ fn property_object_two_keys()
     assert(json.doc.len() == 2);
     assert(json.children.len() == 2);
 
-    assert(json.child(0).get("value").unwrap().eq_string("1") == true);
-    assert(json.child(1).get("value").unwrap().eq_string("2") == true);
+    assert(json.child(0).get("value").eq_string("1") == true);
+    assert(json.child(1).get("value").eq_string("2") == true);
 }
 
 // TODO: fix this
@@ -252,7 +252,7 @@ fn property_object_two_keys_same_name_replace_property()
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2); // TODO: 1
 
-    assert(json.child(1).get("value").unwrap().eq_string("2") == true);
+    assert(json.child(1).get("value").eq_string("2") == true);
 }
 
 #[test]
@@ -264,7 +264,7 @@ fn property_object_one_child_nested()
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
 
-    assert(json.child(1).get("value").unwrap().eq_string("1") == true);
+    assert(json.child(1).get("value").eq_string("1") == true);
 }
 
 #[test]
@@ -276,8 +276,8 @@ fn property_object_two_children_nested()
     assert(json.doc.len() == 1);
     assert(json.children.len() == 3);
 
-    assert(json.child(1).get("value").unwrap().eq_string("1") == true);
-    assert(json.child(2).get("value").unwrap().eq_string("2") == true);
+    assert(json.child(1).get("value").eq_string("1") == true);
+    assert(json.child(2).get("value").eq_string("2") == true);
 }
 
 #[test]
@@ -289,8 +289,8 @@ fn property_object_two_parents_one_child()
     assert(json.doc.len() == 2);
     assert(json.children.len() == 4);
 
-    assert(json.child(1).get("value").unwrap().eq_string("1") == true);
-    assert(json.child(3).get("value").unwrap().eq_string("2") == true);
+    assert(json.child(1).get("value").eq_string("1") == true);
+    assert(json.child(3).get("value").eq_string("2") == true);
 }
 
 #[test]
@@ -302,7 +302,7 @@ fn property_object_one_child_nested_twice()
     assert(json.doc.len() == 1);
     assert(json.children.len() == 3);
 
-    assert(json.child(2).get("value").unwrap().eq_string("1") == true);
+    assert(json.child(2).get("value").eq_string("1") == true);
 }
 
 #[test]
@@ -314,8 +314,8 @@ fn property_object_two_children_nested_twice()
     assert(json.doc.len() == 1);
     assert(json.children.len() == 5);
 
-    assert(json.child(2).get("value").unwrap().eq_string("1") == true);
-    assert(json.child(4).get("value").unwrap().eq_string("2") == true);
+    assert(json.child(2).get("value").eq_string("1") == true);
+    assert(json.child(4).get("value").eq_string("2") == true);
 }
 
 #[test]
@@ -327,6 +327,6 @@ fn property_object_two_parents_one_child_nested()
     assert(json.doc.len() == 2);
     assert(json.children.len() == 6);
 
-    assert(json.child(2).get("value").unwrap().eq_string("1") == true);
-    assert(json.child(5).get("value").unwrap().eq_string("2") == true);
+    assert(json.child(2).get("value").eq_string("1") == true);
+    assert(json.child(5).get("value").eq_string("2") == true);
 }

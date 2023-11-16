@@ -5,7 +5,7 @@ unconstrained
 fn property_literal_null()
 {
     let value = "null";
-    assert(JSON::parse("{'a':null}").get("a").unwrap().eq_string(value) == true);
+    assert(JSON::parse("{'a':null}").get("a").eq_string(value) == true);
 }
 
 #[test]
@@ -13,7 +13,7 @@ unconstrained
 fn property_literal_true()
 {
     let value = "true";
-    assert(JSON::parse("{'a':true}").get("a").unwrap().eq_string(value) == true);
+    assert(JSON::parse("{'a':true}").get("a").eq_string(value) == true);
 }
 
 #[test]
@@ -21,7 +21,7 @@ unconstrained
 fn property_literal_false()
 {
     let value = "false";
-    assert(JSON::parse("{'a':false}").get("a").unwrap().eq_string(value) == true);
+    assert(JSON::parse("{'a':false}").get("a").eq_string(value) == true);
 }
 
 #[test]

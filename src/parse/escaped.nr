@@ -37,7 +37,7 @@ unconstrained
 fn property_key_with_escaped_quotation_mark_left()
 {
     let value = "''";
-    assert(JSON::parse("{'\\'a':''}").get("\\'a").unwrap().eq_string(value) == true);
+    assert(JSON::parse("{'\\'a':''}").get("\\'a").eq_string(value) == true);
 }
 
 #[test]
@@ -45,7 +45,7 @@ unconstrained
 fn property_key_with_escaped_quotation_mark_right()
 {
     let value = "''";
-    assert(JSON::parse("{'a\\'':''}").get("a\\'").unwrap().eq_string(value) == true);
+    assert(JSON::parse("{'a\\'':''}").get("a\\'").eq_string(value) == true);
 }
 
 #[test]
@@ -53,7 +53,7 @@ unconstrained
 fn property_key_with_escaped_quotation_mark_middle()
 {
     let value = "''";
-    assert(JSON::parse("{'a\\'b':''}").get("a\\'b").unwrap().eq_string(value) == true);
+    assert(JSON::parse("{'a\\'b':''}").get("a\\'b").eq_string(value) == true);
 }
 
 #[test]
@@ -61,7 +61,7 @@ unconstrained
 fn property_key_with_escaped_quotation_mark_both()
 {
     let value = "''";
-    assert(JSON::parse("{'\\'a\\'':''}").get("\\'a\\'").unwrap().eq_string(value) == true);
+    assert(JSON::parse("{'\\'a\\'':''}").get("\\'a\\'").eq_string(value) == true);
 }
 
 #[test]
@@ -69,7 +69,7 @@ unconstrained
 fn property_string_with_escaped_quotation_mark_left()
 {
     let value = "'\\'string'";
-    assert(JSON::parse("{'a':'\\'string'}").get("a").unwrap().eq_string(value) == true);
+    assert(JSON::parse("{'a':'\\'string'}").get("a").eq_string(value) == true);
 }
 
 #[test]
@@ -77,7 +77,7 @@ unconstrained
 fn property_string_with_escaped_quotation_mark_right()
 {
     let value = "'string\\''";
-    assert(JSON::parse("{'a':'string\\''}").get("a").unwrap().eq_string(value) == true);
+    assert(JSON::parse("{'a':'string\\''}").get("a").eq_string(value) == true);
 }
 
 #[test]
@@ -85,7 +85,7 @@ unconstrained
 fn property_string_with_escaped_quotation_mark_middle()
 {
     let value = "'str\\'ing'";
-    assert(JSON::parse("{'a':'str\\'ing'}").get("a").unwrap().eq_string(value) == true);
+    assert(JSON::parse("{'a':'str\\'ing'}").get("a").eq_string(value) == true);
 }
 
 #[test]
@@ -93,7 +93,7 @@ unconstrained
 fn property_string_with_escaped_quotation_mark_both()
 {
     let value = "'\\'string\\''";
-    assert(JSON::parse("{'a':'\\'string\\''}").get("a").unwrap().eq_string(value) == true);
+    assert(JSON::parse("{'a':'\\'string\\''}").get("a").eq_string(value) == true);
 }
 
 #[test]
