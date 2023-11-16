@@ -50,6 +50,22 @@ fn value_string()
 
 #[test]
 unconstrained
+fn value_string_space_string()
+{
+    let json = "'abc' 'abc'";
+    assert(JSON::parse(json).is_none() == true);
+}
+
+#[test]
+unconstrained
+fn value_string_comma_string()
+{
+    let json = "'abc','abc'";
+    assert(JSON::parse(json).is_none() == true);
+}
+
+#[test]
+unconstrained
 fn value_string_null()
 {
     let json = "'null'";

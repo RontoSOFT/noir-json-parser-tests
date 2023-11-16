@@ -50,6 +50,22 @@ fn property_string()
 
 #[test]
 unconstrained
+fn property_string_space_string()
+{
+    let value = "'abc' 'abc'";
+    assert(JSON::parse("{'a':'abc' 'abc'}").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_string_comma_string()
+{
+    let value = "'abc','abc'";
+    assert(JSON::parse("{'a':'abc','abc'}").is_none() == true);
+}
+
+#[test]
+unconstrained
 fn property_string_null()
 {
     let value = "'null'";
