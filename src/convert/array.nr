@@ -208,7 +208,7 @@ fn convert_property_array_multiple_mixed_types()
     assert(result[1].eq_string("2") == true);
     assert(result[2].eq_string("'3'") == true);
     assert(result[3].eq_string("10.35e+5") == true);
-    assert(result[4].eq_array(object_one) == true);
+    assert(result[4].eq(object_one) == true);
 }
 
 #[test]
@@ -218,9 +218,9 @@ fn convert_property_array_multiple_empty_objects()
     let result : [ [u8] ] = JSON::parse("{'a':[{},{},{}]}").get_array("a");
 
     assert(result.len() == 3);
-    assert(result[0].eq_array(object_one) == true);
-    assert(result[1].eq_array(object_two) == true);
-    assert(result[2].eq_array(object_three) == true);
+    assert(result[0].eq(object_one) == true);
+    assert(result[1].eq(object_two) == true);
+    assert(result[2].eq(object_three) == true);
 }
 
 #[test]
@@ -230,8 +230,8 @@ fn convert_property_array_multiple_objects_single_property()
     let result : [ [u8] ] = JSON::parse("{'a':[{'a':1},{'a':2}]}").get_array("a");
 
     assert(result.len() == 2);
-    assert(result[0].eq_array(object_one) == true);
-    assert(result[1].eq_array(object_two) == true);
+    assert(result[0].eq(object_one) == true);
+    assert(result[1].eq(object_two) == true);
 }
 
 #[test]
@@ -241,13 +241,13 @@ fn convert_property_array_multiple_objects_multiple_properties()
     let result : [ [u8] ] = JSON::parse("{'a':[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]}").get_array("a");
 
     assert(result.len() == 2);
-    assert(result[0].eq_array(object_one) == true);
-    assert(result[1].eq_array(object_two) == true);
+    assert(result[0].eq(object_one) == true);
+    assert(result[1].eq(object_two) == true);
 }
 
 #[test]
 unconstrained
-fn convert_string_empty_array()
+fn convert_string_empty_array1()
 {
     assert(JSON::parse("''").get_array("").len() == 0);
 }
