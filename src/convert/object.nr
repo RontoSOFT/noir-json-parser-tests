@@ -93,20 +93,16 @@ fn convert_value_string_object_empty()
     assert(JSON::parse("'{}'").get_object("").is_empty() == true);
 }
 
-// #[test]
-// unconstrained
-// fn convert_value_string_object1()
-// {
-//     let json = JSON::parse("'{\\'a\\':1}'");
-//     json.print();
-//     let obj = json.get_object("");
-//     obj.print();
-//     assert(JSON::parse("'{'a':1}'").get_object("").get("a").eq_string("1") == true);
-// }
+#[test]
+unconstrained
+fn convert_value_string_object()
+{
+    assert(JSON::parse("'{\\'a\\':1}'").get_object("").get("a").eq_string("1") == true);
+}
 
-// #[test]
-// unconstrained
-// fn convert_value_string_nested_object()
-// {
-//     assert(JSON::parse("'{\\'a\\':{\\'b\\':1}}'").get_object("a").get("b").eq_string("1") == true);
-// }
+#[test]
+unconstrained
+fn convert_value_string_nested_object()
+{
+    assert(JSON::parse("'{\\'a\\':{\\'b\\':1}}'").get_object("").get_object("a").get("b").eq_string("1") == true);
+}

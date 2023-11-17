@@ -271,14 +271,14 @@ fn convert_string_array_one_two_three()
     assert(result[2].eq_string("3") == true);
 }
 
-// #[test]
-// unconstrained
-// fn convert_string_array_true_two_string_three()
-// {
-//     let result : [ [u8] ] = JSON::parse("'[true,2,\\'3\\']'").get_array("");
+#[test]
+unconstrained
+fn convert_string_array_true_two_string_three()
+{
+    let result : [ [u8] ] = JSON::parse("'[true,2,\\'3\\']'").get_array("");
 
-//     assert(result.len() == 3);
-//     assert(result[0].eq_string("true") == true);
-//     assert(result[1].eq_string("2") == true);
-//     assert(result[2].eq_string("'3'") == true);
-// }
+    assert(result.len() == 3);
+    assert(result[0].eq_string("true") == true);
+    assert(result[1].eq_string("2") == true);
+    assert(result[2].eq_string("'3'") == true);
+}
