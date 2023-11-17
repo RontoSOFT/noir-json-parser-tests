@@ -337,10 +337,3 @@ fn value_object_three_keys_unique_values()
     assert(json.get("age").eq_string("30") == true);
     assert(json.get("isEmployed").eq_string("true") == true);
 }
-
-#[test]
-unconstrained
-fn value_object_empty_with_trailing_null()
-{
-    assert(JSON::parse("{}\0").is_empty() == true);
-}

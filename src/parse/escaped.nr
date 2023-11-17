@@ -98,14 +98,21 @@ fn property_string_with_escaped_quotation_mark_both()
 
 #[test]
 unconstrained
-fn empty_object_with_trailing_null_with_space()
+fn empty_object_with_trailing_null()
+{
+    assert(JSON::parse("{}\0").is_empty() == true);
+}
+
+#[test]
+unconstrained
+fn empty_object_with_trailing_null_and_space()
 {
     assert(JSON::parse("{} \0").is_empty() == true);
 }
 
 #[test]
 unconstrained
-fn empty_object_with_trailing_null_with_spaces()
+fn empty_object_with_trailing_null_and_spaces()
 {
     assert(JSON::parse("{}   \0").is_empty() == true);
 }
