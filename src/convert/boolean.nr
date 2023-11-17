@@ -101,3 +101,31 @@ fn convert_propery_literal_false()
 {
     assert(JSON::parse("{'a':false}").get_bool("a").unwrap() == false);
 }
+
+#[test]
+unconstrained
+fn convert_string_empty_bool()
+{
+    assert(JSON::parse("''").get_bool("").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn convert_string_null()
+{
+    assert(JSON::parse("'null'").get_bool("").unwrap() == false);
+}
+
+#[test]
+unconstrained
+fn convert_string_true()
+{
+    assert(JSON::parse("'true'").get_bool("").unwrap() == true);
+}
+
+#[test]
+unconstrained
+fn convert_string_false()
+{
+    assert(JSON::parse("'false'").get_bool("").unwrap() == false);
+}

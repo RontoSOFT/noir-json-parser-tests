@@ -192,20 +192,6 @@ fn convert_property_field_plus_three_zero()
 
 #[test]
 unconstrained
-fn property_string_three_zero()
-{
-    assert(JSON::parse("{'a':'30'}").get_field("a").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_string_minus_three_zero()
-{
-    assert(JSON::parse("{'a':'-30'}").get_field("a").is_none() == true);
-}
-
-#[test]
-unconstrained
 fn property_string_thirty()
 {
     assert(JSON::parse("{'a':'thirty'}").get_field("a").is_none() == true);
@@ -279,4 +265,32 @@ unconstrained
 fn convert_property_field_three_space_comma_zero()
 {
     assert(JSON::parse("{'a':3 ,0}").get_field("a").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn convert_string_empty_field()
+{
+    assert(JSON::parse("''").get_field("").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn convert_string_one_two_three()
+{
+    assert(JSON::parse("'123'").get_field("").unwrap() == 123);
+}
+
+#[test]
+unconstrained
+fn convert_string_minus_one_two_three()
+{
+    assert(JSON::parse("'-123'").get_field("").unwrap() == -123);
+}
+
+#[test]
+unconstrained
+fn convert_string_one_two_three_e_one()
+{
+    assert(JSON::parse("'123e1'").get_field("").unwrap() == 1230);
 }

@@ -244,3 +244,41 @@ fn convert_property_array_multiple_objects_multiple_properties()
     assert(result[0].eq_array(object_one) == true);
     assert(result[1].eq_array(object_two) == true);
 }
+
+#[test]
+unconstrained
+fn convert_string_empty_array()
+{
+    assert(JSON::parse("''").get_array("").len() == 0);
+}
+
+#[test]
+unconstrained
+fn convert_string_array_emptyone_two_three()
+{
+    assert(JSON::parse("'[]'").get_array("").len() == 1);
+}
+
+#[test]
+unconstrained
+fn convert_string_array_one_two_three()
+{
+    let result : [ [u8] ] = JSON::parse("'[1,2,3]'").get_array("");
+
+    assert(result.len() == 3);
+    assert(result[0].eq_string("1") == true);
+    assert(result[1].eq_string("2") == true);
+    assert(result[2].eq_string("3") == true);
+}
+
+// #[test]
+// unconstrained
+// fn convert_string_array_true_two_string_three()
+// {
+//     let result : [ [u8] ] = JSON::parse("'[true,2,\\'3\\']'").get_array("");
+
+//     assert(result.len() == 3);
+//     assert(result[0].eq_string("true") == true);
+//     assert(result[1].eq_string("2") == true);
+//     assert(result[2].eq_string("'3'") == true);
+// }
