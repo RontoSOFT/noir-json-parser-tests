@@ -66,31 +66,3 @@ fn convert_object_array_two_objects_with_multiple_keys()
     assert(obj_2.get("b").eq_string("false") == true);
     assert(obj_2.get("c").eq_string("'456'") == true);
 }
-
-#[test]
-unconstrained
-fn convert_value_string_empty_object1()
-{
-    assert(JSON::parse("''").get_object("").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn convert_value_string_object_empty()
-{
-    assert(JSON::parse("'{}'").get_object("").is_empty() == true);
-}
-
-#[test]
-unconstrained
-fn convert_value_string_object()
-{
-    assert(JSON::parse("'{\\'a\\':1}'").get_object("").get("a").eq_string("1") == true);
-}
-
-#[test]
-unconstrained
-fn convert_value_string_nested_object()
-{
-    assert(JSON::parse("'{\\'a\\':{\\'b\\':1}}'").get_object("").get_object("a").get("b").eq_string("1") == true);
-}

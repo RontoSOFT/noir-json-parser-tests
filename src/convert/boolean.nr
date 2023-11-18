@@ -4,81 +4,63 @@ use dep::rontosoft::JSON;
 unconstrained
 fn convert_number_as_bool()
 {
-    let bytes : [u8] = "123".as_bytes().as_slice();
-
-    let result = bytes.as_bool();
-    assert(result.is_none() == true);
+    assert("123".as_bool().is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_string_as_bool()
 {
-    let bytes : [u8] = "'string'".as_bytes().as_slice();
-
-    let result = bytes.as_bool();
-    assert(result.is_none() == true);
+    assert("'string'".as_bool().is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_array_as_bool()
 {
-    let bytes : [u8] = "[]".as_bytes().as_slice();
-
-    let result = bytes.as_bool();
-    assert(result.is_none() == true);
+    assert("[]".as_bool().is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_object_as_bool()
 {
-    let bytes : [u8] = "{}".as_bytes().as_slice();
-
-    let result = bytes.as_bool();
-    assert(result.is_none() == true);
+    assert("{}".as_bool().is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_space_as_bool()
 {
-    let bytes : [u8] = " ".as_bytes().as_slice();
-
-    let result = bytes.as_bool();
-    assert(result.is_none() == true);
+    assert(" ".as_bool().is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_empty_as_bool()
 {
-    let bytes : [u8] = "".as_bytes().as_slice();
-
-    let result = bytes.as_bool();
-    assert(result.is_none() == true);
+    assert("".as_bool().is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_value_literal_true()
 {
-    assert(JSON::parse("true").get_bool("").unwrap() == true);
+    assert("true".as_bool().unwrap() == true);
 }
 
 #[test]
 unconstrained
 fn convert_value_literal_null()
 {
-    assert(JSON::parse("null").get_bool("").unwrap() == false);
+    assert("null".as_bool().unwrap() == false);
 }
 
 #[test]
 unconstrained
 fn convert_value_literal_false()
 {
-    assert(JSON::parse("false").get_bool("").unwrap() == false);
+    assert("false".as_bool().unwrap() == false);
 }
 
 #[test]
@@ -106,26 +88,26 @@ fn convert_propery_literal_false()
 unconstrained
 fn convert_string_empty_bool()
 {
-    assert(JSON::parse("''").get_bool("").is_none() == true);
+    assert("''".as_bool().is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_string_null()
 {
-    assert(JSON::parse("'null'").get_bool("").unwrap() == false);
+    assert("'null'".as_bool().unwrap() == false);
 }
 
 #[test]
 unconstrained
 fn convert_string_true()
 {
-    assert(JSON::parse("'true'").get_bool("").unwrap() == true);
+    assert("'true'".as_bool().unwrap() == true);
 }
 
 #[test]
 unconstrained
 fn convert_string_false()
 {
-    assert(JSON::parse("'false'").get_bool("").unwrap() == false);
+    assert("'false'".as_bool().unwrap() == false);
 }

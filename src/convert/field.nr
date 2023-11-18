@@ -5,84 +5,58 @@ global BYTE_NULL : u8 = 0x00;
 
 #[test]
 unconstrained
-fn convert_value_field_array()
+fn convert_value_number_field()
 {
-    let bytes : [u8] = [0x34, 0x32, 0x39, 0x33, 0x38, 0x36, 0x37, 0x35, 0x31, 0x30];
-    let result = bytes.as_field();
-
-    assert(result.unwrap() == 4293867510);
+    assert("123".as_field().unwrap() == 123);
 }
 
 #[test]
 unconstrained
-fn convert_value_field_minus_array()
+fn convert_value_minus_number_field()
 {
-    let bytes : [u8] = [MINUS, 0x34, 0x32, 0x39, 0x33, 0x38, 0x36, 0x37, 0x35, 0x31, 0x30];
-    let result = bytes.as_field();
-
-    assert(result.unwrap() == -4293867510);
+    assert("-123".as_field().unwrap() == -123);
 }
 
 #[test]
 unconstrained
-fn convert_value_field_array_with_nulls()
+fn convert_value_number_exponent_one_field()
 {
-    let bytes : [u8] = [0x34, 0x32, 0x39, 0x33, 0x38];
-    let result = bytes.as_field();
+    assert("123e1".as_field().unwrap() == 1230);
+}
 
-    assert(result.unwrap() == 42938);
+#[test]
+unconstrained
+fn convert_value_number_exponent_minus_one_field()
+{
+    assert("1230e-1".as_field().unwrap() == 123);
 }
 
 #[test]
 unconstrained
 fn convert_value_field_array_value_overflows()
 {
-    // max (Field) + 1
-    let bytes : [u8] = [0x32,0x31,0x38,0x38,0x38,0x32,0x34,0x32,0x38,0x37,0x31,0x38,0x33,0x39,0x32,0x37,0x35,0x32,0x32,0x32,0x32,0x34,0x36,0x34,0x30,0x35,0x37,0x34,0x35,0x32,0x35,0x37,0x32,0x37,0x35,0x30,0x38,0x38,0x35,0x34,0x38,0x33,0x36,0x34,0x34,0x30,0x30,0x34,0x31,0x36,0x30,0x33,0x34,0x33,0x34,0x33,0x36,0x39,0x38,0x32,0x30,0x34,0x31,0x38,0x36,0x35,0x37,0x35,0x38,0x30,0x38,0x34,0x39,0x35,0x36,0x31,0x38];
-    let result = bytes.as_field();
-
-    assert(result.unwrap() == 1);
+    assert("21888242871839275222246405745257275088548364400416034343698204186575808495618".as_field().unwrap() == 1);
 }
 
 #[test]
 unconstrained
 fn convert_value_field_array_with_leading_null()
 {
-    let bytes : [u8] = [BYTE_NULL, 0x34, 0x39, 0x36];
-
-    assert(bytes.as_field().is_none() == true);
+    assert("\0396".as_field().is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_value_field_array_with_trailing_null()
 {
-    let bytes : [u8] = [0x34, 0x39, 0x36, BYTE_NULL];
-
-    assert(bytes.as_field().is_none() == true);
+    assert("396\0".as_field().is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_value_field_array_with_mixed_null()
 {
-    let bytes : [u8] = [0x34, 0x32, BYTE_NULL, 0x34, 0x39, 0x36];
-
-    assert(bytes.as_field().is_none() == true);
-}
-
-#[test]
-unconstrained
-fn convert_value_field_three_zero()
-{
-    assert(JSON::parse("30").get_field("").unwrap() == 30);
-}
-
-#[test]
-unconstrained
-fn convert_value_field_minus_three_zero()
-{
-    assert(JSON::parse("-30").get_field("").unwrap() == -30);
+    assert("12\034".as_field().is_none() == true);
 }
 
 #[test]
@@ -271,26 +245,26 @@ fn convert_property_field_three_space_comma_zero()
 unconstrained
 fn convert_string_empty_field()
 {
-    assert(JSON::parse("''").get_field("").is_none() == true);
+    assert("''".as_field().is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_string_one_two_three()
 {
-    assert(JSON::parse("'123'").get_field("").unwrap() == 123);
+    assert("'123'".as_field().unwrap() == 123);
 }
 
 #[test]
 unconstrained
 fn convert_string_minus_one_two_three()
 {
-    assert(JSON::parse("'-123'").get_field("").unwrap() == -123);
+    assert("'-123'".as_field().unwrap() == -123);
 }
 
 #[test]
 unconstrained
 fn convert_string_one_two_three_e_one()
 {
-    assert(JSON::parse("'123e1'").get_field("").unwrap() == 1230);
+    assert("'123e1'".as_field().unwrap() == 1230);
 }
