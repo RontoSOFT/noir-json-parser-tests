@@ -6,7 +6,7 @@ fn convert_value_array_from_empty_bytes()
 {
     let bytes : [u8] = "[ ]".as_bytes().as_slice();
 
-    let result = bytes.as_array();
+    let result = bytes.as_list();
 
     assert(result.len() == 1);
     assert(result[0].eq_string(" ") == true);
@@ -18,7 +18,7 @@ fn convert_bytes_array_from_literal()
 {
     let bytes : [u8] = "true".as_bytes().as_slice();
 
-    let result = bytes.as_array();
+    let result = bytes.as_list();
     assert(result.len() == 0);
 }
 
@@ -28,7 +28,7 @@ fn convert_bytes_array_from_number()
 {
     let bytes : [u8] = "123".as_bytes().as_slice();
 
-    let result = bytes.as_array();
+    let result = bytes.as_list();
     assert(result.len() == 0);
 }
 
@@ -38,7 +38,7 @@ fn convert_bytes_array_from_string()
 {
     let bytes : [u8] = "'string'".as_bytes().as_slice();
 
-    let result = bytes.as_array();
+    let result = bytes.as_list();
     assert(result.len() == 0);
 }
 
@@ -48,7 +48,7 @@ fn convert_bytes_array_from_object()
 {
     let bytes : [u8] = "{}".as_bytes().as_slice();
 
-    let result = bytes.as_array();
+    let result = bytes.as_list();
     assert(result.len() == 0);
 }
 
@@ -58,7 +58,7 @@ fn convert_bytes_array_malformed_left()
 {
     let bytes : [u8] = " []".as_bytes().as_slice();
 
-    let result = bytes.as_array();
+    let result = bytes.as_list();
     assert(result.len() == 0);
 }
 
@@ -68,7 +68,7 @@ fn convert_bytes_array_malformed_right()
 {
     let bytes : [u8] = "[] ".as_bytes().as_slice();
 
-    let result = bytes.as_array();
+    let result = bytes.as_list();
     assert(result.len() == 0);
 }
 
@@ -78,7 +78,7 @@ fn convert_bytes_array_malformed_both()
 {
     let bytes : [u8] = " [] ".as_bytes().as_slice();
 
-    let result = bytes.as_array();
+    let result = bytes.as_list();
     assert(result.len() == 0);
 }
 
@@ -86,7 +86,7 @@ fn convert_bytes_array_malformed_both()
 unconstrained
 fn convert_value_array_empty()
 {
-    let result : [ [u8] ] = JSON::parse("[]").doc[0].value.as_array();
+    let result : [ [u8] ] = JSON::parse("[]").doc[0].value.as_list();
 
     assert(result.len() == 1);
     assert(result[0].eq_string("") == true);
@@ -96,7 +96,7 @@ fn convert_value_array_empty()
 unconstrained
 fn convert_value_array_single()
 {
-    let result : [ [u8] ] = JSON::parse("[1]").doc[0].value.as_array();
+    let result : [ [u8] ] = JSON::parse("[1]").doc[0].value.as_list();
 
     assert(result.len() == 1);
     assert(result[0].eq_string("1") == true);
@@ -106,7 +106,7 @@ fn convert_value_array_single()
 unconstrained
 fn convert_value_array_multiple_numbers()
 {
-    let result : [ [u8] ] = JSON::parse("[1,2,3]").doc[0].value.as_array();
+    let result : [ [u8] ] = JSON::parse("[1,2,3]").doc[0].value.as_list();
 
     assert(result.len() == 3);
     assert(result[0].eq_string("1") == true);
@@ -118,19 +118,19 @@ fn convert_value_array_multiple_numbers()
 unconstrained
 fn convert_value_array_multiple_numbers_nested()
 {
-    let result : [ [u8] ] = JSON::parse("[[1],[2],[3]]").doc[0].value.as_array();
+    let result : [ [u8] ] = JSON::parse("[[1],[2],[3]]").doc[0].value.as_list();
 
     assert(result.len() == 3);
 
-    let mut sub_array : [ [u8] ] = result[0].as_array();
+    let mut sub_array : [ [u8] ] = result[0].as_list();
     assert(sub_array.len() == 1);
     assert(sub_array[0].eq_string("1") == true);
 
-    sub_array = result[1].as_array();
+    sub_array = result[1].as_list();
     assert(sub_array.len() == 1);
     assert(sub_array[0].eq_string("2") == true);
 
-    sub_array = result[2].as_array();
+    sub_array = result[2].as_list();
     assert(sub_array.len() == 1);
     assert(sub_array[0].eq_string("3") == true);
 }
@@ -139,21 +139,21 @@ fn convert_value_array_multiple_numbers_nested()
 unconstrained
 fn convert_value_array_multiple_array_numbers_nested()
 {
-    let result : [ [u8] ] = JSON::parse("[[1,8],[2,7],[3,6]]").doc[0].value.as_array();
+    let result : [ [u8] ] = JSON::parse("[[1,8],[2,7],[3,6]]").doc[0].value.as_list();
 
     assert(result.len() == 3);
 
-    let mut sub_array : [ [u8] ] = result[0].as_array();
+    let mut sub_array : [ [u8] ] = result[0].as_list();
     assert(sub_array.len() == 2);
     assert(sub_array[0].eq_string("1") == true);
     assert(sub_array[1].eq_string("8") == true);
 
-    sub_array = result[1].as_array();
+    sub_array = result[1].as_list();
     assert(sub_array.len() == 2);
     assert(sub_array[0].eq_string("2") == true);
     assert(sub_array[1].eq_string("7") == true);
 
-    sub_array = result[2].as_array();
+    sub_array = result[2].as_list();
     assert(sub_array.len() == 2);
     assert(sub_array[0].eq_string("3") == true);
     assert(sub_array[1].eq_string("6") == true);
@@ -163,7 +163,7 @@ fn convert_value_array_multiple_array_numbers_nested()
 unconstrained
 fn convert_value_array_multiple_mixed_types()
 {
-    let result : [ [u8] ] = JSON::parse("[true,2,'3']").doc[0].value.as_array();
+    let result : [ [u8] ] = JSON::parse("[true,2,'3']").doc[0].value.as_list();
 
     assert(result.len() == 3);
     assert(result[0].eq_string("true") == true);
