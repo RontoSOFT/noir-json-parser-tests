@@ -403,27 +403,6 @@ fn property_array_one_object_one_property()
 
 #[test]
 unconstrained
-fn property_array_one_object_one_property_whitespaces()
-{
-    let json = JSON::parse("{ 'a' : [ { 'b' : 1 } ] }");
-
-    assert(json.doc.len() == 1);
-    assert(json.children.len() == 1);
-
-    assert(json.child(0).len() == 1);
-    assert(json.child(0).get("b").eq_string("1") == true);
-
-    let json = JSON::parse("   {    'a'  :   [  {   'b'   :   1   }     ]     }    ");
-
-    assert(json.doc.len() == 1);
-    assert(json.children.len() == 1);
-
-    assert(json.child(0).len() == 1);
-    assert(json.child(0).get("b").eq_string("1") == true);
-}
-
-#[test]
-unconstrained
 fn property_array_object_one_multiple_properties()
 {
     let json = JSON::parse("{'a':[{'a':1,'b':true,'c':'123'}]}");

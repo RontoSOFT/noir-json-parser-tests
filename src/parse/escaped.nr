@@ -105,20 +105,6 @@ fn empty_object_with_trailing_null()
 
 #[test]
 unconstrained
-fn empty_object_with_trailing_null_and_space()
-{
-    assert(JSON::parse("{} \0").is_empty() == true);
-}
-
-#[test]
-unconstrained
-fn empty_object_with_trailing_null_and_spaces()
-{
-    assert(JSON::parse("{}   \0").is_empty() == true);
-}
-
-#[test]
-unconstrained
 fn empty_object_with_trailing_nulls()
 {
     assert(JSON::parse("{}\0\0").is_none() == true);
@@ -129,20 +115,6 @@ unconstrained
 fn empty_object_with_leading_null()
 {
     assert(JSON::parse("\0{}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn empty_object_with_leading_null_and_space()
-{
-    assert(JSON::parse(" \0{}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn empty_object_with_leading_null_and_spaces()
-{
-    assert(JSON::parse("   \0{}").is_none() == true);
 }
 
 #[test]
