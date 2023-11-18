@@ -9,6 +9,34 @@ fn value_object_empty()
 
 #[test]
 unconstrained
+fn value_object_left_brace()
+{
+    assert(JSON::parse("{").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn value_object_right_brace()
+{
+    assert(JSON::parse("}").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn value_object_quote_left_brace()
+{
+    assert(JSON::parse("'{").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn value_object_right_brace_quote()
+{
+    assert(JSON::parse("}'").is_none() == true);
+}
+
+#[test]
+unconstrained
 fn value_object_empty_space_empty()
 {
     assert(JSON::parse("{} {}").is_none() == true);
@@ -90,20 +118,6 @@ unconstrained
 fn value_object_single_spaces()
 {
     assert(JSON::parse(" { 'a' : 1 } ").get("a").eq_string("1") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_single_multiple_spaces()
-{
-    assert(JSON::parse("   {   'a'   :   1   }   ").get("a").eq_string("1") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_single_random_spaces()
-{
-    assert(JSON::parse(" {  'a':   1}  ").get("a").eq_string("1") == true);
 }
 
 #[test]

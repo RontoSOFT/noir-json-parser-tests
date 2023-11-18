@@ -11,6 +11,48 @@ fn property_array_empty()
 
 #[test]
 unconstrained
+fn property_array_left_bracket()
+{
+    assert(JSON::parse("{'a':[}").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_array_right_bracket()
+{
+    assert(JSON::parse("{'a':]}").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_array_left_bracket_and_number()
+{
+    assert(JSON::parse("{'a':[12}").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_array_right_bracket_and_number()
+{
+    assert(JSON::parse("{'a':12]}").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_array_left_bracket_and_number_quote()
+{
+    assert(JSON::parse("{'a':[12'}").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_array_quote_right_bracket_and_number()
+{
+    assert(JSON::parse("{'a':'12]}").is_none() == true);
+}
+
+#[test]
+unconstrained
 fn property_array_empty_values()
 {
     assert(JSON::parse("{'a':[,]}").is_none() == true);

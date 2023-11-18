@@ -14,6 +14,34 @@ fn property_object_empty()
 
 #[test]
 unconstrained
+fn property_object_left_brace()
+{
+    assert(JSON::parse("{'a':{}").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_object_right_brace()
+{
+    assert(JSON::parse("{'a':}}").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_object_quote_left_brace()
+{
+    assert(JSON::parse("{'a':'{}").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_object_right_brace_quote()
+{
+    assert(JSON::parse("{'a':}'}").is_none() == true);
+}
+
+#[test]
+unconstrained
 fn property_object_empty_colon()
 {
     assert(JSON::parse("{'a':{:}}").is_none() == true);
@@ -84,8 +112,6 @@ fn property_object_multi_character_key_with_value()
 
     assert(json.child(0).get("b").eq_string("1") == true);
 }
-
-// whitespace tests skipped
 
 // key with control character tests skipped
 
