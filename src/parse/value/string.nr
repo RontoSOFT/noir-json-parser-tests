@@ -10,6 +10,22 @@ fn value_string_empty()
 
 #[test]
 unconstrained
+fn value_string_one_quote()
+{
+    let json = "'";
+    assert(JSON::parse(json).is_none() == true);
+}
+
+#[test]
+unconstrained
+fn value_string_one_quote_and_characters()
+{
+    let json = "'ab";
+    assert(JSON::parse(json).is_none() == true);
+}
+
+#[test]
+unconstrained
 fn value_string_number_zero()
 {
     let json = "'0'";

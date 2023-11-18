@@ -10,6 +10,22 @@ fn property_string_empty()
 
 #[test]
 unconstrained
+fn property_string_one_quote()
+{
+    let value = "'";
+    assert(JSON::parse("{'a':'}").is_none() == true);
+}
+
+#[test]
+unconstrained
+fn property_string_one_quote_and_characters()
+{
+    let value = "'ab";
+    assert(JSON::parse("{'a':'ab}").is_none() == true);
+}
+
+#[test]
+unconstrained
 fn property_string_number_zero()
 {
     let value = "'0'";
