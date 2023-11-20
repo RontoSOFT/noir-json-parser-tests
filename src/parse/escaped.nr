@@ -1,35 +1,30 @@
 use dep::rontosoft::JSON;
 
+use crate::utils::can_parse_as_property;
+use crate::utils::can_parse_as_value;
+
 #[test]
-unconstrained
 fn value_string_with_escaped_quotation_mark_left()
 {
-    let json = "'\\'string'";
-    assert(JSON::parse(json).doc[0].value.eq_string(json) == true);
+    assert(can_parse_as_value("'\\'string'") == true);
 }
 
 #[test]
-unconstrained
 fn value_string_with_escaped_quotation_mark_right()
 {
-    let json = "'string\\''";
-    assert(JSON::parse(json).doc[0].value.eq_string(json) == true);
+    assert(can_parse_as_value("'string\\''") == true);
 }
 
 #[test]
-unconstrained
 fn value_string_with_escaped_quotation_mark_middle()
 {
-    let json = "'str\\'ing'";
-    assert(JSON::parse(json).doc[0].value.eq_string(json) == true);
+    assert(can_parse_as_value("'str\\'ing'") == true);
 }
 
 #[test]
-unconstrained
 fn value_string_with_escaped_quotation_mark_both()
 {
-    let json = "'\\'string\\''";
-    assert(JSON::parse(json).doc[0].value.eq_string(json) == true);
+    assert(can_parse_as_value("'\\'string\\''") == true);
 }
 
 #[test]
@@ -65,35 +60,27 @@ fn property_key_with_escaped_quotation_mark_both()
 }
 
 #[test]
-unconstrained
 fn property_string_with_escaped_quotation_mark_left()
 {
-    let value = "'\\'string'";
-    assert(JSON::parse("{'a':'\\'string'}").get("a").eq_string(value) == true);
+    assert(can_parse_as_property("'\\'string'") == true);
 }
 
 #[test]
-unconstrained
 fn property_string_with_escaped_quotation_mark_right()
 {
-    let value = "'string\\''";
-    assert(JSON::parse("{'a':'string\\''}").get("a").eq_string(value) == true);
+    assert(can_parse_as_property("'string\\''") == true);
 }
 
 #[test]
-unconstrained
 fn property_string_with_escaped_quotation_mark_middle()
 {
-    let value = "'str\\'ing'";
-    assert(JSON::parse("{'a':'str\\'ing'}").get("a").eq_string(value) == true);
+    assert(can_parse_as_property("'str\\'ing'") == true);
 }
 
 #[test]
-unconstrained
 fn property_string_with_escaped_quotation_mark_both()
 {
-    let value = "'\\'string\\''";
-    assert(JSON::parse("{'a':'\\'string\\''}").get("a").eq_string(value) == true);
+    assert(can_parse_as_property("'\\'string\\''") == true);
 }
 
 #[test]
@@ -104,22 +91,19 @@ fn empty_object_with_trailing_null()
 }
 
 #[test]
-unconstrained
 fn empty_object_with_trailing_nulls()
 {
-    assert(JSON::parse("{}\0\0").is_none() == true);
+    assert(can_parse_as_property("{}\0\0") == false);
 }
 
 #[test]
-unconstrained
 fn empty_object_with_leading_null()
 {
-    assert(JSON::parse("\0{}").is_none() == true);
+    assert(can_parse_as_property("\0{}") == false);
 }
 
 #[test]
-unconstrained
 fn empty_object_with_null_misplaced()
 {
-    assert(JSON::parse("{\0}").is_none() == true);
+    assert(can_parse_as_property("{\0}") == false);
 }

@@ -1,38 +1,37 @@
 use dep::rontosoft::JSON;
 
+use crate::utils::can_parse_as_property;
+use crate::utils::can_parse_as_value;
+
 #[test]
-unconstrained
 fn whitespace_space()
 {
-    assert(JSON::parse(" ").is_none() == true);
+    assert(can_parse_as_property(" ") == false);
 }
 
 #[test]
-unconstrained
 fn whitespace_tab()
 {
-    assert(JSON::parse("\t").is_none() == true);
+    assert(can_parse_as_property("\t") == false);
 }
 
 #[test]
-unconstrained
 fn whitespace_newline()
 {
-    assert(JSON::parse("\n").is_none() == true);
+    assert(can_parse_as_property("\n") == false);
 }
 
 #[test]
-unconstrained
 fn whitespace_carriage_return()
 {
-    assert(JSON::parse("\r").is_none() == true);
+    assert(can_parse_as_property("\r") == false);
 }
 
 #[test]
 unconstrained
 fn whitespace_byte_null()
 {
-    assert(JSON::parse("\0").is_none() == true);
+    assert(can_parse_as_property("\0") == false);
 }
 
 #[test]
@@ -53,14 +52,14 @@ fn whitespace_empty_object_with_trailing_null_and_spaces()
 unconstrained
 fn whitespace_empty_object_with_leading_null_and_space()
 {
-    assert(JSON::parse(" \0{}").is_none() == true);
+    assert(can_parse_as_property(" \0{}") == false);
 }
 
 #[test]
 unconstrained
 fn whitespace_empty_object_with_leading_null_and_spaces()
 {
-    assert(JSON::parse("   \0{}").is_none() == true);
+    assert(can_parse_as_property("   \0{}") == false);
 }
 
 #[test]

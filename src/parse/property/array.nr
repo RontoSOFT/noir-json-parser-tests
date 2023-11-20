@@ -1,154 +1,289 @@
 use dep::rontosoft::JSON;
 use dep::rontosoft::Property;
 
+use crate::utils::can_parse_as_property;
+
 #[test]
-unconstrained
 fn property_array_empty()
 {
-    let value = "[]";
-    assert(JSON::parse("{'a':[]}").get("a").eq_string(value) == true);
+    assert(can_parse_as_property("[]") == true);
 }
 
 #[test]
-unconstrained
 fn property_array_left_bracket()
 {
-    assert(JSON::parse("{'a':[}").is_none() == true);
+    assert(can_parse_as_property("[") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_right_bracket()
 {
-    assert(JSON::parse("{'a':]}").is_none() == true);
+    assert(can_parse_as_property("]") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_left_bracket_and_number()
 {
-    assert(JSON::parse("{'a':[12}").is_none() == true);
+    assert(can_parse_as_property("[12") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_right_bracket_and_number()
 {
-    assert(JSON::parse("{'a':12]}").is_none() == true);
+    assert(can_parse_as_property("12]") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_left_bracket_and_number_quote()
 {
-    assert(JSON::parse("{'a':[12'}").is_none() == true);
+    assert(can_parse_as_property("[12'") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_quote_right_bracket_and_number()
 {
-    assert(JSON::parse("{'a':'12]}").is_none() == true);
+    assert(can_parse_as_property("'12]") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_empty_values()
 {
-    assert(JSON::parse("{'a':[,]}").is_none() == true);
+    assert(can_parse_as_property("[,]") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_faulty_colon()
 {
-    assert(JSON::parse("{'a':[:]}").is_none() == true);
+    assert(can_parse_as_property("[:]") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_left_brace_outer()
 {
-    assert(JSON::parse("{'a':{[]}").is_none() == true);
+    assert(can_parse_as_property("{[]") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_right_brace_outer()
 {
-    assert(JSON::parse("{'a':[]}}").is_none() == true);
+    assert(can_parse_as_property("[]}") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_left_brace_inner()
 {
-    assert(JSON::parse("{'a':[{]}").is_none() == true);
+    assert(can_parse_as_property("[{]") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_right_brace_inner()
 {
-    assert(JSON::parse("{'a':[}]}").is_none() == true);
+    assert(can_parse_as_property("[}]") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_duplicate_left_bracket()
 {
-    assert(JSON::parse("{'a':[[]}").is_none() == true);
+    assert(can_parse_as_property("[[]") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_duplicate_right_bracket()
 {
-    assert(JSON::parse("{'a':[]]}").is_none() == true);
+    assert(can_parse_as_property("[]]") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_empty_nested_values()
 {
-    assert(JSON::parse("{'a':[[,]]}").is_none() == true);
+    assert(can_parse_as_property("[[,]]") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_empty_nested_missing_missing_value_before()
 {
-    assert(JSON::parse("{'a':[,[]]}").is_none() == true);
+    assert(can_parse_as_property("[,[]]") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_empty_nested_missing_missing_value_after()
 {
-    assert(JSON::parse("{'a':[[],]}").is_none() == true);
+    assert(can_parse_as_property("[[],]") == false);
 }
 
 #[test]
-unconstrained
 fn property_array_empty_nested()
 {
-    let value = "[[]]";
-    assert(JSON::parse("{'a':[[]]}").get("a").eq_string(value) == true);
+    assert(can_parse_as_property("[[]]") == true);
 }
 
 #[test]
-unconstrained
 fn property_array_multiple_empty_nested()
 {
-    let value = "[[],[],[]]";
-    assert(JSON::parse("{'a':[[],[],[]]}").get("a").eq_string(value) == true);
+    assert(can_parse_as_property("[[],[],[]]") == true);
+}
+
+#[test]
+fn property_array_single_number()
+{
+    assert(can_parse_as_property("[1]") == true);
+}
+
+#[test]
+fn property_array_single_number_missing_value()
+{
+    assert(can_parse_as_property("[[1,]") == false);
+}
+
+#[test]
+fn property_array_number_faulty_colon()
+{
+    assert(can_parse_as_property("[1:]") == false);
+}
+
+#[test]
+fn property_array_numbers_multiple()
+{
+    assert(can_parse_as_property("[1,2,3]") == true);
+}
+
+#[test]
+fn property_array_multiple_numbers_missing_value()
+{
+    assert(can_parse_as_property("[[1,2,3,]") == false);
+}
+
+#[test]
+fn property_array_single_number_nested()
+{
+    assert(can_parse_as_property("[[1]]") == true);
+}
+
+#[test]
+fn property_array_numbers_multiple_nested()
+{
+    assert(can_parse_as_property("[[1],[2],[3]]") == true);
+}
+
+#[test]
+fn property_array_multiple_array_numbers_nested()
+{
+    assert(can_parse_as_property("[[1,1],[2,2],[3,3]]") == true);
+}
+
+#[test]
+fn property_array_one_empty_string()
+{
+    assert(can_parse_as_property("['']") == true);
+}
+
+#[test]
+fn property_array_multiple_empty_strings()
+{
+    assert(can_parse_as_property("['','','']") == true);
+}
+
+#[test]
+fn property_array_multiple_strings()
+{
+    assert(can_parse_as_property("['1','2','3']") == true);
+}
+
+#[test]
+fn property_array_multiple_mixed_types()
+{
+    assert(can_parse_as_property("[1,'2',true]") == true);
+}
+
+#[test]
+fn property_array_null_null()
+{
+    assert(can_parse_as_property("[null,null]") == true);
+}
+
+#[test]
+fn property_array_single_number_letter()
+{
+    assert(can_parse_as_property("[1x]") == false);
+}
+
+#[test]
+fn property_array_single_number_literal_letter()
+{
+    assert(can_parse_as_property("[1f]") == false);
+}
+
+#[test]
+fn property_array_single_literal_wrong_trux()
+{
+    assert(can_parse_as_property("[trux]") == false);
+}
+
+#[test]
+fn property_array_single_literal_wrong_truf()
+{
+    assert(can_parse_as_property("[truf]") == false);
+}
+
+#[test]
+fn property_array_single_literal_wrong_nul()
+{
+    assert(can_parse_as_property("[nul]") == false);
+}
+
+#[test]
+fn property_array_single_literal_wrong_random()
+{
+    assert(can_parse_as_property("[lfseu]") == false);
+}
+
+#[test]
+fn property_array_literal_faulty_colon()
+{
+    assert(can_parse_as_property("[true:]") == false);
+}
+
+#[test]
+fn property_array_literal_true_space_true()
+{
+    assert(can_parse_as_property("[true true]") == false);
+}
+
+#[test]
+fn property_array_single_number_whitespace()
+{
+    assert(can_parse_as_property("[1 2]") == false);
+}
+
+#[test]
+fn property_array_string_space_string()
+{
+    assert(can_parse_as_property("['string' 'string']") == false);
+}
+
+#[test]
+fn property_array_array_space_array()
+{
+    assert(can_parse_as_property("[[] []]") == false);
+}
+
+#[test]
+fn property_array_object_space_object()
+{
+    assert(can_parse_as_property("[{} {}]") == false);
+}
+
+#[test]
+fn property_array_mixed_types_missing_value()
+{
+    assert(can_parse_as_property("[1,,'2',true,[],{}]") == false);
 }
 
 #[test]
 unconstrained
 fn property_array_empty_object()
 {
-    let json = JSON::parse("{'a':[{}]}");
+    let json = JSON::parse("[{}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -160,7 +295,7 @@ fn property_array_empty_object()
 unconstrained
 fn property_array_empty_multiple_objects()
 {
-    let json = JSON::parse("{'a':[{},{},{}]}");
+    let json = JSON::parse("[{},{},{}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 3);
@@ -174,7 +309,7 @@ fn property_array_empty_multiple_objects()
 unconstrained
 fn property_array_empty_multiple_objects_nested_arrays()
 {
-    let json = JSON::parse("{'a':[[{}],[{}],[{}]]}");
+    let json = JSON::parse("[[{}],[{}],[{}]]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 3);
@@ -186,194 +321,9 @@ fn property_array_empty_multiple_objects_nested_arrays()
 
 #[test]
 unconstrained
-fn property_array_single_number()
-{
-    let value = "[1]";
-    assert(JSON::parse("{'a':[1]}").get("a").eq_string(value) == true);
-}
-
-#[test]
-unconstrained
-fn property_array_single_number_missing_value()
-{
-    assert(JSON::parse("{'a':[[1,]}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_array_number_faulty_colon()
-{
-    assert(JSON::parse("{'a':[1:]}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_array_numbers_multiple()
-{
-    let value = "[1,2,3]";
-    assert(JSON::parse("{'a':[1,2,3]}").get("a").eq_string(value) == true);
-}
-
-#[test]
-unconstrained
-fn property_array_multiple_numbers_missing_value()
-{
-    assert(JSON::parse("{'a':[[1,2,3,]}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_array_single_number_nested()
-{
-    let value = "[[1]]";
-    assert(JSON::parse("{'a':[[1]]}").get("a").eq_string(value) == true);
-}
-
-#[test]
-unconstrained
-fn property_array_numbers_multiple_nested()
-{
-    let value = "[[1],[2],[3]]";
-    assert(JSON::parse("{'a':[[1],[2],[3]]}").get("a").eq_string(value) == true);
-}
-
-#[test]
-unconstrained
-fn property_array_multiple_array_numbers_nested()
-{
-    let value = "[[1,1],[2,2],[3,3]]";
-    assert(JSON::parse("{'a':[[1,1],[2,2],[3,3]]}").get("a").eq_string(value) == true);
-}
-
-#[test]
-unconstrained
-fn property_array_one_empty_string()
-{
-    let value = "['']";
-    assert(JSON::parse("{'a':['']}").get("a").eq_string(value) == true);
-}
-
-#[test]
-unconstrained
-fn property_array_multiple_empty_strings()
-{
-    let value = "['','','']";
-    assert(JSON::parse("{'a':['','','']}").get("a").eq_string(value) == true);
-}
-
-#[test]
-unconstrained
-fn property_array_multiple_strings()
-{
-    let value = "['1','2','3']";
-    assert(JSON::parse("{'a':['1','2','3']}").get("a").eq_string(value) == true);
-}
-
-#[test]
-unconstrained
-fn property_array_multiple_mixed_types()
-{
-    let value = "[1,'2',true]";
-    assert(JSON::parse("{'a':[1,'2',true]}").get("a").eq_string(value) == true);
-}
-
-#[test]
-unconstrained
-fn property_array_null_null()
-{
-    let value = "[null,null]";
-    assert(JSON::parse("{'a':[null,null]}").get("a").eq_string(value) == true);
-}
-
-#[test]
-unconstrained
-fn property_array_single_number_letter()
-{
-    assert(JSON::parse("{'a':[1x]}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_array_single_number_literal_letter()
-{
-    assert(JSON::parse("{'a':[1f]}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_array_single_literal_wrong_trux()
-{
-    assert(JSON::parse("{'a':[trux]}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_array_single_literal_wrong_truf()
-{
-    assert(JSON::parse("{'a':[truf]}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_array_single_literal_wrong_nul()
-{
-    assert(JSON::parse("{'a':[nul]}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_array_single_literal_wrong_random()
-{
-    assert(JSON::parse("{'a':[lfseu]}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_array_literal_faulty_colon()
-{
-    assert(JSON::parse("{'a':[true:]}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_array_literal_true_space_true()
-{
-    assert(JSON::parse("{'a':[true true]}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_array_single_number_whitespace()
-{
-    assert(JSON::parse("{'a':[1 2]}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_array_string_space_string()
-{
-    assert(JSON::parse("{'a':['string' 'string']}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_array_array_space_array()
-{
-    assert(JSON::parse("{'a':[[] []]}").is_none() == true);
-}
-
-#[test]
-unconstrained
-fn property_array_object_space_object()
-{
-    assert(JSON::parse("{'a':[{} {}]}").is_none() == true);
-}
-
-#[test]
-unconstrained
 fn property_array_mixed_types_null_object_array()
 {
-    let json = JSON::parse("{'a':[1,null,'2',true,[],{}]}");
+    let json = JSON::parse("[1,null,'2',true,[],{}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -383,16 +333,9 @@ fn property_array_mixed_types_null_object_array()
 
 #[test]
 unconstrained
-fn property_array_mixed_types_missing_value()
-{
-    assert(JSON::parse("{'a':[1,,'2',true,[],{}]}").is_none() == true);
-}
-
-#[test]
-unconstrained
 fn property_array_one_object_one_property()
 {
-    let json = JSON::parse("{'a':[{'b':1}]}");
+    let json = JSON::parse("[{'b':1}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -405,7 +348,7 @@ fn property_array_one_object_one_property()
 unconstrained
 fn property_array_object_one_multiple_properties()
 {
-    let json = JSON::parse("{'a':[{'a':1,'b':true,'c':'123'}]}");
+    let json = JSON::parse("[{'a':1,'b':true,'c':'123'}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -420,7 +363,7 @@ fn property_array_object_one_multiple_properties()
 unconstrained
 fn property_array_multiple_objects_multiple_properties()
 {
-    let json = JSON::parse("{'a':[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]}");
+    let json = JSON::parse("[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -440,7 +383,7 @@ fn property_array_multiple_objects_multiple_properties()
 unconstrained
 fn property_array_one_object_one_property_array_one_value()
 {
-    let json = JSON::parse("{'a':[{'a':[1]}]}");
+    let json = JSON::parse("[{'a':[1]}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -453,7 +396,7 @@ fn property_array_one_object_one_property_array_one_value()
 unconstrained
 fn property_array_multiple_objects_one_property_array_one_value()
 {
-    let json = JSON::parse("{'a':[{'a':[1]},{'b':[2]}]}");
+    let json = JSON::parse("[{'a':[1]},{'b':[2]}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -469,7 +412,7 @@ fn property_array_multiple_objects_one_property_array_one_value()
 unconstrained
 fn property_array_one_object_one_property_array_multiple_values()
 {
-    let json = JSON::parse("{'a':[{'abc':[1,2,3]}]}");
+    let json = JSON::parse("[{'abc':[1,2,3]}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -482,7 +425,7 @@ fn property_array_one_object_one_property_array_multiple_values()
 unconstrained
 fn property_array_multiple_objects_one_property_array_multiple_values()
 {
-    let json = JSON::parse("{'a':[{'abc':[1,2,3]},{'def':[4,5,6]}]}");
+    let json = JSON::parse("[{'abc':[1,2,3]},{'def':[4,5,6]}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -498,7 +441,7 @@ fn property_array_multiple_objects_one_property_array_multiple_values()
 unconstrained
 fn property_array_one_object_one_property_with_array_single_value()
 {
-    let json = JSON::parse("{'a':[{'a':1,'b':true,'c':[1]}]}");
+    let json = JSON::parse("[{'a':1,'b':true,'c':[1]}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -513,7 +456,7 @@ fn property_array_one_object_one_property_with_array_single_value()
 unconstrained
 fn property_array_multiple_objects_one_property_with_array_single_value()
 {
-    let json = JSON::parse("{'a':[{'a':1,'b':true,'c':[1]},{'a':2,'b':false,'c':[2]}]}");
+    let json = JSON::parse("[{'a':1,'b':true,'c':[1]},{'a':2,'b':false,'c':[2]}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -533,7 +476,7 @@ fn property_array_multiple_objects_one_property_with_array_single_value()
 unconstrained
 fn property_array_one_object_one_property_with_array_multiple_values()
 {
-    let json = JSON::parse("{'a':[{'a':1,'b':true,'abc':[1,2,3]}]}");
+    let json = JSON::parse("[{'a':1,'b':true,'abc':[1,2,3]}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -548,7 +491,7 @@ fn property_array_one_object_one_property_with_array_multiple_values()
 unconstrained
 fn property_array_multiple_objects_one_property_with_array_multiple_values()
 {
-    let json = JSON::parse("{'a':[{'a':1,'b':true,'abc':[1,2,3]},{'x':2,'y':false,'def':[4,5,6]}]}");
+    let json = JSON::parse("[{'a':1,'b':true,'abc':[1,2,3]},{'x':2,'y':false,'def':[4,5,6]}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);

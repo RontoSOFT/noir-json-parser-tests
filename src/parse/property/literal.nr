@@ -1,116 +1,97 @@
-use dep::rontosoft::JSON;
+use crate::utils::can_parse_as_property;
 
 #[test]
-unconstrained
 fn property_literal_null()
 {
-    let value = "null";
-    assert(JSON::parse("{'a':null}").get("a").eq_string(value) == true);
+    assert(can_parse_as_property("null") == true);
 }
 
 #[test]
-unconstrained
 fn property_literal_true()
 {
-    let value = "true";
-    assert(JSON::parse("{'a':true}").get("a").eq_string(value) == true);
+    assert(can_parse_as_property("true") == true);
 }
 
 #[test]
-unconstrained
 fn property_literal_false()
 {
-    let value = "false";
-    assert(JSON::parse("{'a':false}").get("a").eq_string(value) == true);
+    assert(can_parse_as_property("false") == true);
 }
 
 #[test]
-unconstrained
 fn property_literal_fals()
 {
-    assert(JSON::parse("{'a':fals}").is_none() == true);
+    assert(can_parse_as_property("fals") == false);
 }
 
 #[test]
-unconstrained
 fn property_literal_t()
 {
-    assert(JSON::parse("{'a':t}").is_none() == true);
+    assert(can_parse_as_property("t}") == false);
 }
 
 #[test]
-unconstrained
 fn property_literal_nul()
 {
-    assert(JSON::parse("{'a':nul}").is_none() == true);
+    assert(can_parse_as_property("nul}") == false);
 }
 
 #[test]
-unconstrained
 fn property_literal_falst()
 {
-    assert(JSON::parse("{'a':falst}").is_none() == true);
+    assert(can_parse_as_property("falst}") == false);
 }
 
 #[test]
-unconstrained
 fn property_literal_random()
 {
-    assert(JSON::parse("{'a':lfseu}").is_none() == true);
+    assert(can_parse_as_property("lfseu}") == false);
 }
 
 #[test]
-unconstrained
 fn property_literal_plus_true()
 {
-    assert(JSON::parse("{'a':+true}").is_none() == true);
+    assert(can_parse_as_property("+true}") == false);
 }
 
 #[test]
-unconstrained
 fn property_literal_true_plus()
 {
-    assert(JSON::parse("{'a':true+}").is_none() == true);
+    assert(can_parse_as_property("true+}") == false);
 }
 
 #[test]
-unconstrained
 fn property_literal_minus_false()
 {
-    assert(JSON::parse("{'a':-false}").is_none() == true);
+    assert(can_parse_as_property("-false}") == false);
 }
 
 #[test]
-unconstrained
 fn property_literal_false_minus()
 {
-    assert(JSON::parse("{'a':false-}").is_none() == true);
+    assert(can_parse_as_property("false-}") == false);
 }
 
 #[test]
-unconstrained
 fn property_literal_tru_dot_e()
 {
-    assert(JSON::parse("{'a':tru.e}").is_none() == true);
+    assert(can_parse_as_property("tru.e}") == false);
 }
 
 #[test]
-unconstrained
 fn property_literal_tru_space_e()
 {
-    assert(JSON::parse("{'a':tru e}").is_none() == true);
+    assert(can_parse_as_property("tru e}") == false);
 }
 
 #[test]
-unconstrained
 fn property_literal_false_space_false()
 {
-    assert(JSON::parse("{'a':false false}").is_none() == true);
+    assert(can_parse_as_property("false false}") == false);
 }
 
 #[test]
-unconstrained
 fn property_literal_false_comma_false()
 {
-    assert(JSON::parse("{'a':false,false}").is_none() == true);
+    assert(can_parse_as_property("false,false}") == false);
 }
