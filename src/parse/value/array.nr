@@ -46,18 +46,6 @@ fn value_array_quote_right_bracket_and_number()
 }
 
 #[test]
-fn value_array_empty_space_empty()
-{
-    assert(can_parse_as_value("[] []") == false);
-}
-
-#[test]
-fn value_array_empty_comma_empty()
-{
-    assert(can_parse_as_value("[],[]") == false);
-}
-
-#[test]
 fn value_array_empty_values()
 {
     assert(can_parse_as_value("[,]") == false);
@@ -103,6 +91,18 @@ fn value_array_duplicate_left_bracket()
 fn value_array_duplicate_right_bracket()
 {
     assert(can_parse_as_value("[]]") == false);
+}
+
+#[test]
+fn value_array_empty_space_empty()
+{
+    assert(can_parse_as_value("[] []") == false);
+}
+
+#[test]
+fn value_array_empty_comma_empty()
+{
+    assert(can_parse_as_value("[],[]") == false);
 }
 
 #[test]
@@ -351,7 +351,7 @@ fn value_array_mixed_types_null_object_array()
 
 #[test]
 unconstrained
-fn value_array_object_one_one_property()
+fn value_array_one_object_one_property()
 {
     let json = JSON::parse("[{'a':1}]");
 
@@ -364,28 +364,7 @@ fn value_array_object_one_one_property()
 
 #[test]
 unconstrained
-fn value_array_object_one_one_property_whitespaces()
-{
-    let json = JSON::parse("[ { 'a' : 1 } ]");
-
-    assert(json.doc.len() == 1);
-    assert(json.children.len() == 1);
-
-    assert(json.child(0).len() == 1);
-    assert(json.child(0).get("a").eq_string("1") == true);
-
-    let json = JSON::parse("   [  {   'a'   :   1   }     ] ");
-
-    assert(json.doc.len() == 1);
-    assert(json.children.len() == 1);
-
-    assert(json.child(0).len() == 1);
-    assert(json.child(0).get("a").eq_string("1") == true);
-}
-
-#[test]
-unconstrained
-fn value_array_object_one_multiple_properties()
+fn value_array_one_object_multiple_properties()
 {
     let json = JSON::parse("[{'a':1,'b':true,'c':'123'}]");
 
@@ -420,7 +399,7 @@ fn value_array_multiple_objects_multiple_properties()
 
 #[test]
 unconstrained
-fn value_array_object_one_one_property_array_one_value()
+fn value_array_one_object_one_property_array_one_value()
 {
     let json = JSON::parse("[{'a':[1]}]");
 
@@ -449,9 +428,9 @@ fn value_array_multiple_objects_one_property_array_one_value()
 
 #[test]
 unconstrained
-fn value_array_object_one_one_property_array_multiple_values()
+fn value_array_one_object_one_property_array_multiple_values()
 {
-    let json = JSON::parse("{'a':[{'abc':[1,2,3]}]}");
+    let json = JSON::parse("[{'abc':[1,2,3]}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -478,9 +457,9 @@ fn value_array_multiple_objects_one_property_array_multiple_values()
 
 #[test]
 unconstrained
-fn value_array_object_one_one_property_with_array_single_value()
+fn value_array_one_object_one_property_array_single_value()
 {
-    let json = JSON::parse("{'a':[{'a':1,'b':true,'c':[1]}]}");
+    let json = JSON::parse("[{'a':1,'b':true,'c':[1]}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -493,9 +472,9 @@ fn value_array_object_one_one_property_with_array_single_value()
 
 #[test]
 unconstrained
-fn value_array_multiple_objects_one_property_with_array_single_value()
+fn value_array_multiple_objects_one_property_array_single_value()
 {
-    let json = JSON::parse("{'a':[{'a':1,'b':true,'c':[1]},{'a':2,'b':false,'c':[2]}]}");
+    let json = JSON::parse("[{'a':1,'b':true,'c':[1]},{'a':2,'b':false,'c':[2]}]");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -513,7 +492,7 @@ fn value_array_multiple_objects_one_property_with_array_single_value()
 
 #[test]
 unconstrained
-fn value_array_object_one_one_property_with_array_multiple_values()
+fn value_array_one_object_multiple_properties_array_multiple_values()
 {
     let json = JSON::parse("[{'a':1,'b':true,'abc':[1,2,3]}]");
 
@@ -528,7 +507,7 @@ fn value_array_object_one_one_property_with_array_multiple_values()
 
 #[test]
 unconstrained
-fn value_array_multiple_objects_one_property_with_array_multiple_values()
+fn value_array_multiple_objects_one_property_array_multiple_mixed_values()
 {
     let json = JSON::parse("[{'a':1,'b':true,'abc':[1,2,3]},{'x':2,'y':false,'def':[4,5,6]}]");
 

@@ -94,6 +94,18 @@ fn property_array_duplicate_right_bracket()
 }
 
 #[test]
+fn property_array_empty_space_empty()
+{
+    assert(can_parse_as_property("[] []") == false);
+}
+
+#[test]
+fn property_array_empty_comma_empty()
+{
+    assert(can_parse_as_property("[],[]") == false);
+}
+
+#[test]
 fn property_array_empty_nested_values()
 {
     assert(can_parse_as_property("[[,]]") == false);
@@ -142,7 +154,7 @@ fn property_array_number_faulty_colon()
 }
 
 #[test]
-fn property_array_numbers_multiple()
+fn property_array_multiple_numbers()
 {
     assert(can_parse_as_property("[1,2,3]") == true);
 }
@@ -151,6 +163,12 @@ fn property_array_numbers_multiple()
 fn property_array_multiple_numbers_missing_value()
 {
     assert(can_parse_as_property("[[1,2,3,]") == false);
+}
+
+#[test]
+fn property_array_multiple_numbers_missing_value_space()
+{
+    assert(can_parse_as_property("[1,2,3, ]") == false);
 }
 
 #[test]
@@ -283,7 +301,7 @@ fn property_array_mixed_types_missing_value()
 unconstrained
 fn property_array_empty_object()
 {
-    let json = JSON::parse("[{}]");
+    let json = JSON::parse("{'a':[{}]}");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -295,7 +313,7 @@ fn property_array_empty_object()
 unconstrained
 fn property_array_empty_multiple_objects()
 {
-    let json = JSON::parse("[{},{},{}]");
+    let json = JSON::parse("{'a':[{},{},{}]}");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 3);
@@ -309,7 +327,7 @@ fn property_array_empty_multiple_objects()
 unconstrained
 fn property_array_empty_multiple_objects_nested_arrays()
 {
-    let json = JSON::parse("[[{}],[{}],[{}]]");
+    let json = JSON::parse("{'a':[[{}],[{}],[{}]]}");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 3);
@@ -323,7 +341,7 @@ fn property_array_empty_multiple_objects_nested_arrays()
 unconstrained
 fn property_array_mixed_types_null_object_array()
 {
-    let json = JSON::parse("[1,null,'2',true,[],{}]");
+    let json = JSON::parse("{'a':[1,null,'2',true,[],{}]}");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -335,7 +353,7 @@ fn property_array_mixed_types_null_object_array()
 unconstrained
 fn property_array_one_object_one_property()
 {
-    let json = JSON::parse("[{'b':1}]");
+    let json = JSON::parse("{'a':[{'b':1}]}");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -346,9 +364,9 @@ fn property_array_one_object_one_property()
 
 #[test]
 unconstrained
-fn property_array_object_one_multiple_properties()
+fn property_array_one_object_multiple_properties()
 {
-    let json = JSON::parse("[{'a':1,'b':true,'c':'123'}]");
+    let json = JSON::parse("{'a':[{'a':1,'b':true,'c':'123'}]}");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -363,7 +381,7 @@ fn property_array_object_one_multiple_properties()
 unconstrained
 fn property_array_multiple_objects_multiple_properties()
 {
-    let json = JSON::parse("[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]");
+    let json = JSON::parse("{'a':[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]}");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -383,7 +401,7 @@ fn property_array_multiple_objects_multiple_properties()
 unconstrained
 fn property_array_one_object_one_property_array_one_value()
 {
-    let json = JSON::parse("[{'a':[1]}]");
+    let json = JSON::parse("{'a':[{'a':[1]}]}");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -396,7 +414,7 @@ fn property_array_one_object_one_property_array_one_value()
 unconstrained
 fn property_array_multiple_objects_one_property_array_one_value()
 {
-    let json = JSON::parse("[{'a':[1]},{'b':[2]}]");
+    let json = JSON::parse("{'a':[{'a':[1]},{'b':[2]}]}");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -412,7 +430,7 @@ fn property_array_multiple_objects_one_property_array_one_value()
 unconstrained
 fn property_array_one_object_one_property_array_multiple_values()
 {
-    let json = JSON::parse("[{'abc':[1,2,3]}]");
+    let json = JSON::parse("{'a':[{'abc':[1,2,3]}]}");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -425,7 +443,7 @@ fn property_array_one_object_one_property_array_multiple_values()
 unconstrained
 fn property_array_multiple_objects_one_property_array_multiple_values()
 {
-    let json = JSON::parse("[{'abc':[1,2,3]},{'def':[4,5,6]}]");
+    let json = JSON::parse("{'a':[{'abc':[1,2,3]},{'def':[4,5,6]}]}");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -439,9 +457,9 @@ fn property_array_multiple_objects_one_property_array_multiple_values()
 
 #[test]
 unconstrained
-fn property_array_one_object_one_property_with_array_single_value()
+fn property_array_one_object_one_property_array_single_value()
 {
-    let json = JSON::parse("[{'a':1,'b':true,'c':[1]}]");
+    let json = JSON::parse("{'a':[{'a':1,'b':true,'c':[1]}]}");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -454,9 +472,9 @@ fn property_array_one_object_one_property_with_array_single_value()
 
 #[test]
 unconstrained
-fn property_array_multiple_objects_one_property_with_array_single_value()
+fn property_array_multiple_objects_one_property_array_single_value()
 {
-    let json = JSON::parse("[{'a':1,'b':true,'c':[1]},{'a':2,'b':false,'c':[2]}]");
+    let json = JSON::parse("{'a':[{'a':1,'b':true,'c':[1]},{'a':2,'b':false,'c':[2]}]}");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -474,9 +492,9 @@ fn property_array_multiple_objects_one_property_with_array_single_value()
 
 #[test]
 unconstrained
-fn property_array_one_object_one_property_with_array_multiple_values()
+fn property_array_one_object_multiple_properties_array_multiple_values()
 {
-    let json = JSON::parse("[{'a':1,'b':true,'abc':[1,2,3]}]");
+    let json = JSON::parse("{'a':[{'a':1,'b':true,'abc':[1,2,3]}]}");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 1);
@@ -489,9 +507,9 @@ fn property_array_one_object_one_property_with_array_multiple_values()
 
 #[test]
 unconstrained
-fn property_array_multiple_objects_one_property_with_array_multiple_values()
+fn property_array_multiple_objects_one_property_array_multiple_mixed_values()
 {
-    let json = JSON::parse("[{'a':1,'b':true,'abc':[1,2,3]},{'x':2,'y':false,'def':[4,5,6]}]");
+    let json = JSON::parse("{'a':[{'a':1,'b':true,'abc':[1,2,3]},{'x':2,'y':false,'def':[4,5,6]}]}");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
