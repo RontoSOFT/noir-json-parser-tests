@@ -224,14 +224,14 @@ fn convert_property_array_multiple_objects_multiple_properties()
 
 #[test]
 unconstrained
-fn convert_string_empty_array1()
+fn convert_string_empty_array()
 {
     assert(JSON::parse("''").get_array("").len() == 0);
 }
 
 #[test]
 unconstrained
-fn convert_string_array_emptyone_two_three()
+fn convert_string_array_empty()
 {
     assert(JSON::parse("'[]'").get_array("").len() == 1);
 }
