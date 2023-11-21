@@ -99,17 +99,17 @@ fn convert_value_array_multiple_numbers_nested()
 
     assert(result.len() == 3);
 
-    let mut sub_array : [[u8]] = result[0].as_list();
-    assert(sub_array.len() == 1);
-    assert(sub_array[0].eq_string("1") == true);
+    let sub_array_1 : [[u8]] = result[0].as_list();
+    assert(sub_array_1.len() == 1);
+    assert(sub_array_1[0].eq_string("1") == true);
 
-    sub_array = result[1].as_list();
-    assert(sub_array.len() == 1);
-    assert(sub_array[0].eq_string("2") == true);
+    let sub_array_2 : [[u8]] = result[1].as_list();
+    assert(sub_array_2.len() == 1);
+    assert(sub_array_2[0].eq_string("2") == true);
 
-    sub_array = result[2].as_list();
-    assert(sub_array.len() == 1);
-    assert(sub_array[0].eq_string("3") == true);
+    let sub_array_3 : [[u8]] = result[2].as_list();
+    assert(sub_array_3.len() == 1);
+    assert(sub_array_3[0].eq_string("3") == true);
 }
 
 #[test]
