@@ -46,13 +46,6 @@ fn whitespace_property_empty_object_with_leading_null_and_spaces()
 
 #[test]
 unconstrained
-fn whitespace_property_empty_object_with_trailing_null()
-{
-    assert(JSON::parse("{'a':{}}\0").get_object("a").is_empty() == true);
-}
-
-#[test]
-unconstrained
 fn whitespace_property_empty_object_with_trailing_null_and_space()
 {
     assert(JSON::parse("{'a':{}} \0").get_object("a").is_empty() == true);

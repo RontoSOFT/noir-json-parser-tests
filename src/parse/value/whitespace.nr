@@ -9,30 +9,6 @@ fn whitespace_value_space()
 }
 
 #[test]
-fn whitespace_value_tab()
-{
-    assert(can_parse_as_value("\t") == false);
-}
-
-#[test]
-fn whitespace_value_newline()
-{
-    assert(can_parse_as_value("\n") == false);
-}
-
-#[test]
-fn whitespace_value_carriage_return()
-{
-    assert(can_parse_as_value("\r") == false);
-}
-
-#[test]
-fn whitespace_value_byte_null()
-{
-    assert(can_parse_as_value("\0") == false);
-}
-
-#[test]
 fn whitespace_value_empty_object_with_leading_null_and_space()
 {
     assert(can_parse_as_value(" \0{}") == false);
@@ -42,13 +18,6 @@ fn whitespace_value_empty_object_with_leading_null_and_space()
 fn whitespace_value_empty_object_with_leading_null_and_spaces()
 {
     assert(can_parse_as_value("   \0{}") == false);
-}
-
-#[test]
-unconstrained
-fn whitespace_value_empty_object_with_trailing_null()
-{
-    assert(JSON::parse("{}\0").is_empty() == true);
 }
 
 #[test]

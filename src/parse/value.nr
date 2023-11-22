@@ -5,4 +5,5 @@ mod literal;
 mod object;
 mod number;
 mod string;
+mod escaped;
 mod whitespace;
