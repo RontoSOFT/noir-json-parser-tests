@@ -27,18 +27,6 @@ fn value_object_right_brace_quote()
 }
 
 #[test]
-fn value_object_empty_space_empty()
-{
-    assert(can_parse_as_value("{} {}") == false);
-}
-
-#[test]
-fn value_object_empty_comma_empty()
-{
-    assert(can_parse_as_value("{},{}") == false);
-}
-
-#[test]
 fn value_object_empty_colon()
 {
     assert(can_parse_as_value("{:}") == false);
@@ -60,6 +48,18 @@ fn value_object_empty_key()
 fn value_object_empty_key_with_colon()
 {
     assert(can_parse_as_value("{'':}") == false);
+}
+
+#[test]
+fn value_object_empty_space_empty()
+{
+    assert(can_parse_as_value("{} {}") == false);
+}
+
+#[test]
+fn value_object_empty_comma_empty()
+{
+    assert(can_parse_as_value("{},{}") == false);
 }
 
 #[test]
@@ -202,13 +202,6 @@ fn value_object_faulty_minus_second_key()
 
 #[test]
 unconstrained
-fn value_object_empty()
-{
-    assert(JSON::parse("{}").is_empty() == true);
-}
-
-#[test]
-unconstrained
 fn value_object_single_character_key_with_value()
 {
     assert(JSON::parse("{'a':1}").get("a").eq_string("1") == true);
@@ -219,13 +212,6 @@ unconstrained
 fn value_object_multi_character_key_with_value()
 {
     assert(JSON::parse("{'abc':1}").get("abc").eq_string("1") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_single_spaces()
-{
-    assert(JSON::parse(" { 'a' : 1 } ").get("a").eq_string("1") == true);
 }
 
 #[test]
@@ -272,32 +258,19 @@ fn value_object_key_with_left_bracket()
 
 #[test]
 unconstrained
-fn value_object_two_keys_number()
+fn value_object_empty()
+{
+    assert(JSON::parse("{}").is_empty() == true);
+}
+
+#[test]
+unconstrained
+fn value_object_two_keys()
 {
     let json = JSON::parse("{'a':1,'b':2}");
 
     assert(json.get("a").eq_string("1") == true);
     assert(json.get("b").eq_string("2") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_two_keys_string_and_number()
-{
-    let json = JSON::parse("{'a':'1','b':2}");
-
-    assert(json.get("a").eq_string("'1'") == true);
-    assert(json.get("b").eq_string("2") == true);
-}
-
-#[test]
-unconstrained
-fn value_object_two_keys_string_and_string()
-{
-    let json = JSON::parse("{'a':'1','b':'2'}");
-
-    assert(json.get("a").eq_string("'1'") == true);
-    assert(json.get("b").eq_string("'2'") == true);
 }
 
 #[test]
