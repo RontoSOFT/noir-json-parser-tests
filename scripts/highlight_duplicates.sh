@@ -13,15 +13,16 @@ folder="../src"
 #     grep -r -E -o -n "JSON::parse\(\S+\)" "$folder" | sed 's/:/: /2'
 # }
 {
-    grep -r -E -o -n "(assert\(can_parse_as_(property|value))\(\S+\)" "$folder" | sed 's/:/: /2' &
+    grep -r -E -o -n "(assert\(can_parse_as_(nested|property|value))\(\S+\)" "$folder" | sed 's/:/: /2' &
     grep -r -E -o -n "JSON::parse\(\S+\)" "$folder" | sed 's/:/: /2'
 } | awk '
 {
     split($2, fields, /(assert\(can_parse_as_|JSON::parse)/);
-    split($0, subfields, /(y\("|e\(")|"\)/);
+    split($0, subfields, /((d|y|e)\("|"\))/);
 
     if      ($2 ~ /prop/) { print "property \"" subfields[2] "\"" }
     else if ($2 ~ /valu/) { print "value \"" subfields[2] "\"" }
+    else if ($2 ~ /nest/) { print "nested \"" subfields[2] "\"" }
     else if ($2 ~ /JSON/) { print "JSON \"" subfields[2] "\"" }
 }' | sort | uniq -c | awk '
 {
