@@ -111,3 +111,31 @@ fn convert_string_false()
 {
     assert("'false'".as_bool().unwrap() == false);
 }
+
+#[test]
+unconstrained
+fn convert_tru_as_bool()
+{
+    assert("tru".as_bool().is_none() == true);
+}
+
+#[test]
+unconstrained
+fn convert_fals_as_bool()
+{
+    assert("fals".as_bool().is_none() == true);
+}
+
+#[test]
+unconstrained
+fn convert_string_tru_as_bool()
+{
+    assert("'tru'".as_bool().is_none() == true);
+}
+
+#[test]
+unconstrained
+fn convert_string_fals_as_bool()
+{
+    assert("'fals'".as_bool().is_none() == true);
+}
