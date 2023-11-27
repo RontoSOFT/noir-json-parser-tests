@@ -22,14 +22,10 @@ fn can_parse_as_nested<SIZE>(value : str<SIZE>) -> bool
         .push_back(END_OBJECT)
         .parse(&mut 0, size + 12, -1);
 
-    if (json.is_none()) { false }
-    // else { json.children[0][0].value.eq_string(value) }
-    else { json.children[0].get("b").eq_string(value) }
-    // TODO: investigate why this fails
-    // else {
-    //     let v = json.child(0);
-    //     // v.print();
-    //     v.get("b").eq_string(value) }
+    if (json.doc.len() == 0) { false }
+    else { json.children[0][0].value.eq_string(value) }
+    // else { json.children[0].get("b").eq_string(value) }
+    // else { json.child(0).get("b").eq_string(value) }
 }
 
 unconstrained
@@ -41,12 +37,15 @@ fn can_parse_as_property<N>(value : str<N>) -> bool
         .push_back(END_OBJECT)
         .parse(&mut 0, N + 6, -1);
 
-    if (json.is_none()) { false } else { json.get("a").eq_string(value) }
+    if (json.doc.len() == 0) { false }
+    else { json.doc[0].value.eq_string(value) }
 }
 
 unconstrained
 fn can_parse_as_value<N>(value : str<N>) -> bool
 {
     let json = JSON::parse(value);
-    if (json.is_none()) { false } else { json.get("").eq_string(value) }
+    if (json.doc.len() == 0) { false }
+    else { json.doc[0].value.eq_string(value) }
+    // else { json.get("").eq_string(value) }
 }
