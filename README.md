@@ -11,38 +11,31 @@ The tests, written in the Noir programming language, are designed to ensure the 
 
 <br>
 
-1. Create a folder named `noir-json-parser`. This will be the parent of both projects (the library and these examples).
+1. Install the [Noir language compiler](https://noir-lang.org/getting_started/nargo_installation) (Nargo) by downloading a [release build artefact](https://github.com/noir-lang/noir/releases) and adding it to your `PATH` environment variable.
+The version used in this project is specified in [Nargo.toml](https://github.com/RontoSOFT/noir-json-parser/blob/main/Nargo.toml#L5).
+<br>
+
+2. Create a folder named `noir-json-parser`. This will be the parent of all projects (the library, tests and optionally the examples).
 
     ```sh
     mkdir noir-json-parser
     cd noir-json-parser
     ```
-
 <br>
 
-2. *[noir-json-parser](https://github.com/rontosoft/noir-json-parser) is **accessible***
-
-    Clone the [library repo](https://github.com/RontoSOFT/noir-json-parser) in the same parent folder under the name `lib`.
-
-    ```sh
-    git clone https://github.com/RontoSOFT/noir-json-parser lib
-    ```
-
-<br>
-
-3. Clone this repository in the parent folder under the name `tests`.
+3. Clone this repository in the same parent folder under the name `tests`.
 
     ```sh
     git clone https://github.com/RontoSOFT/noir-json-parser-tests tests
     ```
+    *When [noir-json-parser](https://github.com/rontosoft/noir-json-parser) is **accessible***, clone the library repo in the same parent folder under the name `lib`.
 
+    ```sh
+    git clone https://github.com/RontoSOFT/noir-json-parser lib
+    ```
 <br>
 
-4. Install the Noir language [compiler](https://github.com/noir-lang/noir/releases) (see [here](https://noir-lang.org/getting_started/nargo_installation)). The version used for this project is specified in [Nargo.toml](https://github.com/RontoSOFT/noir-json-parser/blob/main/Nargo.toml).
-
-<br>
-
-5.  A) *[noir-json-parser](https://github.com/rontosoft/noir-json-parser) is **private***
+4.  *When [noir-json-parser](https://github.com/rontosoft/noir-json-parser) is **private**:*
 
     Create a PR with updated tests to see the results from the [GitHub action](https://github.com/RontoSOFT/noir-json-parser-tests/blob/main/.github/workflows/main.yml) set to run on PRs to main.
 
@@ -50,7 +43,7 @@ The tests, written in the Noir programming language, are designed to ensure the 
 
     <br>
 
-    B) *[noir-json-parser](https://github.com/rontosoft/noir-json-parser) is **accessible***
+    *When [noir-json-parser](https://github.com/rontosoft/noir-json-parser) is **accessible**:*
 
     Run the `noir test` command in the `tests` project directory.
 
@@ -79,9 +72,11 @@ The tests are organized into two modules:
 
     The scenarios further include `whitespace` and `escaped` character tests.
 
+    The `utils.nr` file contains wrappers to ease testing of specific values in these scenarios.
+
 <br>
 
-- [`convert`](https://github.com/RontoSOFT/noir-json-parser-tests/blob/main/src/convert.nr) focuses on the conversion aspect of JSON data into different types. It includes tests for converting various flavors of `[u8; N]` instances to native types, such as `bool`, `Field`, byte-strings, array-lists (`[[u8]]`), as well as the structs introduced by `noir-json-parser`, namely [`Object`](https://github.com/RontoSOFT/noir-json-parser/blob/main/src/lib.nr#L12) and [`JSON`](https://github.com/RontoSOFT/noir-json-parser/blob/main/src/lib.nr#L18).
+- [`convert`](https://github.com/RontoSOFT/noir-json-parser-tests/blob/main/src/convert.nr) focuses on the conversion aspect of JSON data into native types. It includes tests for converting various flavors of `[u8; N]` instances to native types, such as `bool`, `Field`, byte-strings, array-lists (`[[u8]]`), as well as the structs introduced by `noir-json-parser`, namely [`Object`](https://github.com/RontoSOFT/noir-json-parser/blob/main/src/lib.nr#L12) and [`JSON`](https://github.com/RontoSOFT/noir-json-parser/blob/main/src/lib.nr#L18).
 
 <br>
 
