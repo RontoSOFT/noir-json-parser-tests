@@ -15,6 +15,42 @@ fn nested_object_right_brace()
 }
 
 #[test]
+fn nested_object_left_brace_and_number()
+{
+    assert(can_parse_as_nested("{12") == false);
+}
+
+#[test]
+fn nested_object_right_brace_and_number()
+{
+    assert(can_parse_as_nested("12}") == false);
+}
+
+#[test]
+fn nested_object_left_brace_and_literal()
+{
+    assert(can_parse_as_nested("{true") == false);
+}
+
+#[test]
+fn nested_object_right_brace_and_literal()
+{
+    assert(can_parse_as_nested("true}") == false);
+}
+
+#[test]
+fn nested_object_left_brace_and_number_quote()
+{
+    assert(can_parse_as_nested("{{}") == false);
+}
+
+#[test]
+fn nested_object_quote_right_brace_and_number()
+{
+    assert(can_parse_as_nested("{}}") == false);
+}
+
+#[test]
 fn nested_object_quote_left_brace()
 {
     assert(can_parse_as_nested("'{") == false);

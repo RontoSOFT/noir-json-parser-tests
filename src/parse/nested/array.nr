@@ -46,6 +46,18 @@ fn nested_array_quote_right_bracket_and_number()
 }
 
 #[test]
+fn nested_array_left_brace_and_literal()
+{
+    assert(can_parse_as_nested("[true") == false);
+}
+
+#[test]
+fn nested_array_right_brace_and_literal()
+{
+    assert(can_parse_as_nested("true]") == false);
+}
+
+#[test]
 fn nested_array_empty_values()
 {
     assert(can_parse_as_nested("[,]") == false);

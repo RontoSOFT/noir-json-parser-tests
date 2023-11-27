@@ -15,6 +15,42 @@ fn property_object_right_brace()
 }
 
 #[test]
+fn property_object_left_brace_and_number()
+{
+    assert(can_parse_as_property("{12") == false);
+}
+
+#[test]
+fn property_object_right_brace_and_number()
+{
+    assert(can_parse_as_property("12}") == false);
+}
+
+#[test]
+fn property_object_left_brace_and_literal()
+{
+    assert(can_parse_as_property("{true") == false);
+}
+
+#[test]
+fn property_object_right_brace_and_literal()
+{
+    assert(can_parse_as_property("true}") == false);
+}
+
+#[test]
+fn property_object_left_brace_and_number_quote()
+{
+    assert(can_parse_as_property("{{}") == false);
+}
+
+#[test]
+fn property_object_quote_right_brace_and_number()
+{
+    assert(can_parse_as_property("{}}") == false);
+}
+
+#[test]
 fn property_object_quote_left_brace()
 {
     assert(can_parse_as_property("'{") == false);

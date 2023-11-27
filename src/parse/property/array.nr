@@ -46,6 +46,18 @@ fn property_array_quote_right_bracket_and_number()
 }
 
 #[test]
+fn property_array_left_brace_and_literal()
+{
+    assert(can_parse_as_property("[true") == false);
+}
+
+#[test]
+fn property_array_right_brace_and_literal()
+{
+    assert(can_parse_as_property("true]") == false);
+}
+
+#[test]
 fn property_array_empty_values()
 {
     assert(can_parse_as_property("[,]") == false);
