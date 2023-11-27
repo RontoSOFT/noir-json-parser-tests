@@ -4,40 +4,40 @@ use dep::rontosoft::JSON;
 unconstrained
 fn convert_value_string_empty_object()
 {
-    assert("''".as_object().is_none() == true);
+    assert("''".as_json().is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_value_string_object_empty()
 {
-    assert("'{}'".as_object().is_empty() == true);
+    assert("'{}'".as_json().is_empty() == true);
 }
 
 #[test]
 unconstrained
 fn convert_value_string_object_empty_with_space()
 {
-    assert("'{ }'".as_object().is_empty() == true);
+    assert("'{ }'".as_json().is_empty() == true);
 }
 
 #[test]
 unconstrained
 fn convert_value_string_object()
 {
-    assert("'{\\'a\\':1}'".as_object().get("a").eq_string("1") == true);
+    assert("'{\\'a\\':1}'".as_json().get("a").eq_string("1") == true);
 }
 
 #[test]
 unconstrained
 fn convert_value_string_nested_object()
 {
-    assert("'{\\'a\\':{\\'b\\':1}}'".as_object().get_object("a").get("b").eq_string("1") == true);
+    assert("'{\\'a\\':{\\'b\\':1}}'".as_json().get_object("a").get("b").eq_string("1") == true);
 }
 
 #[test]
 unconstrained
-fn convert_object_one_key_as_object()
+fn convert_object_one_key_value_object()
 {
     let json = JSON::parse("{'abc':{'a':1,'b':true,'c':'123'}}");
 
@@ -52,7 +52,7 @@ unconstrained
 fn convert_object_two_keys_with_objects_with_multiple_keys()
 {
     let json = JSON::parse("{'abc':{'a':1,'b':true,'c':'123'},'def':{'a':2,'b':false,'c':'456'}}");
-// json.print();
+
     let obj_1 = json.get_object("abc");
     assert(obj_1.get("a").eq_string("1") == true);
     assert(obj_1.get("b").eq_string("true") == true);
@@ -62,20 +62,6 @@ fn convert_object_two_keys_with_objects_with_multiple_keys()
     assert(obj_2.get("a").eq_string("2") == true);
     assert(obj_2.get("b").eq_string("false") == true);
     assert(obj_2.get("c").eq_string("'456'") == true);
-
-    // let array_two_vals = [1, 2];
-    // dep::std::println(f"array_two_vals: {array_two_vals}");
-
-    // let label_two_vals = "12";
-    // dep::std::println(f"label_two_vals: {label_two_vals}");
-
-    // let array_five_vals = [1, 2, 3, 4, 5];
-    // dep::std::println(f"array_five_vals: {array_five_vals}");
-
-    // let label_five_vals = "12345";
-    // dep::std::println(f"label_five_vals: {label_five_vals}");
-
-    // dep::std::println(f"array_five_vals: {array_five_vals}, label_five_vals: {label_five_vals}");
 }
 
 #[test]
