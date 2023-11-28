@@ -238,6 +238,30 @@ fn property_object_faulty_minus_second_key()
 
 #[test]
 unconstrained
+fn property_key_object_empty_and_key_number()
+{
+    let json = JSON::parse("{'a':{},'b':1}");
+
+    assert(json.doc.len() == 2);
+
+    assert(json.children.len() == 1);
+    assert(json.child(0).is_empty() == true);
+}
+
+#[test]
+unconstrained
+fn property_key_number_and_key_array_object()
+{
+    let json = JSON::parse("{'a':1,'b':{}}");
+
+    assert(json.doc.len() == 2);
+
+    assert(json.children.len() == 1);
+    assert(json.child(0).is_empty() == true);
+}
+
+#[test]
+unconstrained
 fn property_object_single_character_key_with_value()
 {
     assert(JSON::parse("{'a':{'b':1}}").get_object("a").get("b").eq_string("1") == true);

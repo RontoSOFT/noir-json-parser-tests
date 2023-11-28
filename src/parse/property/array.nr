@@ -311,6 +311,26 @@ fn property_array_mixed_types_missing_value()
 
 #[test]
 unconstrained
+fn property_key_array_empty_and_key_number()
+{
+    let json = JSON::parse("{'a':[],'b':1}");
+
+    assert(json.doc.len() == 2);
+    assert(json.doc[0].value.len() == 2);
+}
+
+#[test]
+unconstrained
+fn property_key_number_and_key_array_empty()
+{
+    let json = JSON::parse("{'a':1,'b':[]}");
+
+    assert(json.doc.len() == 2);
+    assert(json.doc[1].value.len() == 2);
+}
+
+#[test]
+unconstrained
 fn property_array_empty_object()
 {
     let json = JSON::parse("{'a':[{}]}");
