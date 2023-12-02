@@ -55,204 +55,204 @@ fn convert_value_field_array_with_mixed_null()
 unconstrained
 fn convert_property_field_three_zero()
 {
-    assert(JSON::parse("{'a':30}").get_field("a").unwrap() == 30);
+    assert(JSON::parse(r#"{"a":30}"#).get_field("a").unwrap() == 30);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_minus_three_zero()
 {
-    assert(JSON::parse("{'a':-30}").get_field("a").unwrap() == -30);
+    assert(JSON::parse(r#"{"a":-30}"#).get_field("a").unwrap() == -30);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_three_zero_e_zero()
 {
-    assert(JSON::parse("{'a':30e0}").get_field("a").unwrap() == 30);
+    assert(JSON::parse(r#"{"a":30e0}"#).get_field("a").unwrap() == 30);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_minus_three_zero_e_zero()
 {
-    assert(JSON::parse("{'a':-30e0}").get_field("a").unwrap() == -30);
+    assert(JSON::parse(r#"{"a":-30e0}"#).get_field("a").unwrap() == -30);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_three_zero_e_plus_zero()
 {
-    assert(JSON::parse("{'a':30e+0}").get_field("a").unwrap() == 30);
+    assert(JSON::parse(r#"{"a":30e+0}"#).get_field("a").unwrap() == 30);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_minus_three_zero_e_plus_zero()
 {
-    assert(JSON::parse("{'a':-30e+0}").get_field("a").unwrap() == -30);
+    assert(JSON::parse(r#"{"a":-30e+0}"#).get_field("a").unwrap() == -30);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_three_zero_e_minus_zero()
 {
-    assert(JSON::parse("{'a':30e-0}").get_field("a").unwrap() == 30);
+    assert(JSON::parse(r#"{"a":30e-0}"#).get_field("a").unwrap() == 30);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_minus_three_zero_e_minus_zero()
 {
-    assert(JSON::parse("{'a':-30e-0}").get_field("a").unwrap() == -30);
+    assert(JSON::parse(r#"{"a":-30e-0}"#).get_field("a").unwrap() == -30);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_three_zero_e_one()
 {
-    assert(JSON::parse("{'a':30e1}").get_field("a").unwrap() == 300);
+    assert(JSON::parse(r#"{"a":30e1}"#).get_field("a").unwrap() == 300);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_minus_three_zero_e_one()
 {
-    assert(JSON::parse("{'a':-30e1}").get_field("a").unwrap() == -300);
+    assert(JSON::parse(r#"{"a":-30e1}"#).get_field("a").unwrap() == -300);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_three_zero_e_plus_one()
 {
-    assert(JSON::parse("{'a':30e+1}").get_field("a").unwrap() == 300);
+    assert(JSON::parse(r#"{"a":30e+1}"#).get_field("a").unwrap() == 300);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_minus_three_zero_e_plus_one()
 {
-    assert(JSON::parse("{'a':-30e+1}").get_field("a").unwrap() == -300);
+    assert(JSON::parse(r#"{"a":-30e+1}"#).get_field("a").unwrap() == -300);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_three_zero_e_minus_one()
 {
-    assert(JSON::parse("{'a':30e-1}").get_field("a").unwrap() == 3);
+    assert(JSON::parse(r#"{"a":30e-1}"#).get_field("a").unwrap() == 3);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_minus_three_zero_e_minus_one()
 {
-    assert(JSON::parse("{'a':-30e-1}").get_field("a").unwrap() == -3);
+    assert(JSON::parse(r#"{"a":-30e-1}"#).get_field("a").unwrap() == -3);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_plus_three_zero()
 {
-    assert(JSON::parse("{'a':+30}").get_field("a").is_none() == true);
+    assert(JSON::parse(r#"{"a":+30}"#).get_field("a").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn property_string_thirty()
 {
-    assert(JSON::parse("{'a':'thirty'}").get_field("a").is_none() == true);
+    assert(JSON::parse(r#"{"a":"thirty"}"#).get_field("a").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_three_zero_point_zero()
 {
-    assert(JSON::parse("{'a':30.0}").get_field("a").is_none() == true);
+    assert(JSON::parse(r#"{"a":30.0}"#).get_field("a").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_minus_three_zero_point_zero()
 {
-    assert(JSON::parse("{'a':-30.0}").get_field("a").is_none() == true);
+    assert(JSON::parse(r#"{"a":-30.0}"#).get_field("a").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_three_colon_zero()
 {
-    assert(JSON::parse("{'a':3:0}").get_field("a").is_none() == true);
+    assert(JSON::parse(r#"{"a":3:0}"#).get_field("a").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_three_space_zero()
 {
-    assert(JSON::parse("{'a':3 0}").get_field("a").is_none() == true);
+    assert(JSON::parse(r#"{"a":3 0}"#).get_field("a").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_three_left_brace_zero()
 {
-    assert(JSON::parse("{'a':3{0}").get_field("a").is_none() == true);
+    assert(JSON::parse(r#"{"a":3{0}"#).get_field("a").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_three_right_brace_zero()
 {
-    assert(JSON::parse("{'a':3}0}").get_field("a").is_none() == true);
+    assert(JSON::parse(r#"{"a":3}0}"#).get_field("a").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_three_quote_zero()
 {
-    assert(JSON::parse("{'a':3'0}").get_field("a").is_none() == true);
+    assert(JSON::parse(r#"{"a":3"0}"#).get_field("a").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_three_comma_zero()
 {
-    assert(JSON::parse("{'a':3,0}").get_field("a").is_none() == true);
+    assert(JSON::parse(r#"{"a":3,0}"#).get_field("a").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_three_comma_space_zero()
 {
-    assert(JSON::parse("{'a':3, 0}").get_field("a").is_none() == true);
+    assert(JSON::parse(r#"{"a":3, 0}"#).get_field("a").is_none() == true);
 }
 
 #[test]
 unconstrained
 fn convert_property_field_three_space_comma_zero()
 {
-    assert(JSON::parse("{'a':3 ,0}").get_field("a").is_none() == true);
+    assert(JSON::parse(r#"{"a":3 ,0}"#).get_field("a").is_none() == true);
 }
 
 #[test]
 fn convert_string_empty_field()
 {
-    assert("''".as_field().is_none() == true);
+    assert(r#""""#.as_field().is_none() == true);
 }
 
 #[test]
 fn convert_string_one_two_three()
 {
-    assert("'123'".as_field().unwrap() == 123);
+    assert(r#""123""#.as_field().unwrap() == 123);
 }
 
 #[test]
 fn convert_string_minus_one_two_three()
 {
-    assert("'-123'".as_field().unwrap() == -123);
+    assert(r#""-123""#.as_field().unwrap() == -123);
 }
 
 #[test]
 fn convert_string_one_two_three_e_one()
 {
-    assert("'123e1'".as_field().unwrap() == 1230);
+    assert(r#""123e1""#.as_field().unwrap() == 1230);
 }

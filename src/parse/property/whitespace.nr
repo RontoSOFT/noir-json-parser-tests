@@ -48,27 +48,27 @@ fn whitespace_property_empty_object_with_leading_null_and_spaces()
 unconstrained
 fn whitespace_property_empty_object_with_trailing_null_and_space()
 {
-    assert(JSON::parse("{'a':{}} \0").get_object("a").is_empty() == true);
+    assert(JSON::parse("{\"a\":{}} \0").get_object("a").is_empty() == true);
 }
 
 #[test]
 unconstrained
 fn whitespace_property_empty_object_with_trailing_null_and_spaces()
 {
-    assert(JSON::parse("{'a':{}}   \0").get_object("a").is_empty() == true);
+    assert(JSON::parse("{\"a\":{}}   \0").get_object("a").is_empty() == true);
 }
 
 #[test]
 unconstrained
 fn whitespace_property_value_spaces()
 {
-    let json = JSON::parse(" { 'a' : 1 } ");
+    let json = JSON::parse(" { \"a\" : 1 } ");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 0);
     assert(json.get("a").eq_string("1") == true);
 
-    let json = JSON::parse("   {   'a'   :   1   }   ");
+    let json = JSON::parse("   {   \"a\"   :   1   }   ");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 0);
@@ -79,13 +79,13 @@ fn whitespace_property_value_spaces()
 unconstrained
 fn whitespace_property_array_spaces()
 {
-    let json = JSON::parse(" { 'a' : [ 1 , 2 , 3 ] } ");
+    let json = JSON::parse(" { \"a\" : [ 1 , 2 , 3 ] } ");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 0);
     assert(json.get("a").eq_string("[1,2,3]") == true);
 
-    let json = JSON::parse("   {   'a'   :   [   1   ,   2   ,   3   ]   }   ");
+    let json = JSON::parse("   {   \"a\"   :   [   1   ,   2   ,   3   ]   }   ");
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 0);

@@ -27,30 +27,6 @@ fn value_escaped_byte_null()
 }
 
 #[test]
-fn value_string_with_escaped_quotation_mark_left()
-{
-    assert(can_parse_as_value("'\\'string'") == true);
-}
-
-#[test]
-fn value_string_with_escaped_quotation_mark_right()
-{
-    assert(can_parse_as_value("'string\\''") == true);
-}
-
-#[test]
-fn value_string_with_escaped_quotation_mark_middle()
-{
-    assert(can_parse_as_value("'str\\'ing'") == true);
-}
-
-#[test]
-fn value_string_with_escaped_quotation_mark_both()
-{
-    assert(can_parse_as_value("'\\'string\\''") == true);
-}
-
-#[test]
 unconstrained
 fn value_empty_object_with_trailing_null()
 {
@@ -73,4 +49,28 @@ fn value_empty_object_with_leading_null()
 fn value_empty_object_with_null_misplaced()
 {
     assert(can_parse_as_value("{\0}") == false);
+}
+
+#[test]
+fn value_string_with_escaped_quotation_mark_left()
+{
+    assert(can_parse_as_value(r#""\"string""#) == true);
+}
+
+#[test]
+fn value_string_with_escaped_quotation_mark_right()
+{
+    assert(can_parse_as_value(r#""string\"""#) == true);
+}
+
+#[test]
+fn value_string_with_escaped_quotation_mark_middle()
+{
+    assert(can_parse_as_value(r#""str\"ing""#) == true);
+}
+
+#[test]
+fn value_string_with_escaped_quotation_mark_both()
+{
+    assert(can_parse_as_value(r#""\"string\"""#) == true);
 }

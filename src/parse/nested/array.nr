@@ -36,13 +36,13 @@ fn nested_array_right_bracket_and_number()
 #[test]
 fn nested_array_left_bracket_and_number_quote()
 {
-    assert(can_parse_as_nested("[12'") == false);
+    assert(can_parse_as_nested("[12\"") == false);
 }
 
 #[test]
 fn nested_array_quote_right_bracket_and_number()
 {
-    assert(can_parse_as_nested("'12]") == false);
+    assert(can_parse_as_nested("\"12]") == false);
 }
 
 #[test]
@@ -204,25 +204,25 @@ fn nested_array_multiple_array_numbers_nested()
 #[test]
 fn nested_array_one_empty_string()
 {
-    assert(can_parse_as_nested("['']") == true);
+    assert(can_parse_as_nested("[\"\"]") == true);
 }
 
 #[test]
 fn nested_array_multiple_empty_strings()
 {
-    assert(can_parse_as_nested("['','','']") == true);
+    assert(can_parse_as_nested(r#"["","",""]"#) == true);
 }
 
 #[test]
 fn nested_array_multiple_strings()
 {
-    assert(can_parse_as_nested("['1','2','3']") == true);
+    assert(can_parse_as_nested(r#"["1","2","3"]"#) == true);
 }
 
 #[test]
 fn nested_array_multiple_mixed_types()
 {
-    assert(can_parse_as_nested("[1,'2',true]") == true);
+    assert(can_parse_as_nested("[1,\"2\",true]") == true);
 }
 
 #[test]
@@ -288,7 +288,7 @@ fn nested_array_single_number_whitespace()
 #[test]
 fn nested_array_string_space_string()
 {
-    assert(can_parse_as_nested("['string' 'string']") == false);
+    assert(can_parse_as_nested(r#"["string" "string"]"#) == false);
 }
 
 #[test]
@@ -306,14 +306,14 @@ fn nested_array_object_space_object()
 #[test]
 fn nested_array_mixed_types_missing_value()
 {
-    assert(can_parse_as_nested("[1,,'2',true,[],{}]") == false);
+    assert(can_parse_as_nested("[1,,\"2\",true,[],{}]") == false);
 }
 
 #[test]
 unconstrained
 fn nested_array_empty_object()
 {
-    let json = JSON::parse("{'a':{'b':[{}]}}");
+    let json = JSON::parse(r#"{"a":{"b":[{}]}}"#);
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -326,7 +326,7 @@ fn nested_array_empty_object()
 unconstrained
 fn nested_array_empty_multiple_objects()
 {
-    let json = JSON::parse("{'a':{'b':[{},{},{}]}}");
+    let json = JSON::parse(r#"{"a":{"b":[{},{},{}]}}"#);
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 4);
@@ -341,7 +341,7 @@ fn nested_array_empty_multiple_objects()
 unconstrained
 fn nested_array_empty_multiple_objects_nested_arrays()
 {
-    let json = JSON::parse("{'a':{'b':[[{}],[{}],[{}]]}}");
+    let json = JSON::parse(r#"{"a":{"b":[[{}],[{}],[{}]]}}"#);
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 4);
@@ -356,7 +356,7 @@ fn nested_array_empty_multiple_objects_nested_arrays()
 unconstrained
 fn nested_array_mixed_types_null_object_array()
 {
-    let json = JSON::parse("{'a':{'b':[1,null,'2',true,[],{}]}}");
+    let json = JSON::parse(r#"{"a":{"b":[1,null,"2",true,[],{}]}}"#);
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -369,7 +369,7 @@ fn nested_array_mixed_types_null_object_array()
 unconstrained
 fn nested_array_one_object_one_property()
 {
-    let json = JSON::parse("{'a':{'b':[{'c':1}]}}");
+    let json = JSON::parse(r#"{"a":{"b":[{"c":1}]}}"#);
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -384,7 +384,7 @@ fn nested_array_one_object_one_property()
 unconstrained
 fn nested_array_one_object_multiple_properties()
 {
-    let json = JSON::parse("{'a':{'b':[{'a':1,'b':true,'c':'123'}]}}");
+    let json = JSON::parse(r#"{"a":{"b":[{"a":1,"b":true,"c":"123"}]}}"#);
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -394,14 +394,14 @@ fn nested_array_one_object_multiple_properties()
     assert(json.child(1).len() == 3);
     assert(json.child(1).get("a").eq_string("1") == true);
     assert(json.child(1).get("b").eq_string("true") == true);
-    assert(json.child(1).get("c").eq_string("'123'") == true);
+    assert(json.child(1).get("c").eq_string(r#""123""#) == true);
 }
 
 #[test]
 unconstrained
 fn nested_array_multiple_objects_multiple_properties()
 {
-    let json = JSON::parse("{'a':{'b':[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]}}");
+    let json = JSON::parse(r#"{"a":{"b":[{"a":1,"b":true,"c":"123"},{"a":2,"b":false,"c":"456"}]}}"#);
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 3);
@@ -411,19 +411,19 @@ fn nested_array_multiple_objects_multiple_properties()
     assert(json.child(1).len() == 3);
     assert(json.child(1).get("a").eq_string("1") == true);
     assert(json.child(1).get("b").eq_string("true") == true);
-    assert(json.child(1).get("c").eq_string("'123'") == true);
+    assert(json.child(1).get("c").eq_string(r#""123""#) == true);
 
     assert(json.child(2).len() == 3);
     assert(json.child(2).get("a").eq_string("2") == true);
     assert(json.child(2).get("b").eq_string("false") == true);
-    assert(json.child(2).get("c").eq_string("'456'") == true);
+    assert(json.child(2).get("c").eq_string(r#""456""#) == true);
 }
 
 #[test]
 unconstrained
 fn nested_array_one_object_one_property_array_one_value()
 {
-    let json = JSON::parse("{'a':{'b':[{'c':[1]}]}}");
+    let json = JSON::parse(r#"{"a":{"b":[{"c":[1]}]}}"#);
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -437,7 +437,7 @@ fn nested_array_one_object_one_property_array_one_value()
 unconstrained
 fn nested_array_multiple_objects_one_property_array_one_value()
 {
-    let json = JSON::parse("{'a':{'b':[{'a':[1]},{'b':[2]}]}}");
+    let json = JSON::parse(r#"{"a":{"b":[{"a":[1]},{"b":[2]}]}}"#);
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 3);
@@ -455,7 +455,7 @@ fn nested_array_multiple_objects_one_property_array_one_value()
 unconstrained
 fn nested_array_one_object_one_property_array_multiple_values()
 {
-    let json = JSON::parse("{'a':{'b':[{'abc':[1,2,3]}]}}");
+    let json = JSON::parse(r#"{"a":{"b":[{"abc":[1,2,3]}]}}"#);
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -470,7 +470,7 @@ fn nested_array_one_object_one_property_array_multiple_values()
 unconstrained
 fn nested_array_multiple_objects_one_property_array_multiple_values()
 {
-    let json = JSON::parse("{'a':{'b':[{'abc':[1,2,3]},{'def':[4,5,6]}]}}");
+    let json = JSON::parse(r#"{"a":{"b":[{"abc":[1,2,3]},{"def":[4,5,6]}]}}"#);
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 3);
@@ -488,7 +488,7 @@ fn nested_array_multiple_objects_one_property_array_multiple_values()
 unconstrained
 fn nested_array_one_object_one_property_array_single_value()
 {
-    let json = JSON::parse("{'a':{'b':[{'a':1,'b':true,'c':[1]}]}}");
+    let json = JSON::parse(r#"{"a":{"b":[{"a":1,"b":true,"c":[1]}]}}"#);
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -505,7 +505,7 @@ fn nested_array_one_object_one_property_array_single_value()
 unconstrained
 fn nested_array_multiple_objects_one_property_array_single_value()
 {
-    let json = JSON::parse("{'a':{'b':[{'a':1,'b':true,'c':[1]},{'a':2,'b':false,'c':[2]}]}}");
+    let json = JSON::parse(r#"{"a":{"b":[{"a":1,"b":true,"c":[1]},{"a":2,"b":false,"c":[2]}]}}"#);
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 3);
@@ -527,7 +527,7 @@ fn nested_array_multiple_objects_one_property_array_single_value()
 unconstrained
 fn nested_array_one_object_multiple_properties_array_multiple_values()
 {
-    let json = JSON::parse("{'a':{'b':[{'a':1,'b':true,'abc':[1,2,3]}]}}");
+    let json = JSON::parse(r#"{"a":{"b":[{"a":1,"b":true,"abc":[1,2,3]}]}}"#);
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 2);
@@ -544,7 +544,7 @@ fn nested_array_one_object_multiple_properties_array_multiple_values()
 unconstrained
 fn nested_array_multiple_objects_one_property_array_multiple_mixed_values()
 {
-    let json = JSON::parse("{'a':{'b':[{'a':1,'b':true,'abc':[1,2,3]},{'x':2,'y':false,'def':[4,5,6]}]}}");
+    let json = JSON::parse(r#"{"a":{"b":[{"a":1,"b":true,"abc":[1,2,3]},{"x":2,"y":false,"def":[4,5,6]}]}}"#);
 
     assert(json.doc.len() == 1);
     assert(json.children.len() == 3);

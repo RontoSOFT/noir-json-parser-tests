@@ -4,10 +4,10 @@ use dep::rontosoft::globals::END_OBJECT;
 use dep::rontosoft::globals::QUOTATION_MARK;
 use dep::rontosoft::globals::KEY_DELIMITER;
 
-// global bytes_prop : str<5> = "{'a':";
+// global bytes_prop : str<5> = r#"{"a":"#;
 global bytes_prop   : [u8;  5] = [BEGIN_OBJECT, QUOTATION_MARK, 0x61, QUOTATION_MARK, KEY_DELIMITER];
 
-// global bytes_nested : str<10> = "{'a':{'b':";
+// global bytes_nested : str<10> = r#"{"a":{"b":"#;
 global bytes_nested : [u8; 10] = [BEGIN_OBJECT, QUOTATION_MARK, 0x61, QUOTATION_MARK, KEY_DELIMITER, BEGIN_OBJECT, QUOTATION_MARK, 0x62, QUOTATION_MARK, KEY_DELIMITER];
 
 unconstrained

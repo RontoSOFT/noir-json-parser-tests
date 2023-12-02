@@ -28,7 +28,7 @@ fn convert_bytes_array_from_number()
 unconstrained
 fn convert_bytes_array_from_string()
 {
-    assert("'string'".as_list().len() == 0);
+    assert(r#""string""#.as_list().len() == 0);
 }
 
 #[test]
@@ -140,19 +140,19 @@ fn convert_value_array_multiple_array_numbers_nested()
 unconstrained
 fn convert_value_array_multiple_mixed_types()
 {
-    let result : [[u8]] = "[true,2,'3']".as_list();
+    let result : [[u8]] = r#"[true,2,"3"]"#.as_list();
 
     assert(result.len() == 3);
     assert(result[0].eq_string("true") == true);
     assert(result[1].eq_string("2") == true);
-    assert(result[2].eq_string("'3'") == true);
+    assert(result[2].eq_string(r#""3""#) == true);
 }
 
 #[test]
 unconstrained
 fn convert_property_array_single_number()
 {
-    let result : [[u8]] = JSON::parse("{'a':[1]}").get_array("a");
+    let result : [[u8]] = JSON::parse(r#"{"a":[1]}"#).get_array("a");
 
     assert(result.len() == 1);
     assert(result[0].eq_string("1") == true);
@@ -162,7 +162,7 @@ fn convert_property_array_single_number()
 unconstrained
 fn convert_property_array_multiple_numbers()
 {
-    let result : [[u8]] = JSON::parse("{'a':[1,2,3]}").get_array("a");
+    let result : [[u8]] = JSON::parse(r#"{"a":[1,2,3]}"#).get_array("a");
 
     assert(result.len() == 3);
     assert(result[0].eq_string("1") == true);
@@ -178,12 +178,12 @@ global object_three : [u8; 3] = [0x7B, 0x02, 0x7D];
 unconstrained
 fn convert_property_array_multiple_mixed_types()
 {
-    let result : [[u8]] = JSON::parse("{'a':[true,2,'3',10.35e+5,{}]}").get_array("a");
+    let result : [[u8]] = JSON::parse(r#"{"a":[true,2,"3",10.35e+5,{}]}"#).get_array("a");
 
     assert(result.len() == 5);
     assert(result[0].eq_string("true") == true);
     assert(result[1].eq_string("2") == true);
-    assert(result[2].eq_string("'3'") == true);
+    assert(result[2].eq_string(r#""3""#) == true);
     assert(result[3].eq_string("10.35e+5") == true);
     assert(result[4].eq(object_one) == true);
 }
@@ -192,7 +192,7 @@ fn convert_property_array_multiple_mixed_types()
 unconstrained
 fn convert_property_array_multiple_empty_objects()
 {
-    let result : [[u8]] = JSON::parse("{'a':[{},{},{}]}").get_array("a");
+    let result : [[u8]] = JSON::parse(r#"{"a":[{},{},{}]}"#).get_array("a");
 
     assert(result.len() == 3);
     assert(result[0].eq(object_one) == true);
@@ -204,7 +204,7 @@ fn convert_property_array_multiple_empty_objects()
 unconstrained
 fn convert_property_array_multiple_objects_single_property()
 {
-    let result : [[u8]] = JSON::parse("{'a':[{'a':1},{'a':2}]}").get_array("a");
+    let result : [[u8]] = JSON::parse(r#"{"a":[{"a":1},{"a":2}]}"#).get_array("a");
 
     assert(result.len() == 2);
     assert(result[0].eq(object_one) == true);
@@ -215,7 +215,7 @@ fn convert_property_array_multiple_objects_single_property()
 unconstrained
 fn convert_property_array_multiple_objects_multiple_properties()
 {
-    let result : [[u8]] = JSON::parse("{'a':[{'a':1,'b':true,'c':'123'},{'a':2,'b':false,'c':'456'}]}").get_array("a");
+    let result : [[u8]] = JSON::parse(r#"{"a":[{"a":1,"b":true,"c":"123"},{"a":2,"b":false,"c":"456"}]}"#).get_array("a");
 
     assert(result.len() == 2);
     assert(result[0].eq(object_one) == true);
@@ -226,21 +226,21 @@ fn convert_property_array_multiple_objects_multiple_properties()
 unconstrained
 fn convert_string_empty_array()
 {
-    assert(JSON::parse("''").get_array("").len() == 0);
+    assert(JSON::parse(r#""""#).get_array("").len() == 0);
 }
 
 #[test]
 unconstrained
 fn convert_string_array_empty()
 {
-    assert(JSON::parse("'[]'").get_array("").len() == 1);
+    assert(JSON::parse(r#""[]""#).get_array("").len() == 1);
 }
 
 #[test]
 unconstrained
 fn convert_string_array_one_two_three()
 {
-    let result : [[u8]] = JSON::parse("'[1,2,3]'").get_array("");
+    let result : [[u8]] = JSON::parse(r#""[1,2,3]""#).get_array("");
 
     assert(result.len() == 3);
     assert(result[0].eq_string("1") == true);
@@ -252,10 +252,10 @@ fn convert_string_array_one_two_three()
 unconstrained
 fn convert_string_array_true_two_string_three()
 {
-    let result : [[u8]] = JSON::parse("'[true,2,\\'3\\']'").get_array("");
+    let result : [[u8]] = JSON::parse(r#""[true,2,\"3\"]""#).get_array("");
 
     assert(result.len() == 3);
     assert(result[0].eq_string("true") == true);
     assert(result[1].eq_string("2") == true);
-    assert(result[2].eq_string("'3'") == true);
+    assert(result[2].eq_string(r#""3""#) == true);
 }

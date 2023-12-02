@@ -195,7 +195,7 @@ fn value_number_one_colon()
 #[test]
 fn value_number_one_quote()
 {
-    assert(can_parse_as_value("1'") == false);
+    assert(can_parse_as_value("1\"") == false);
 }
 
 #[test]
