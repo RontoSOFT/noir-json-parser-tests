@@ -2,7 +2,7 @@
 name = "noir_json_parser_tests"
 authors = ["grasshopper47"]
 type = "lib"
-compiler_version = "nightly-2023-12-02"
+compiler_version = "0.20.0"
 
 [dependencies]
 rontosoft = { path = "../lib" }
