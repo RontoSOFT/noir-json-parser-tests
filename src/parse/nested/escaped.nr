@@ -27,25 +27,25 @@ fn nested_value_byte_null()
 }
 
 #[test]
-fn nested_string_with_escaped_quotation_mark_left()
+fn with_escaped_quotation_mark_left()
 {
     assert(can_parse_as_nested(r#""\"string""#) == true);
 }
 
 #[test]
-fn nested_string_with_escaped_quotation_mark_right()
+fn with_escaped_quotation_mark_right()
 {
     assert(can_parse_as_nested(r#""string\"""#) == true);
 }
 
 #[test]
-fn nested_string_with_escaped_quotation_mark_middle()
+fn with_escaped_quotation_mark_middle()
 {
     assert(can_parse_as_nested(r#""str\"ing""#) == true);
 }
 
 #[test]
-fn nested_string_with_escaped_quotation_mark_both()
+fn with_escaped_quotation_mark_both()
 {
     assert(can_parse_as_nested(r#""\"string\"""#) == true);
 }

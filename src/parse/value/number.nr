@@ -1,115 +1,115 @@
 use crate::utils::can_parse_as_value;
 
 #[test]
-fn value_number_zero()
+fn zero()
 {
     assert(can_parse_as_value("0") == true);
 }
 
 #[test]
-fn value_number_one()
+fn one()
 {
     assert(can_parse_as_value("1") == true);
 }
 
 #[test]
-fn value_number_one_zero_zero()
+fn one_zero_zero()
 {
     assert(can_parse_as_value("100") == true);
 }
 
 #[test]
-fn value_number_one_zero_zero_one()
+fn one_zero_zero_one()
 {
     assert(can_parse_as_value("1001") == true);
 }
 
 #[test]
-fn value_number_multiple_one_two_three_four_five()
+fn multiple_one_two_three_four_five()
 {
     assert(can_parse_as_value("12345") == true);
 }
 
 #[test]
-fn value_number_minus()
+fn minus()
 {
     assert(can_parse_as_value("-") == false);
 }
 
 #[test]
-fn value_number_minus_zero()
+fn minus_zero()
 {
     assert(can_parse_as_value("-0") == true);
 }
 
 #[test]
-fn value_number_minus_one()
+fn minus_one()
 {
     assert(can_parse_as_value("-1") == true);
 }
 
 #[test]
-fn value_number_minus_one_zero_zero()
+fn minus_one_zero_zero()
 {
     assert(can_parse_as_value("-100") == true);
 }
 
 #[test]
-fn value_number_minus_one_zero_zero_one()
+fn minus_one_zero_zero_one()
 {
     assert(can_parse_as_value("-1001") == true);
 }
 
 #[test]
-fn value_number_minus_one_two_three_four_five()
+fn minus_one_two_three_four_five()
 {
     assert(can_parse_as_value("-12345") == true);
 }
 
 #[test]
-fn value_number_plus()
+fn plus()
 {
     assert(can_parse_as_value("+") == false);
 }
 
 #[test]
-fn value_number_plus_zero()
+fn plus_zero()
 {
     assert(can_parse_as_value("+0") == false);
 }
 
 #[test]
-fn value_number_plus_one()
+fn plus_one()
 {
     assert(can_parse_as_value("+1") == false);
 }
 
 #[test]
-fn value_number_plus_one_two_three_four_five()
+fn plus_one_two_three_four_five()
 {
     assert(can_parse_as_value("+12345") == false);
 }
 
 #[test]
-fn value_number_double_zero()
+fn double_zero()
 {
     assert(can_parse_as_value("00") == false);
 }
 
 #[test]
-fn value_number_leading_zero_one()
+fn leading_zero_one()
 {
     assert(can_parse_as_value("01") == false);
 }
 
 #[test]
-fn value_number_zero_zero_one()
+fn zero_zero_one()
 {
     assert(can_parse_as_value("001") == false);
 }
 
 #[test]
-fn value_number_zero_one_two_three_four_five()
+fn zero_one_two_three_four_five()
 {
     assert(can_parse_as_value("012345") == false);
 }
@@ -127,121 +127,121 @@ fn value_double_minus_one()
 }
 
 #[test]
-fn value_number_zero_minus()
+fn zero_minus()
 {
     assert(can_parse_as_value("0-") == false);
 }
 
 #[test]
-fn value_number_one_minus()
+fn one_minus()
 {
     assert(can_parse_as_value("1-") == false);
 }
 
 #[test]
-fn value_number_minus_zero_minus()
+fn minus_zero_minus()
 {
     assert(can_parse_as_value("-0-") == false);
 }
 
 #[test]
-fn value_number_minus_one_minus()
+fn minus_one_minus()
 {
     assert(can_parse_as_value("-1-") == false);
 }
 
 #[test]
-fn value_number_zero_minus_zero()
+fn zero_minus_zero()
 {
     assert(can_parse_as_value("0-0") == false);
 }
 
 #[test]
-fn value_number_one_minus_one()
+fn one_minus_one()
 {
     assert(can_parse_as_value("1-1") == false);
 }
 
 #[test]
-fn value_number_minus_zero_minus_zero()
+fn minus_zero_minus_zero()
 {
     assert(can_parse_as_value("-0-0") == false);
 }
 
 #[test]
-fn value_number_minus_one_minus_one()
+fn minus_one_minus_one()
 {
     assert(can_parse_as_value("-1-1") == false);
 }
 
 #[test]
-fn value_number_one_comma()
+fn one_comma()
 {
     assert(can_parse_as_value("1,") == false);
 }
 
 #[test]
-fn value_number_one_comma_space()
+fn one_comma_space()
 {
     assert(can_parse_as_value("1, ") == false);
 }
 
 #[test]
-fn value_number_one_colon()
+fn one_colon()
 {
     assert(can_parse_as_value("1:") == false);
 }
 
 #[test]
-fn value_number_one_quote()
+fn one_quote()
 {
     assert(can_parse_as_value("1\"") == false);
 }
 
 #[test]
-fn value_number_one_left_brace()
+fn one_left_brace()
 {
     assert(can_parse_as_value("1{") == false);
 }
 
 #[test]
-fn value_number_one_right_brace()
+fn one_right_brace()
 {
     assert(can_parse_as_value("1}") == false);
 }
 
 #[test]
-fn value_number_one_left_bracket()
+fn one_left_bracket()
 {
     assert(can_parse_as_value("1[") == false);
 }
 
 #[test]
-fn value_number_one_right_bracket()
+fn one_right_bracket()
 {
     assert(can_parse_as_value("1]") == false);
 }
 
 #[test]
-fn value_number_one_letter()
+fn one_letter()
 {
     assert(can_parse_as_value("1x") == false);
 }
 
 #[test]
-fn value_number_one_literal_letter()
+fn one_literal_letter()
 {
     assert(can_parse_as_value("1f") == false);
 }
 
 #[test]
-fn value_number_one_space_two()
+fn one_space_two()
 {
     assert(can_parse_as_value("1 2") == false);
 }
 
 #[test]
-fn value_number_one_comma_two()
+fn one_comma_two()
 {
     assert(can_parse_as_value("1,2") == false);
 }

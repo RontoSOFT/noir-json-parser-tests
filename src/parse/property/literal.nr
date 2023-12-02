@@ -1,97 +1,97 @@
 use crate::utils::can_parse_as_property;
 
 #[test]
-fn property_literal_null()
+fn literal_null()
 {
     assert(can_parse_as_property("null") == true);
 }
 
 #[test]
-fn property_literal_true()
+fn literal_true()
 {
     assert(can_parse_as_property("true") == true);
 }
 
 #[test]
-fn property_literal_false()
+fn literal_false()
 {
     assert(can_parse_as_property("false") == true);
 }
 
 #[test]
-fn property_literal_fals()
+fn fals()
 {
     assert(can_parse_as_property("fals") == false);
 }
 
 #[test]
-fn property_literal_t()
+fn t()
 {
     assert(can_parse_as_property("t}") == false);
 }
 
 #[test]
-fn property_literal_nul()
+fn nul()
 {
     assert(can_parse_as_property("nul}") == false);
 }
 
 #[test]
-fn property_literal_falst()
+fn falst()
 {
     assert(can_parse_as_property("falst}") == false);
 }
 
 #[test]
-fn property_literal_random()
+fn random()
 {
     assert(can_parse_as_property("lfseu}") == false);
 }
 
 #[test]
-fn property_literal_plus_true()
+fn plus_true()
 {
     assert(can_parse_as_property("+true}") == false);
 }
 
 #[test]
-fn property_literal_true_plus()
+fn true_plus()
 {
     assert(can_parse_as_property("true+}") == false);
 }
 
 #[test]
-fn property_literal_minus_false()
+fn minus_false()
 {
     assert(can_parse_as_property("-false}") == false);
 }
 
 #[test]
-fn property_literal_false_minus()
+fn false_minus()
 {
     assert(can_parse_as_property("false-}") == false);
 }
 
 #[test]
-fn property_literal_tru_dot_e()
+fn tru_dot_e()
 {
     assert(can_parse_as_property("tru.e}") == false);
 }
 
 #[test]
-fn property_literal_tru_space_e()
+fn tru_space_e()
 {
     assert(can_parse_as_property("tru e}") == false);
 }
 
 #[test]
-fn property_literal_false_space_false()
+fn false_space_false()
 {
     assert(can_parse_as_property("false false}") == false);
 }
 
 #[test]
-fn property_literal_false_comma_false()
+fn false_comma_false()
 {
     assert(can_parse_as_property("false,false}") == false);
 }

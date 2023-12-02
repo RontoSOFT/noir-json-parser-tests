@@ -3,305 +3,305 @@ use dep::rontosoft::JSON;
 use crate::utils::can_parse_as_nested;
 
 #[test]
-fn nested_object_left_brace()
+fn left_brace()
 {
     assert(can_parse_as_nested("{") == false);
 }
 
 #[test]
-fn nested_object_right_brace()
+fn right_brace()
 {
     assert(can_parse_as_nested("}") == false);
 }
 
 #[test]
-fn nested_object_left_brace_and_number()
+fn left_brace_and_number()
 {
     assert(can_parse_as_nested("{12") == false);
 }
 
 #[test]
-fn nested_object_right_brace_and_number()
+fn right_brace_and_number()
 {
     assert(can_parse_as_nested("12}") == false);
 }
 
 #[test]
-fn nested_object_left_brace_and_literal()
+fn left_brace_and_literal()
 {
     assert(can_parse_as_nested("{true") == false);
 }
 
 #[test]
-fn nested_object_right_brace_and_literal()
+fn right_brace_and_literal()
 {
     assert(can_parse_as_nested("true}") == false);
 }
 
 #[test]
-fn nested_object_left_brace_and_number_quote()
+fn left_brace_and_number_quote()
 {
     assert(can_parse_as_nested("{{}") == false);
 }
 
 #[test]
-fn nested_object_quote_right_brace_and_number()
+fn quote_right_brace_and_number()
 {
     assert(can_parse_as_nested("{}}") == false);
 }
 
 #[test]
-fn nested_object_quote_left_brace()
+fn quote_left_brace()
 {
     assert(can_parse_as_nested("\"{") == false);
 }
 
 #[test]
-fn nested_object_right_brace_quote()
+fn right_brace_quote()
 {
     assert(can_parse_as_nested("}\"") == false);
 }
 
 #[test]
-fn nested_object_empty_colon()
+fn empty_colon()
 {
     assert(can_parse_as_nested("{:}") == false);
 }
 
 #[test]
-fn nested_object_empty_comma()
+fn empty_comma()
 {
     assert(can_parse_as_nested("{,}") == false);
 }
 
 #[test]
-fn nested_object_empty_key()
+fn empty_key()
 {
     assert(can_parse_as_nested("{\"\"}") == false);
 }
 
 #[test]
-fn nested_object_empty_key_with_colon()
+fn empty_key_with_colon()
 {
     assert(can_parse_as_nested("{\"\":}") == false);
 }
 
 #[test]
-fn nested_object_empty_space_empty()
+fn empty_space_empty()
 {
     assert(can_parse_as_nested("{} {}") == false);
 }
 
 #[test]
-fn nested_object_empty_comma_empty()
+fn empty_comma_empty()
 {
     assert(can_parse_as_nested("{},{}") == false);
 }
 
 #[test]
-fn nested_object_key_with_colon_missing_value()
+fn key_with_colon_missing_value()
 {
     assert(can_parse_as_nested(r#"{"a":}"#) == false);
 }
 
 #[test]
-fn nested_object_missing_key_with_value()
+fn missing_key_with_value()
 {
     assert(can_parse_as_nested("{:1}") == false);
 }
 
 #[test]
-fn nested_object_empty_key_with_value()
+fn empty_key_with_value()
 {
     assert(can_parse_as_nested(r#"{"":1}"#) == false);
 }
 
 #[test]
-fn nested_object_colon_before_key()
+fn colon_before_key()
 {
     assert(can_parse_as_nested(r#"{:"a":1}"#) == false);
 }
 
 #[test]
-fn nested_object_quote_before_key()
+fn quote_before_key()
 {
     assert(can_parse_as_nested(r#"{""a":1}"#) == false);
 }
 
 #[test]
-fn nested_object_quote_after_key()
+fn quote_after_key()
 {
     assert(can_parse_as_nested(r#"{"a"":1}"#) == false);
 }
 
 #[test]
-fn nested_object_left_brace_before_key()
+fn left_brace_before_key()
 {
     assert(can_parse_as_nested(r#"{{"a":1}"#) == false);
 }
 
 #[test]
-fn nested_object_left_brace_after_key()
+fn left_brace_after_key()
 {
     assert(can_parse_as_nested(r#"{"a"{:1}"#) == false);
 }
 
 #[test]
-fn nested_object_right_brace_before_key()
+fn right_brace_before_key()
 {
     assert(can_parse_as_nested(r#"{}"a":1}"#) == false);
 }
 
 #[test]
-fn nested_object_right_brace_after_key()
+fn right_brace_after_key()
 {
     assert(can_parse_as_nested(r#"{"a"}:1}"#) == false);
 }
 
 #[test]
-fn nested_object_left_bracket_before_key()
+fn left_bracket_before_key()
 {
     assert(can_parse_as_nested(r#"{["a":1}"#) == false);
 }
 
 #[test]
-fn nested_object_left_bracket_after_key()
+fn left_bracket_after_key()
 {
     assert(can_parse_as_nested(r#"{"a"[:1}"#) == false);
 }
 
 #[test]
-fn nested_object_right_bracket_before_key()
+fn right_bracket_before_key()
 {
     assert(can_parse_as_nested(r#"{]"a":1}"#) == false);
 }
 
 #[test]
-fn nested_object_right_bracket_after_key()
+fn right_bracket_after_key()
 {
     assert(can_parse_as_nested(r#"{"a"]:1}"#) == false);
 }
 
 #[test]
-fn nested_object_leading_comma()
+fn leading_comma()
 {
     assert(can_parse_as_nested(r#"{,"a":1}"#) == false);
 }
 
 #[test]
-fn nested_object_comma_after_key()
+fn comma_after_key()
 {
     assert(can_parse_as_nested(r#"{"a",:1}"#) == false);
 }
 
 #[test]
-fn nested_object_comma_after_colon()
+fn comma_after_colon()
 {
     assert(can_parse_as_nested(r#"{"a":,1}"#) == false);
 }
 
 #[test]
-fn nested_object_trailing_comma()
+fn trailing_comma()
 {
     assert(can_parse_as_nested(r#"{"a":1,}"#) == false);
 }
 
 #[test]
-fn nested_object_one_comma_minus()
+fn one_comma_minus()
 {
     assert(can_parse_as_nested(r#"{"a":1,-}"#) == false);
 }
 
 #[test]
-fn nested_object_empty_key_second_key()
+fn empty_key_second_key()
 {
     assert(can_parse_as_nested(r#"{"a":1,""}"#) == false);
 }
 
 #[test]
-fn nested_object_missing_colon_second_key()
+fn missing_colon_second_key()
 {
     assert(can_parse_as_nested(r#"{"a":1,"b"}"#) == false);
 }
 
 #[test]
-fn nested_object_missing_value_second_key()
+fn missing_value_second_key()
 {
     assert(can_parse_as_nested(r#"{"a":1,"b":}"#) == false);
 }
 
 #[test]
-fn nested_object_faulty_minus_second_key()
+fn faulty_minus_second_key()
 {
     assert(can_parse_as_nested(r#"{"a":1,"b":-}"#) == false);
 }
 
 #[test]
 unconstrained
-fn nested_object_empty()
+fn empty()
 {
     assert(JSON::parse(r#"{"a":{"b":{}}}"#).get_object("a").get_object("b").is_empty() == true);
 }
 
 #[test]
 unconstrained
-fn nested_object_single_character_key_with_value()
+fn single_character_key_with_value()
 {
     assert(JSON::parse(r#"{"a":{"b":{"c":1}}}"#).get_object("a").get_object("b").get("c").eq_string("1") == true);
 }
 
 #[test]
 unconstrained
-fn nested_object_multi_character_key_with_value()
+fn multi_character_key_with_value()
 {
     assert(JSON::parse(r#"{"a":{"b":{"abc":1}}}"#).get_object("a").get_object("b").get("abc").eq_string("1") == true);
 }
 
 #[test]
 unconstrained
-fn nested_object_key_with_colon()
+fn key_with_colon()
 {
     assert(JSON::parse(r#"{"a":{"b":{"c:":1}}}"#).get_object("a").get_object("b").get("c:").eq_string("1") == true);
 }
 
 #[test]
 unconstrained
-fn nested_object_key_with_space()
+fn key_with_space()
 {
     assert(JSON::parse(r#"{"a":{"b":{"c ":1}}}"#).get_object("a").get_object("b").get("c ").eq_string("1") == true);
 }
 
 #[test]
 unconstrained
-fn nested_object_key_with_right_brace()
+fn key_with_right_brace()
 {
     assert(JSON::parse(r#"{"a":{"b":{"c}":1}}}"#).get_object("a").get_object("b").get("c}").eq_string("1") == true);
 }
 
 #[test]
 unconstrained
-fn nested_object_key_with_left_brace()
+fn key_with_left_brace()
 {
     assert(JSON::parse(r#"{"a":{"b":{"c{":1}}}"#).get_object("a").get_object("b").get("c{").eq_string("1") == true);
 }
 
 #[test]
 unconstrained
-fn nested_object_key_with_right_bracket()
+fn key_with_right_bracket()
 {
     assert(JSON::parse(r#"{"a":{"b":{"c]":1}}}"#).get_object("a").get_object("b").get("c]").eq_string("1") == true);
 }
 
 #[test]
 unconstrained
-fn nested_object_key_with_left_bracket()
+fn key_with_left_bracket()
 {
     assert(JSON::parse(r#"{"a":{"b":{"c[":1}}}"#).get_object("a").get_object("b").get("c[").eq_string("1") == true);
 }
 
 #[test]
 unconstrained
-fn nested_object_two_keys()
+fn two_keys()
 {
     let json = JSON::parse(r#"{"a":{"b":{"abc":1}},"c":{"d":{"abc":2}}}"#);
 
@@ -315,7 +315,7 @@ fn nested_object_two_keys()
 // TODO: fix this
 #[test]
 unconstrained
-fn nested_object_two_keys_same_name_replace_property()
+fn two_keys_same_name_replace_property()
 {
     let json = JSON::parse(r#"{"a":{"b":{"abc":1}},"a":{"c":{"def":2}}}"#);
 
@@ -327,7 +327,7 @@ fn nested_object_two_keys_same_name_replace_property()
 
 #[test]
 unconstrained
-fn nested_object_three_keys_unique_values()
+fn three_keys_unique_values()
 {
     let json = JSON::parse(r#"{"a":{"b":{"name":"John Doe","age":30,"isEmployed":true}}}"#);
 

@@ -27,25 +27,25 @@ fn property_value_byte_null()
 }
 
 #[test]
-fn property_string_with_escaped_quotation_mark_left()
+fn with_escaped_quotation_mark_left()
 {
     assert(can_parse_as_property(r#""\"string""#) == true);
 }
 
 #[test]
-fn property_string_with_escaped_quotation_mark_right()
+fn with_escaped_quotation_mark_right()
 {
     assert(can_parse_as_property(r#""string\"""#) == true);
 }
 
 #[test]
-fn property_string_with_escaped_quotation_mark_middle()
+fn with_escaped_quotation_mark_middle()
 {
     assert(can_parse_as_property(r#""str\"ing""#) == true);
 }
 
 #[test]
-fn property_string_with_escaped_quotation_mark_both()
+fn with_escaped_quotation_mark_both()
 {
     assert(can_parse_as_property(r#""\"string\"""#) == true);
 }

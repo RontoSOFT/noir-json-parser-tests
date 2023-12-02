@@ -52,25 +52,25 @@ fn value_empty_object_with_null_misplaced()
 }
 
 #[test]
-fn value_string_with_escaped_quotation_mark_left()
+fn with_escaped_quotation_mark_left()
 {
     assert(can_parse_as_value(r#""\"string""#) == true);
 }
 
 #[test]
-fn value_string_with_escaped_quotation_mark_right()
+fn with_escaped_quotation_mark_right()
 {
     assert(can_parse_as_value(r#""string\"""#) == true);
 }
 
 #[test]
-fn value_string_with_escaped_quotation_mark_middle()
+fn with_escaped_quotation_mark_middle()
 {
     assert(can_parse_as_value(r#""str\"ing""#) == true);
 }
 
 #[test]
-fn value_string_with_escaped_quotation_mark_both()
+fn with_escaped_quotation_mark_both()
 {
     assert(can_parse_as_value(r#""\"string\"""#) == true);
 }

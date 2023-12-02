@@ -2,42 +2,42 @@ use dep::rontosoft::JSON;
 
 #[test]
 unconstrained
-fn convert_value_string_empty_object()
+fn empty_string()
 {
     assert("\"\"".as_json().is_none() == true);
 }
 
 #[test]
 unconstrained
-fn convert_value_string_object_empty()
+fn empty_object()
 {
     assert("\"{}\"".as_json().is_empty() == true);
 }
 
 #[test]
 unconstrained
-fn convert_value_string_object_empty_with_space()
+fn empty_object_with_space()
 {
     assert("\"{ }\"".as_json().is_empty() == true);
 }
 
 #[test]
 unconstrained
-fn convert_value_string_object()
+fn object()
 {
     assert(r#""{"a":1}""#.as_json().get("a").eq_string("1") == true);
 }
 
 #[test]
 unconstrained
-fn convert_value_string_nested_object()
+fn nested_object()
 {
     assert(r#""{"a":{"b":1}}""#.as_json().get_object("a").get("b").eq_string("1") == true);
 }
 
 #[test]
 unconstrained
-fn convert_object_one_key_value_object()
+fn object_one_key_value_object()
 {
     let json = JSON::parse(r#"{"abc":{"a":1,"b":true,"c":"123"}}"#);
 
@@ -49,7 +49,7 @@ fn convert_object_one_key_value_object()
 
 #[test]
 unconstrained
-fn convert_object_two_keys_with_objects_with_multiple_keys()
+fn object_two_keys_with_objects_with_multiple_keys()
 {
     let json = JSON::parse(r#"{"abc":{"a":1,"b":true,"c":"123"},"def":{"a":2,"b":false,"c":"456"}}"#);
 
@@ -66,7 +66,7 @@ fn convert_object_two_keys_with_objects_with_multiple_keys()
 
 #[test]
 unconstrained
-fn convert_object_two_keys_with_nested_objects()
+fn object_two_keys_with_nested_objects()
 {
     let json = JSON::parse(r#"{"abc":{"a":{"b":1}},"def":{"d":{"e":2}}}"#);
 
@@ -76,7 +76,7 @@ fn convert_object_two_keys_with_nested_objects()
 
 #[test]
 unconstrained
-fn convert_object_two_keys_with_twice_nested_objects()
+fn object_two_keys_with_twice_nested_objects()
 {
     let json = JSON::parse(r#"{"abc":{"a":{"b":{"c":1}}},"def":{"d":{"e":{"f":2}}}}"#);
 
@@ -86,7 +86,7 @@ fn convert_object_two_keys_with_twice_nested_objects()
 
 #[test]
 unconstrained
-fn convert_object_array_two_objects_with_multiple_keys()
+fn object_array_two_objects_with_multiple_keys()
 {
     let json = JSON::parse(r#"{"abc":[{"a":1,"b":true,"c":"123"},{"a":2,"b":false,"c":"456"}]}"#);
     let array : [[u8]] = json.get_array("abc");

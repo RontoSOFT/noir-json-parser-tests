@@ -2,7 +2,7 @@ use dep::rontosoft::JSON;
 
 #[test]
 unconstrained
-fn convert_value_array_from_empty_bytes()
+fn value_array_from_empty_bytes()
 {
     let result : [[u8]] = "[ ]".as_list();
 
@@ -12,56 +12,56 @@ fn convert_value_array_from_empty_bytes()
 
 #[test]
 unconstrained
-fn convert_bytes_array_from_literal()
+fn bytes_array_from_literal()
 {
     assert("true".as_list().len() == 0);
 }
 
 #[test]
 unconstrained
-fn convert_bytes_array_from_number()
+fn bytes_array_from_number()
 {
     assert("123".as_list().len() == 0);
 }
 
 #[test]
 unconstrained
-fn convert_bytes_array_from_string()
+fn bytes_array_from_string()
 {
     assert(r#""string""#.as_list().len() == 0);
 }
 
 #[test]
 unconstrained
-fn convert_bytes_array_from_object()
+fn bytes_array_from_object()
 {
     assert("{}".as_list().len() == 0);
 }
 
 #[test]
 unconstrained
-fn convert_bytes_array_malformed_left()
+fn bytes_array_malformed_left()
 {
     assert(" []".as_list().len() == 0);
 }
 
 #[test]
 unconstrained
-fn convert_bytes_array_malformed_right()
+fn bytes_array_malformed_right()
 {
     assert("[] ".as_list().len() == 0);
 }
 
 #[test]
 unconstrained
-fn convert_bytes_array_malformed_both()
+fn bytes_array_malformed_both()
 {
     assert(" [] ".as_list().len() == 0);
 }
 
 #[test]
 unconstrained
-fn convert_value_array_empty()
+fn value_array_empty()
 {
     let result : [[u8]] = "[]".as_list();
 
@@ -71,7 +71,7 @@ fn convert_value_array_empty()
 
 #[test]
 unconstrained
-fn convert_value_array_single()
+fn value_array_single()
 {
     let result : [[u8]] = "[1]".as_list();
 
@@ -81,7 +81,7 @@ fn convert_value_array_single()
 
 #[test]
 unconstrained
-fn convert_value_array_multiple_numbers()
+fn value_array_multiple_numbers()
 {
     let result : [[u8]] = "[1,2,3]".as_list();
 
@@ -93,7 +93,7 @@ fn convert_value_array_multiple_numbers()
 
 #[test]
 unconstrained
-fn convert_value_array_multiple_numbers_nested()
+fn value_array_multiple_numbers_nested()
 {
     let result : [[u8]] = "[[1],[2],[3]]".as_list();
 
@@ -114,7 +114,7 @@ fn convert_value_array_multiple_numbers_nested()
 
 #[test]
 unconstrained
-fn convert_value_array_multiple_array_numbers_nested()
+fn value_array_multiple_array_numbers_nested()
 {
     let result : [[u8]] = "[[1,8],[2,7],[3,6]]".as_list();
 
@@ -138,7 +138,7 @@ fn convert_value_array_multiple_array_numbers_nested()
 
 #[test]
 unconstrained
-fn convert_value_array_multiple_mixed_types()
+fn value_array_multiple_mixed_types()
 {
     let result : [[u8]] = r#"[true,2,"3"]"#.as_list();
 
@@ -150,7 +150,7 @@ fn convert_value_array_multiple_mixed_types()
 
 #[test]
 unconstrained
-fn convert_property_array_single_number()
+fn property_array_single_number()
 {
     let result : [[u8]] = JSON::parse(r#"{"a":[1]}"#).get_array("a");
 
@@ -160,7 +160,7 @@ fn convert_property_array_single_number()
 
 #[test]
 unconstrained
-fn convert_property_array_multiple_numbers()
+fn property_array_multiple_numbers()
 {
     let result : [[u8]] = JSON::parse(r#"{"a":[1,2,3]}"#).get_array("a");
 
@@ -176,7 +176,7 @@ global object_three : [u8; 3] = [0x7B, 0x02, 0x7D];
 
 #[test]
 unconstrained
-fn convert_property_array_multiple_mixed_types()
+fn property_array_multiple_mixed_types()
 {
     let result : [[u8]] = JSON::parse(r#"{"a":[true,2,"3",10.35e+5,{}]}"#).get_array("a");
 
@@ -190,7 +190,7 @@ fn convert_property_array_multiple_mixed_types()
 
 #[test]
 unconstrained
-fn convert_property_array_multiple_empty_objects()
+fn property_array_multiple_empty_objects()
 {
     let result : [[u8]] = JSON::parse(r#"{"a":[{},{},{}]}"#).get_array("a");
 
@@ -202,7 +202,7 @@ fn convert_property_array_multiple_empty_objects()
 
 #[test]
 unconstrained
-fn convert_property_array_multiple_objects_single_property()
+fn property_array_multiple_objects_single_property()
 {
     let result : [[u8]] = JSON::parse(r#"{"a":[{"a":1},{"a":2}]}"#).get_array("a");
 
@@ -213,7 +213,7 @@ fn convert_property_array_multiple_objects_single_property()
 
 #[test]
 unconstrained
-fn convert_property_array_multiple_objects_multiple_properties()
+fn property_array_multiple_objects_multiple_properties()
 {
     let result : [[u8]] = JSON::parse(r#"{"a":[{"a":1,"b":true,"c":"123"},{"a":2,"b":false,"c":"456"}]}"#).get_array("a");
 
@@ -224,21 +224,21 @@ fn convert_property_array_multiple_objects_multiple_properties()
 
 #[test]
 unconstrained
-fn convert_string_empty_array()
+fn string_empty_array()
 {
     assert(JSON::parse(r#""""#).get_array("").len() == 0);
 }
 
 #[test]
 unconstrained
-fn convert_string_array_empty()
+fn string_array_empty()
 {
     assert(JSON::parse(r#""[]""#).get_array("").len() == 1);
 }
 
 #[test]
 unconstrained
-fn convert_string_array_one_two_three()
+fn string_array_one_two_three()
 {
     let result : [[u8]] = JSON::parse(r#""[1,2,3]""#).get_array("");
 
@@ -250,7 +250,7 @@ fn convert_string_array_one_two_three()
 
 #[test]
 unconstrained
-fn convert_string_array_true_two_string_three()
+fn string_array_true_two_string_three()
 {
     let result : [[u8]] = JSON::parse(r#""[true,2,\"3\"]""#).get_array("");
 

@@ -1,122 +1,122 @@
 use crate::utils::can_parse_as_property;
 
 #[test]
-fn property_fraction_zero_point_zero()
+fn zero_point_zero()
 {
     assert(can_parse_as_property("0.0") == true);
 }
 
 #[test]
-fn property_fraction_zero_point_single_digits()
+fn zero_point_single_digits()
 {
     assert(can_parse_as_property("0.1") == true);
 }
 
 #[test]
-fn property_fraction_zero_point_multiple_digits()
+fn zero_point_multiple_digits()
 {
     assert(can_parse_as_property("0.12345") == true);
 }
 
 #[test]
-fn property_fraction_minus_zero_point_multiple_digits()
+fn minus_zero_point_multiple_digits()
 {
     assert(can_parse_as_property("-0.12345") == true);
 }
 
 #[test]
-fn property_fraction_single_digit_point_zero()
+fn single_digit_point_zero()
 {
     assert(can_parse_as_property("1.0") == true);
 }
 
 #[test]
-fn property_fraction_minus_single_digit_point_zero()
+fn minus_single_digit_point_zero()
 {
     assert(can_parse_as_property("-1.0") == true);
 }
 
 #[test]
-fn property_fraction_single_digit_point_zero_e_zero()
+fn single_digit_point_zero_e_zero()
 {
     assert(can_parse_as_property("1.0e0") == true);
 }
 
 #[test]
-fn property_fraction_single_digit_point_zero_e_plus_zero()
+fn single_digit_point_zero_e_plus_zero()
 {
     assert(can_parse_as_property("1.0e+0") == true);
 }
 
 #[test]
-fn property_fraction_single_digit_point_zero_e_minus_zero()
+fn single_digit_point_zero_e_minus_zero()
 {
     assert(can_parse_as_property("1.0e-0") == true);
 }
 
 
 #[test]
-fn property_fraction_single_digit_point_single_digit()
+fn single_digit_point_single_digit()
 {
     assert(can_parse_as_property("1.2") == true);
 }
 
 #[test]
-fn property_fraction_minus_single_digit_point_single_digit()
+fn minus_single_digit_point_single_digit()
 {
     assert(can_parse_as_property("-1.2") == true);
 }
 
 #[test]
-fn property_fraction_single_digit_point_multiple_digits()
+fn single_digit_point_multiple_digits()
 {
     assert(can_parse_as_property("1.23456") == true);
 }
 
 #[test]
-fn property_fraction_minus_single_digit_point_multiple_digits()
+fn minus_single_digit_point_multiple_digits()
 {
     assert(can_parse_as_property("-1.23456") == true);
 }
 
 #[test]
-fn property_fraction_multiple_digits_point_zero()
+fn multiple_digits_point_zero()
 {
     assert(can_parse_as_property("12345.0") == true);
 }
 
 #[test]
-fn property_fraction_minus_multiple_digits_point_zero()
+fn minus_multiple_digits_point_zero()
 {
     assert(can_parse_as_property("-12345.0") == true);
 }
 
 #[test]
-fn property_fraction_multiple_digits_point_single_digit()
+fn multiple_digits_point_single_digit()
 {
     assert(can_parse_as_property("12345.6") == true);
 }
 
 #[test]
-fn property_fraction_minus_multiple_digits_point_single_digit()
+fn minus_multiple_digits_point_single_digit()
 {
     assert(can_parse_as_property("-12345.6") == true);
 }
 
 #[test]
-fn property_fraction_multiple_digits_point_multiple_digits()
+fn multiple_digits_point_multiple_digits()
 {
     assert(can_parse_as_property("12345.67890") == true);
 }
 
 #[test]
-fn property_fraction_minus_multiple_digits_point_multiple_digits()
+fn minus_multiple_digits_point_multiple_digits()
 {
     assert(can_parse_as_property("-12345.67890") == true);
 }
 
 #[test]
-fn property_fraction_zero_point_zero_letter()
+fn zero_point_zero_letter()
 {
     assert(can_parse_as_property("0.0f") == false);
 }
@@ -128,49 +128,49 @@ fn property_minus_fraction_one_point_minus_zero()
 }
 
 #[test]
-fn property_fraction_one_point_minus_zero()
+fn one_point_minus_zero()
 {
     assert(can_parse_as_property("1.-0") == false);
 }
 
 #[test]
-fn property_fraction_zero_point_point_zero()
+fn zero_point_point_zero()
 {
     assert(can_parse_as_property("0..0") == false);
 }
 
 #[test]
-fn property_fraction_zero_point()
+fn zero_point()
 {
     assert(can_parse_as_property("0.") == false);
 }
 
 #[test]
-fn property_fraction_point_zero()
+fn point_zero()
 {
     assert(can_parse_as_property(".0") == false);
 }
 
 #[test]
-fn property_fraction_minus_point()
+fn minus_point()
 {
     assert(can_parse_as_property("-.") == false);
 }
 
 #[test]
-fn property_fraction_point_minus()
+fn point_minus()
 {
     assert(can_parse_as_property(".-") == false);
 }
 
 #[test]
-fn property_fraction_plus_point()
+fn plus_point()
 {
     assert(can_parse_as_property("+.") == false);
 }
 
 #[test]
-fn property_fraction_point_plus()
+fn point_plus()
 {
     assert(can_parse_as_property(".+") == false);
 }

@@ -1,361 +1,361 @@
 use crate::utils::can_parse_as_property;
 
 #[test]
-fn property_exponent_zero_e_zero()
+fn zero_e_zero()
 {
     assert(can_parse_as_property("0e0") == true);
 }
 
 #[test]
-fn property_exponent_zero_E_zero()
+fn zero_E_zero()
 {
     assert(can_parse_as_property("0E0") == true);
 }
 
 #[test]
-fn property_exponent_zero_e_plus_zero()
+fn zero_e_plus_zero()
 {
     assert(can_parse_as_property("0e+0") == true);
 }
 
 #[test]
-fn property_exponent_zero_e_minus_zero()
+fn zero_e_minus_zero()
 {
     assert(can_parse_as_property("0e-0") == true);
 }
 
 #[test]
-fn property_exponent_minus_zero_e_minus_zero()
+fn minus_zero_e_minus_zero()
 {
     assert(can_parse_as_property("-0e-0") == true);
 }
 
 #[test]
-fn property_exponent_minus_zero_e_plus_zero()
+fn minus_zero_e_plus_zero()
 {
     assert(can_parse_as_property("-0e+0") == true);
 }
 
 #[test]
-fn property_exponent_zero_point_zero_e_zero_plus_zero()
+fn zero_point_zero_e_zero_plus_zero()
 {
     assert(can_parse_as_property("0.0e+0") == true);
 }
 
 #[test]
-fn property_exponent_zero_point_zero_e_zero_minus_zero()
+fn zero_point_zero_e_zero_minus_zero()
 {
     assert(can_parse_as_property("0.0e-0") == true);
 }
 
 #[test]
-fn property_exponent_minus_zero_point_zero_e_zero_minus_zero()
+fn minus_zero_point_zero_e_zero_minus_zero()
 {
     assert(can_parse_as_property("-0.0e-0") == true);
 }
 
 #[test]
-fn property_exponent_minus_zero_point_zero_e_zero_plus_zero()
+fn minus_zero_point_zero_e_zero_plus_zero()
 {
     assert(can_parse_as_property("-0.0e+0") == true);
 }
 
 #[test]
-fn value_exponent_zero_e_zero_dot_zero()
+fn zero_e_zero_dot_zero()
 {
     assert(can_parse_as_property("0e0.0") == false);
 }
 
 #[test]
-fn property_exponent_plus_zero_e_plus_zero()
+fn plus_zero_e_plus_zero()
 {
     assert(can_parse_as_property("+0e+0") == false);
 }
 
 #[test]
-fn property_exponent_plus_zero_e_minus_zero()
+fn plus_zero_e_minus_zero()
 {
     assert(can_parse_as_property("+0e-0") == false);
 }
 
 #[test]
-fn property_exponent_plus_zero_point_zero_e_plus_zero()
+fn plus_zero_point_zero_e_plus_zero()
 {
     assert(can_parse_as_property("+0.0e+0") == false);
 }
 
 #[test]
-fn property_exponent_plus_zero_point_zero_e_minus_zero()
+fn plus_zero_point_zero_e_minus_zero()
 {
     assert(can_parse_as_property("+0.0e-0") == false);
 }
 
 #[test]
-fn property_exponent_zero_point_zero_e_letter()
+fn zero_point_zero_e_letter()
 {
     assert(can_parse_as_property("0.0ef") == false);
 }
 
 #[test]
-fn property_exponent_zero_plus_zero_e_zero()
+fn zero_plus_zero_e_zero()
 {
     assert(can_parse_as_property("0+e0") == false);
 }
 
 #[test]
-fn property_exponent_zero_plus_zero_E_zero()
+fn zero_plus_zero_E_zero()
 {
     assert(can_parse_as_property("0+E0") == false);
 }
 
 #[test]
-fn property_exponent_minus_zero_e_minus_minus_zero()
+fn minus_zero_e_minus_minus_zero()
 {
     assert(can_parse_as_property("-0e--0") == false);
 }
 
 #[test]
-fn property_exponent_zero_point_zero_e_zero_plus_plus_zero()
+fn zero_point_zero_e_zero_plus_plus_zero()
 {
     assert(can_parse_as_property("0.0e++0") == false);
 }
 
 #[test]
-fn property_exponent_e()
+fn e()
 {
     assert(can_parse_as_property("e") == false);
 }
 
 #[test]
-fn property_exponent_dot_e()
+fn dot_e()
 {
     assert(can_parse_as_property(".e") == false);
 }
 
 #[test]
-fn property_exponent_minus_e()
+fn minus_e()
 {
     assert(can_parse_as_property("-e") == false);
 }
 
 #[test]
-fn property_exponent_plus_e()
+fn plus_e()
 {
     assert(can_parse_as_property("+e") == false);
 }
 
 #[test]
-fn property_exponent_e_minus()
+fn e_minus()
 {
     assert(can_parse_as_property("e-") == false);
 }
 
 #[test]
-fn property_exponent_e_plus()
+fn e_plus()
 {
     assert(can_parse_as_property("e+") == false);
 }
 
 #[test]
-fn property_exponent_e_minus_zero()
+fn e_minus_zero()
 {
     assert(can_parse_as_property("e-0") == false);
 }
 
 #[test]
-fn property_exponent_e_plus_zero()
+fn e_plus_zero()
 {
     assert(can_parse_as_property("e+0") == false);
 }
 
 #[test]
-fn property_exponent_minus_dot_e()
+fn minus_dot_e()
 {
     assert(can_parse_as_property("-.e") == false);
 }
 
 #[test]
-fn property_exponent_plus_dot_e()
+fn plus_dot_e()
 {
     assert(can_parse_as_property("+.e") == false);
 }
 
 #[test]
-fn property_exponent_one_e()
+fn one_e()
 {
     assert(can_parse_as_property("1e") == false);
 }
 
 #[test]
-fn property_exponent_one_e_minus()
+fn one_e_minus()
 {
     assert(can_parse_as_property("1e-") == false);
 }
 
 #[test]
-fn property_exponent_one_e_plus()
+fn one_e_plus()
 {
     assert(can_parse_as_property("1e+") == false);
 }
 
 #[test]
-fn property_exponent_one_point_e()
+fn one_point_e()
 {
     assert(can_parse_as_property("1.e") == false);
 }
 
 #[test]
-fn property_exponent_one_point_e_minus()
+fn one_point_e_minus()
 {
     assert(can_parse_as_property("1.e-") == false);
 }
 
 #[test]
-fn property_exponent_one_point_e_plus()
+fn one_point_e_plus()
 {
     assert(can_parse_as_property("1.e+") == false);
 }
 
 #[test]
-fn property_exponent_one_point_zero_e()
+fn one_point_zero_e()
 {
     assert(can_parse_as_property("1.0e") == false);
 }
 
 #[test]
-fn property_exponent_one_point_zero_e_minus()
+fn one_point_zero_e_minus()
 {
     assert(can_parse_as_property("1.0e-") == false);
 }
 
 #[test]
-fn property_exponent_one_point_zero_e_plus()
+fn one_point_zero_e_plus()
 {
     assert(can_parse_as_property("1.0e+") == false);
 }
 
 #[test]
-fn property_exponent_minus_one_point_zero_e_plus()
+fn minus_one_point_zero_e_plus()
 {
     assert(can_parse_as_property("-1.0e+") == false);
 }
 
 #[test]
-fn property_exponent_minus_one_point_zero_e_minus()
+fn minus_one_point_zero_e_minus()
 {
     assert(can_parse_as_property("-1.0e-") == false);
 }
 
 #[test]
-fn property_exponent_zero_e_zero_point_zero_e_zero()
+fn zero_e_zero_point_zero_e_zero()
 {
     assert(can_parse_as_property("0e0.0e0") == false);
 }
 
 #[test]
-fn property_exponent_zero_e_plus()
+fn zero_e_plus()
 {
     assert(can_parse_as_property("0e+") == false);
 }
 
 #[test]
-fn property_exponent_zero_e_minus()
+fn zero_e_minus()
 {
     assert(can_parse_as_property("0e-") == false);
 }
 
 #[test]
-fn property_exponent_zero_e_zero_one()
+fn zero_e_zero_one()
 {
     assert(can_parse_as_property("0e01") == true);
 }
 
 #[test]
-fn property_exponent_zero_e_zero_zero_one()
+fn zero_e_zero_zero_one()
 {
     assert(can_parse_as_property("0e001") == true);
 }
 
 #[test]
-fn property_exponent_zero_e_one_zero()
+fn zero_e_one_zero()
 {
     assert(can_parse_as_property("0e10") == true);
 }
 
 #[test]
-fn property_exponent_zero_e_one_zero_one()
+fn zero_e_one_zero_one()
 {
     assert(can_parse_as_property("0e101") == true);
 }
 
 #[test]
-fn property_exponent_one_e_plus_zero()
+fn one_e_plus_zero()
 {
     assert(can_parse_as_property("1e+0") == true);
 }
 
 #[test]
-fn property_exponent_one_e_minus_zero()
+fn one_e_minus_zero()
 {
     assert(can_parse_as_property("1e-0") == true);
 }
 
 #[test]
-fn property_exponent_one_zero_e_plus_zero()
+fn one_zero_e_plus_zero()
 {
     assert(can_parse_as_property("10e+0") == true);
 }
 
 #[test]
-fn property_exponent_one_zero_e_minus_zero()
+fn one_zero_e_minus_zero()
 {
     assert(can_parse_as_property("10e-0") == true);
 }
 
 #[test]
-fn property_exponent_one_zero_zero_e_plus_zero()
+fn one_zero_zero_e_plus_zero()
 {
     assert(can_parse_as_property("100e+0") == true);
 }
 
 #[test]
-fn property_exponent_one_zero_zero_e_minus_zero()
+fn one_zero_zero_e_minus_zero()
 {
     assert(can_parse_as_property("100e-0") == true);
 }
 
 #[test]
-fn property_exponent_one_zero_zero_one_e_plus_zero()
+fn one_zero_zero_one_e_plus_zero()
 {
     assert(can_parse_as_property("1001e+0") == true);
 }
 
 #[test]
-fn property_exponent_one_zero_zero_one_e_minus_zero()
+fn one_zero_zero_one_e_minus_zero()
 {
     assert(can_parse_as_property("1001e-0") == true);
 }
 
 #[test]
-fn property_exponent_one_zero_zero_e_plus_zero_one()
+fn one_zero_zero_e_plus_zero_one()
 {
     assert(can_parse_as_property("100e+01") == true);
 }
 
 #[test]
-fn property_exponent_one_zero_zero_e_minus_zero_one()
+fn one_zero_zero_e_minus_zero_one()
 {
     assert(can_parse_as_property("100e-01") == true);
 }
 
 #[test]
-fn property_exponent_one_zero_one_e_plus_one_zero_one()
+fn one_zero_one_e_plus_one_zero_one()
 {
     assert(can_parse_as_property("101e+101") == true);
 }
 
 #[test]
-fn property_exponent_one_zero_one_e_minus_one_zero_one()
+fn one_zero_one_e_minus_one_zero_one()
 {
     assert(can_parse_as_property("101e-101") == true);
 }

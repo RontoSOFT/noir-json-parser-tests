@@ -1,97 +1,97 @@
 use crate::utils::can_parse_as_nested;
 
 #[test]
-fn nested_literal_null()
+fn literal_null()
 {
     assert(can_parse_as_nested("null") == true);
 }
 
 #[test]
-fn nested_literal_true()
+fn literal_true()
 {
     assert(can_parse_as_nested("true") == true);
 }
 
 #[test]
-fn nested_literal_false()
+fn literal_false()
 {
     assert(can_parse_as_nested("false") == true);
 }
 
 #[test]
-fn nested_literal_fals()
+fn fals()
 {
     assert(can_parse_as_nested("fals") == false);
 }
 
 #[test]
-fn nested_literal_t()
+fn t()
 {
     assert(can_parse_as_nested("t}") == false);
 }
 
 #[test]
-fn nested_literal_nul()
+fn nul()
 {
     assert(can_parse_as_nested("nul}") == false);
 }
 
 #[test]
-fn nested_literal_falst()
+fn falst()
 {
     assert(can_parse_as_nested("falst}") == false);
 }
 
 #[test]
-fn nested_literal_random()
+fn random()
 {
     assert(can_parse_as_nested("lfseu}") == false);
 }
 
 #[test]
-fn nested_literal_plus_true()
+fn plus_true()
 {
     assert(can_parse_as_nested("+true}") == false);
 }
 
 #[test]
-fn nested_literal_true_plus()
+fn true_plus()
 {
     assert(can_parse_as_nested("true+}") == false);
 }
 
 #[test]
-fn nested_literal_minus_false()
+fn minus_false()
 {
     assert(can_parse_as_nested("-false}") == false);
 }
 
 #[test]
-fn nested_literal_false_minus()
+fn false_minus()
 {
     assert(can_parse_as_nested("false-}") == false);
 }
 
 #[test]
-fn nested_literal_tru_dot_e()
+fn tru_dot_e()
 {
     assert(can_parse_as_nested("tru.e}") == false);
 }
 
 #[test]
-fn nested_literal_tru_space_e()
+fn tru_space_e()
 {
     assert(can_parse_as_nested("tru e}") == false);
 }
 
 #[test]
-fn nested_literal_false_space_false()
+fn false_space_false()
 {
     assert(can_parse_as_nested("false false}") == false);
 }
 
 #[test]
-fn nested_literal_false_comma_false()
+fn false_comma_false()
 {
     assert(can_parse_as_nested("false,false}") == false);
 }
