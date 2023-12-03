@@ -1,12 +1,14 @@
 [![CI/CD](https://github.com/rontosoft/noir-json-parser-tests/actions/workflows/main.yml/badge.svg)](https://github.com/rontosoft/noir-json-parser-tests/actions/workflows/main.yml)
 
-# noir-json-parser-tests
+# Introduction
 
-Welcome!
+Greetings and salutations!
 
-This is a library of tests covering the deserialization functionality provided by the [`noir-json-parser`](https://github.com/rontosoft/noir-json-parser) library.
+Behold, a compendium of tests venturing into the realms of deserialization magic wielded by the venerable [`noir-json-parser`](https://github.com/rontosoft/noir-json-parser) library.
 
-Written in the [Noir programming language](https://noir-lang.org/), the tests are designed to ensure the correct parsing and conversion of JSON data.
+Crafted in the enigmatic 🌌[Noir](https://noir-lang.org/) programming language, these tests embark on a cosmic journey to guarantee the impeccable parsing and transformation of JSON data.
+
+Come hitch a ride with us through the [Aztec](https://docs.aztec.network/) ZK-rollup galaxy of data! 🚀📡
 
 <br>
 
@@ -14,51 +16,12 @@ Written in the [Noir programming language](https://noir-lang.org/), the tests ar
 
 <br>
 
-1. Create a folder named `noir-json-parser`. This will be the parent of all projects (the library, tests and optionally the examples).
-
-    ```sh
-    mkdir noir-json-parser
-    cd noir-json-parser
-    ```
-
-<br>
-
-2.  - Clone the library repository in the same parent folder under the name `lib`.
-
-    ```sh
-    git clone https://github.com/RontoSOFT/noir-json-parser lib
-    ```
-
-    <br>
-
-    - Clone this repository in the same parent folder under the name `tests`.
-
-    ```sh
-    git clone https://github.com/RontoSOFT/noir-json-parser-tests tests
-    ```
-
-<br>
-
-3. Install [Nargo](https://noir-lang.org/getting_started/nargo_installation), the [Noir language](https://noir-lang.org/) compiler, by sourcing a [release build](https://github.com/noir-lang/noir/releases) to the version specified in [Nargo.toml](https://github.com/RontoSOFT/noir-json-parser/blob/main/Nargo.toml#L5) by enabling and running the [setup script](https://github.com/RontoSOFT/noir-json-parser/blob/main/scripts/setup.sh).
-
-    ```sh
-    chmod +x ./lib/scripts/setup.sh
-    ./lib/scripts/setup.sh
-    ```
-
-<br>
-
-4.  Run the `noir test` command in the `tests` project directory.
-
-    ```sh
-    cd tests
-    nargo test --show-output --silence-warnings
-    ```
+Refer to the `noir-json-parser` [setup instructions](https://github.com/RontoSOFT/noir-json-parser/blob/main/README.md#setup).
 
 <br>
 <br>
 
-## Overview
+# Overview
 
 The tests are organized into two modules:
 
