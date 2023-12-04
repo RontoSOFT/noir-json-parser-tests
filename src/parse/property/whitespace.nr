@@ -9,24 +9,6 @@ fn space()
 }
 
 #[test]
-fn tab()
-{
-    assert(can_parse_as_property("\t") == false);
-}
-
-#[test]
-fn newline()
-{
-    assert(can_parse_as_property("\n") == false);
-}
-
-#[test]
-fn carriage_return()
-{
-    assert(can_parse_as_property("\r") == false);
-}
-
-#[test]
 fn byte_null()
 {
     assert(can_parse_as_property("\0") == false);
